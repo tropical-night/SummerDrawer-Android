@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.makeramen.roundedimageview.RoundedImageView;
-
 import java.util.ArrayList;
 
 public class CustomPagerAdapter extends PagerAdapter {
@@ -36,8 +34,7 @@ public class CustomPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view = LayoutInflater.from(context).inflate(R.layout.pager_item, container, false);
-        RoundedImageView imageView = (RoundedImageView) view.findViewById(R.id.image);
-        imageView.setCornerRadius(20);
+        ImageView imageView = (ImageView) view.findViewById(R.id.image);
         imageView.setBackgroundResource(pager.get(position));
         container.addView(view);
 

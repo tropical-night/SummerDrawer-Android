@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         layout_dot = (LinearLayout) findViewById(R.id.layout_dot);
         arrayList = new ArrayList<>();
 
-        arrayList.add(R.color.red);
+        arrayList.add(R.color.teal_200);
         arrayList.add(R.color.green);
         arrayList.add(R.color.colorPrimaryDark);
         arrayList.add(R.color.colorAccent);
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < dot.length; i++) {;
             dot[i] = new TextView(this);
             dot[i].setText(Html.fromHtml("&#9679;"));
+            dot[i].setPadding(10,0,10,0);
             dot[i].setTextSize(10);
             dot[i].setTextColor(getResources().getColor(R.color.darker_gray));
             layout_dot.addView(dot[i]);
