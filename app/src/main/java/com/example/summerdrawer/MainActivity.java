@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(R.color.green);
         arrayList.add(R.color.colorPrimaryDark);
         arrayList.add(R.color.colorAccent);
+        arrayList.add(R.color.purple_500);
 
         CustomPagerAdapter pagerAdapter = new CustomPagerAdapter(getApplicationContext(), arrayList);
         viewPager.setAdapter(pagerAdapter);
