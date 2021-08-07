@@ -22,31 +22,37 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="30dp"
+        android:layout_height="360dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
         android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingLeft="60dp"
         android:paddingRight="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/layout_dot"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <LinearLayout
-        android:id="@+id/layout_dot"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="150dp"
+        android:layout_height="30dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewpager">
 
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+            android:id="@+id/dots_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotsSize="10dp"
+            app:dotsSpacing="4dp"
+            app:dotsColor="@color/colorAccent"
+            app:dotsStrokeColor="@color/cardview_dark_background"
+            app:dotsStrokeWidth="5dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
