@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
@@ -19,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager2 viewPager2;
     ArrayList<SliderItems> sliderItems;
-    LinearLayout layout_dot;
     WormDotsIndicator dots_indicator;
 
     @Override
@@ -30,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.viewpager);
         dots_indicator = findViewById(R.id.dots_indicator);
 
+        // slider item 추가
         sliderItems = new ArrayList<>();
         sliderItems.add(new SliderItems(R.color.teal_200));
         sliderItems.add(new SliderItems(R.color.green));
@@ -42,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager2.setClipChildren(false);
         viewPager2.setOffscreenPageLimit(3);
         viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-        dots_indicator.setViewPager2(viewPager2); //indicator
+        // indicator 설정
+        dots_indicator.setViewPager2(viewPager2);
 
-
+        // 가장자리 아이템들은 크기 작게
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(10));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
