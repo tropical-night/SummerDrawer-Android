@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton goProfile = (ImageButton)findViewById(R.id.btn_goProfile);
         ImageButton goSearch = (ImageButton)findViewById(R.id.btn_goSearch);
+        viewPager2 = findViewById(R.id.viewpager);
+        dots_indicator = findViewById(R.id.dots_indicator);
 
         // 상단바 프로필 이동
         goProfile.setOnClickListener(new View.OnClickListener() {
@@ -44,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
                 // 클릭시 이벤트
             }
         });
-        viewPager2 = findViewById(R.id.viewpager);
-        dots_indicator = findViewById(R.id.dots_indicator);
 
         // slider item 추가
         sliderItems = new ArrayList<>();
