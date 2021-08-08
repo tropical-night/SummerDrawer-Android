@@ -1,6 +1,5 @@
 package com.example.summerdrawer;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +32,7 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
 
     @Override
     public void onBindViewHolder(@NonNull SliderAdapter.SliderViewHolder holder, int position) {
-        int index = position % 5;
-//        int index = position % sliderItems.size();
-        holder.setImage(sliderItems.get(index));
-        if (position == sliderItems.size() - 2) {
-            viewPager2.post(runnable);
-        }
+        holder.setImage(sliderItems.get(position));
     }
 
     @Override
@@ -58,12 +52,4 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
             imageView.setImageResource(sliderItems.getImage());
         }
     }
-
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            sliderItems.addAll(sliderItems);
-            notifyDataSetChanged();
-        }
-    };
 }
