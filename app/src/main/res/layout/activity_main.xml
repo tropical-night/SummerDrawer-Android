@@ -8,12 +8,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
@@ -65,14 +59,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:padding="20dp"
                 android:text="추천 컨텐츠"
                 android:textAlignment="viewStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -85,7 +79,6 @@
                 android:id="@+id/layout_slider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,6 +111,68 @@
                         app:dotsStrokeWidth="5dp" />
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="#DECCFF"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_slider">
+
+                <Button
+                    android:id="@+id/btn_movie"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="영화" />
+
+                <Button
+                    android:id="@+id/btn_book"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="책" />
+
+                <Button
+                    android:id="@+id/btn_webtoon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="웹툰" />
+
+                <Button
+                    android:id="@+id/btn_instaToon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="인스타툰" />
+
+                <Button
+                    android:id="@+id/btn_magazine"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:text="매거진" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="20dp"
+                android:text="분야 별 랭킹 10"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_menu"
+                tools:ignore="RtlCompat" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
