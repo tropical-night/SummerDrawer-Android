@@ -75,12 +75,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="RtlCompat" />
 
-            <LinearLayout
-                android:id="@+id/layout_slider"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView">
 
@@ -91,14 +91,35 @@
                     android:layout_weight="1"
                     android:clipToPadding="false"
                     android:paddingLeft="60dp"
-                    android:paddingRight="60dp" />
+                    android:paddingRight="60dp"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </androidx.viewpager2.widget.ViewPager2>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:text="컨텐츠 제목"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewpager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
                         android:id="@+id/dots_indicator"
@@ -110,13 +131,14 @@
                         app:dotsStrokeColor="@color/cardview_dark_background"
                         app:dotsStrokeWidth="5dp" />
                 </LinearLayout>
-            </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/layout_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:background="#DECCFF"
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -124,7 +146,7 @@
                 android:paddingBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_slider">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
                 <Button
                     android:id="@+id/btn_movie"
@@ -172,6 +194,49 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_menu"
                 tools:ignore="RtlCompat" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_movie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="영화" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="책" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_webtoon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="웹툰" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_instaToon"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:text="인스타툰" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewpager_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
