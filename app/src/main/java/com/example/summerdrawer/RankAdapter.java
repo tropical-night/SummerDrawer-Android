@@ -46,7 +46,7 @@ public class RankAdapter extends RecyclerView.Adapter <RankAdapter.RankViewHolde
         return rankItems.size();
     }
 
-    class RankViewHolder extends RecyclerView.ViewHolder {
+    public class RankViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
         public TextView category;
         public TextView author;
