@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         rankItems = new ArrayList<>();
-        rankItems.add(new RankItems(R.color.teal_200, "유미와세포들", "영화", "작가1", "세포세포 유미유미"));
-        rankItems.add(new RankItems(R.color.colorAccent, "소녀의세계", "웹툰", "작가3", "소녀의 세계 이야기"));
-        rankItems.add(new RankItems(R.color.colorAccent, "웹툰웹툰", "웹툰", "작가4", "소녀의 세계 이야기"));
+        //rankItems.add(new RankItems(R.color.teal_200, "유미와세포들", "영화", "작가1", "세포세포 유미유미"));
+        //rankItems.add(new RankItems(R.color.colorAccent, "소녀의세계", "웹툰", "작가3", "소녀의 세계 이야기"));
+        //rankItems.add(new RankItems(R.color.colorAccent, "웹툰웹툰", "웹툰", "작가4", "소녀의 세계 이야기"));
 
         viewPager2_recycler.setAdapter(new RankAdapter(rankItems, viewPager2_recycler));
         List<String> titles = Arrays.asList("영화", "책", "웹툰", "인스타툰");
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 //TextView textView = new TextView(MainActivity.this);
                 //textView.setText(titles.get(position));
                 //tab.setCustomView(textView);
-                tab.setText(titles.get(position));
+                //tab.setText(titles.get(position));
             }
         }).attach();
     }
