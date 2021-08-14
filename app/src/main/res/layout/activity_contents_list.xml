@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:text="여름서랍" />
+            android:text="여름서랍"
+            android:textSize="20sp" />
 
         <ImageButton
             android:id="@+id/btn_goSearch_lst"
@@ -61,8 +62,9 @@
                 android:id="@+id/categoryNameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:text="카테고리명"
                 android:textSize="20sp" />
 
@@ -95,7 +97,7 @@
                     android:id="@+id/issueContentsTitleTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
+                    android:text="컨텐츠 제목"
                     app:layout_constraintBottom_toBottomOf="@+id/issueContentsImg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="TextView"
+                    android:text="생활툰 | 작가명"
                     app:layout_constraintBottom_toBottomOf="@+id/issueContentsImg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,8 +127,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
                     android:text="인기순"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
