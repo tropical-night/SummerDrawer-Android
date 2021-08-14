@@ -7,8 +7,10 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     WormDotsIndicator dots_indicator;
     ViewPager2 viewPager2_recycler;
     TabLayout tabLayout;
+    Button btn_movie, btn_book, btn_webtoon, btn_instaToon, btn_magazine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,29 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager2.setPageTransformer(compositePageTransformer);
 
+        btn_movie = findViewById(R.id.btn_movie);
+        //영화 버튼 클릭 시 화면 전환
+        btn_movie.setOnClickListener(view->{
+            toContentsList("movie");
+        });
+
+        btn_book = findViewById(R.id.btn_book);
+        //책 버튼 클릭 시 화면 전환환
+       btn_book.setOnClickListener(view->{
+            toContentsList("book");
+        });
+
+        btn_webtoon = findViewById(R.id.btn_webtoon);
+        //웹툰 버튼 클릭 시 화면 전환환
+        btn_webtoon.setOnClickListener(view->{
+            toContentsList("webtoon");
+        });
+
+        btn_instaToon = findViewById(R.id.btn_instaToon);
+        //인스타툰 버튼 클릭 시 화면 전환환
+        btn_instaToon.setOnClickListener(view->{
+            toContentsList("instaToon");
+        });
 
         rankItems = new ArrayList<>();
         //rankItems.add(new RankItems(R.color.teal_200, "유미와세포들", "영화", "작가1", "세포세포 유미유미"));
@@ -114,4 +140,11 @@ public class MainActivity extends AppCompatActivity {
         }).attach();
     }
 
+    //클릭한 버튼에 따라 카테고리를 지정하여 contentList에 넘겨주는 함수
+    void toContentsList(String category){
+        Intent toList = new Intent(this, ContentsListActivity.class);
+        toList.putExtra("content", category);
+        startActivity(toList);
+        finish();
+    }
 }
