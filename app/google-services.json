@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "225542902803",
+    "project_id": "summer-drawer",
+    "storage_bucket": "summer-drawer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:225542902803:android:b8f87a0624298602fc5be6",
+        "android_client_info": {
+          "package_name": "com.example.summerdrawer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "225542902803-g7r77581khmvs86152gtb8ihaob45f96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgJ0EEMC2f9Xit7LbU-lPHpktRJnfNiBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "225542902803-g7r77581khmvs86152gtb8ihaob45f96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

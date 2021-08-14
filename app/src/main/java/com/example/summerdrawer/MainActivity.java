@@ -10,16 +10,24 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ViewPager2 viewPager2;
     ArrayList<SliderItems> sliderItems;
+    ArrayList<RankItems> rankItems;
     WormDotsIndicator dots_indicator;
+    ViewPager2 viewPager2_recycler;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton goProfile = (ImageButton)findViewById(R.id.btn_goProfile);
         ImageButton goSearch = (ImageButton)findViewById(R.id.btn_goSearch);
+        viewPager2 = findViewById(R.id.viewpager);
+        dots_indicator = findViewById(R.id.dots_indicator);
+        viewPager2_recycler = findViewById(R.id.viewpager_recycler);
+        tabLayout = findViewById(R.id.tabLayout);
 
         // 상단바 프로필 이동
         goProfile.setOnClickListener(new View.OnClickListener() {
@@ -44,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 // 클릭시 이벤트
             }
         });
-        viewPager2 = findViewById(R.id.viewpager);
-        dots_indicator = findViewById(R.id.dots_indicator);
 
         // slider item 추가
         sliderItems = new ArrayList<>();
@@ -75,5 +85,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewPager2.setPageTransformer(compositePageTransformer);
+
+
+        rankItems = new ArrayList<>();
+        //rankItems.add(new RankItems(R.color.teal_200, "유미와세포들", "영화", "작가1", "세포세포 유미유미"));
+        //rankItems.add(new RankItems(R.color.colorAccent, "소녀의세계", "웹툰", "작가3", "소녀의 세계 이야기"));
+        //rankItems.add(new RankItems(R.color.colorAccent, "웹툰웹툰", "웹툰", "작가4", "소녀의 세계 이야기"));
+
+        viewPager2_recycler.setAdapter(new RankAdapter(rankItems, viewPager2_recycler));
+        List<String> titles = Arrays.asList("영화", "책", "웹툰", "인스타툰");
+
+        viewPager2_recycler.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+        });
+
+
+        new TabLayoutMediator(tabLayout, viewPager2_recycler, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                //TextView textView = new TextView(MainActivity.this);
+                //textView.setText(titles.get(position));
+                //tab.setCustomView(textView);
+                //tab.setText(titles.get(position));
+            }
+        }).attach();
     }
+
 }
