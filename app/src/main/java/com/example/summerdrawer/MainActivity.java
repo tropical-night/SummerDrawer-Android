@@ -92,25 +92,25 @@ public class MainActivity extends AppCompatActivity {
         btn_movie = findViewById(R.id.btn_movie);
         //영화 버튼 클릭 시 화면 전환
         btn_movie.setOnClickListener(view->{
-            toContentsList("movie");
+            toContentsList("영화");
         });
 
         btn_book = findViewById(R.id.btn_book);
         //책 버튼 클릭 시 화면 전환환
        btn_book.setOnClickListener(view->{
-            toContentsList("book");
+            toContentsList("책");
         });
 
         btn_webtoon = findViewById(R.id.btn_webtoon);
         //웹툰 버튼 클릭 시 화면 전환환
         btn_webtoon.setOnClickListener(view->{
-            toContentsList("webtoon");
+            toContentsList("웹툰");
         });
 
         btn_instaToon = findViewById(R.id.btn_instaToon);
         //인스타툰 버튼 클릭 시 화면 전환환
         btn_instaToon.setOnClickListener(view->{
-            toContentsList("instaToon");
+            toContentsList("인스타툰");
         });
 
         rankItems = new ArrayList<>();
@@ -145,6 +145,5 @@ public class MainActivity extends AppCompatActivity {
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
         startActivity(toList);
-        finish();
     }
 }
