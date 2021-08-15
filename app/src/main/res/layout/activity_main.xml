@@ -12,6 +12,7 @@
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         android:gravity="center"
         android:orientation="horizontal"
         android:visibility="visible"
@@ -53,6 +54,7 @@
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,43 +64,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:padding="20dp"
-                android:text="추천 컨텐츠"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="RtlCompat" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="#FAF9F9"
+                app:layout_constraintBottom_toTopOf="@+id/layout_menu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/text_title_recommend"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:text="오늘의 추천 작품"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@+id/viewpager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewpager"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="480dp"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
                     android:clipToPadding="false"
                     android:paddingLeft="60dp"
                     android:paddingRight="60dp"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                </androidx.viewpager2.widget.ViewPager2>
+                    app:layout_constraintTop_toBottomOf="@+id/text_title_recommend" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -122,15 +125,17 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                         android:id="@+id/dots_indicator"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:dotsColor="@color/colorAccent"
+                        app:dotsColor="#DDDDDD"
+                        app:dotsCornerRadius="2dp"
                         app:dotsSize="10dp"
                         app:dotsSpacing="4dp"
-                        app:dotsStrokeColor="@color/cardview_dark_background"
-                        app:dotsStrokeWidth="5dp" />
+                        app:dotsStrokeColor="#DDDDDD"
+                        app:dotsStrokeWidth="5dp"
+                        app:selectedDotColor="#DDDDDD" />
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -140,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="#DECCFF"
+                android:background="#FFFFFF"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingTop="10dp"

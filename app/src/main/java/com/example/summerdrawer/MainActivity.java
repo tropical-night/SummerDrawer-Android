@@ -12,11 +12,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ViewPager2 viewPager2;
     ArrayList<SliderItems> sliderItems;
     ArrayList<RankItems> rankItems;
-    WormDotsIndicator dots_indicator;
+    DotsIndicator dots_indicator;
     ViewPager2 viewPager2_recycler;
     TabLayout tabLayout;
     Button btn_movie, btn_book, btn_webtoon, btn_instaToon, btn_magazine;
