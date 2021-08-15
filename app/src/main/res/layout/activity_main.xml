@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:text="여름서랍" />
+            android:text="여름서랍"
+            android:textSize="20sp" />
 
         <ImageButton
             android:id="@+id/btn_goSearch"
