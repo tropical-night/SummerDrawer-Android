@@ -38,7 +38,7 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
         holder.category.setText(sliderItems.get(position).getCategory());
         holder.author.setText(sliderItems.get(position).getAuthor());
         holder.desc.setText(sliderItems.get(position).getDesc());
-        //holder.tag.setText(sliderItems.get(position).getTag());
+        holder.tag.setText(sliderItems.get(position).getTag());
     }
 
     @Override

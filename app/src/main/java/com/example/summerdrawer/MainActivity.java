@@ -57,14 +57,17 @@ public class MainActivity extends AppCompatActivity {
         sliderItems = new ArrayList<>();
         ArrayList<String> tagList = new ArrayList<>();
         tagList.add("여성서사");
-        sliderItems.add(new SliderItems(R.color.teal_200, "우리는 이 별을 떠나기로 했어", "도서", "천산란 외 4명",
+        tagList.add("여성작가");
+        String tag = setTagListToString(tagList);
+
+        sliderItems.add(new SliderItems(R.color.darker_gray, "우리는 이 별을 떠나기로 했어", "도서", "천산란 외 4명",
                 "세계 여성의 날을 맞아 여성작가 5인이 모여 제한 \n된 시공간을 탈주하고 행성 시대의 " +
-                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tagList));
-        sliderItems.add(new SliderItems(R.color.green, "화장 지워주는 남자", "웹툰", "이연",
-                "밋밋한 얼굴의 대학생이\n천재 메이크업 아티스트의 뮤즈!?", tagList));
-        sliderItems.add(new SliderItems(R.color.teal_200, "우리는 이 별을 떠나기로 했어", "도서", "천산란 외 4명",
+                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tag));
+        sliderItems.add(new SliderItems(R.color.darker_gray, "화장 지워주는 남자", "웹툰", "이연",
+                "밋밋한 얼굴의 대학생이\n천재 메이크업 아티스트의 뮤즈!?", tag));
+        sliderItems.add(new SliderItems(R.color.darker_gray, "우리는 이 별을 떠나기로 했어", "도서", "천산란 외 4명",
                 "세계 여성의 날을 맞아 여성작가 5인이 모여 제한 \n된 시공간을 탈주하고 행성 시대의 " +
-                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tagList));
+                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tag));
 
 
         viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
@@ -140,5 +143,16 @@ public class MainActivity extends AppCompatActivity {
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
         startActivity(toList);
+    }
+
+    // 태그리스트를 하나의 string으로 바꿔주는 함수
+    String setTagListToString(ArrayList<String> tagList){
+        StringBuilder tag = new StringBuilder();
+        for(int i=0; i<tagList.size(); i++ )
+        {
+            tag.append("#").append(tagList.get(i));
+            if(i != tagList.size()-1) tag.append("   ");
+        }
+        return tag.toString();
     }
 }
