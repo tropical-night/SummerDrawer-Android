@@ -68,11 +68,11 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="48dp"
                 android:background="#FAF9F9"
                 app:layout_constraintBottom_toTopOf="@+id/layout_menu"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
@@ -82,36 +82,40 @@
                     android:layout_marginTop="40dp"
                     android:gravity="center"
                     android:text="오늘의 추천 작품"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toTopOf="@+id/viewpager"
+                    android:textColor="#434343"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/box_recommend"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
+                <LinearLayout
+                    android:id="@+id/box_recommend"
+                    android:layout_width="160dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="#E0E0E0"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/viewpager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_title_recommend"/>
+
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewpager"
                     android:layout_width="0dp"
-                    android:layout_height="480dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="580dp"
                     android:layout_weight="1"
                     android:clipToPadding="false"
-                    android:paddingLeft="60dp"
-                    android:paddingRight="60dp"
+                    android:paddingLeft="80dp"
+                    android:paddingRight="80dp"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_title_recommend" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
-                    android:text="컨텐츠 제목"
-                    app:layout_constraintBottom_toBottomOf="@+id/viewpager"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/box_recommend" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
@@ -123,7 +127,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewpager">
 
                     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
                         android:id="@+id/dots_indicator"
@@ -131,10 +136,11 @@
                         android:layout_height="wrap_content"
                         app:dotsColor="#DDDDDD"
                         app:dotsCornerRadius="2dp"
-                        app:dotsSize="10dp"
-                        app:dotsSpacing="4dp"
+                        app:dotsSize="8dp"
+                        app:dotsSpacing="3dp"
                         app:dotsStrokeColor="#DDDDDD"
                         app:dotsStrokeWidth="5dp"
+                        app:dotsWidthFactor="3.5"
                         app:selectedDotColor="#DDDDDD" />
                 </LinearLayout>
 
