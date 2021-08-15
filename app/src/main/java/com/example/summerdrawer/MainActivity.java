@@ -55,11 +55,17 @@ public class MainActivity extends AppCompatActivity {
 
         // slider item 추가
         sliderItems = new ArrayList<>();
-        sliderItems.add(new SliderItems(R.color.teal_200));
-        sliderItems.add(new SliderItems(R.color.green));
-        sliderItems.add(new SliderItems(R.color.red));
-        sliderItems.add(new SliderItems(R.color.colorAccent));
-        sliderItems.add(new SliderItems(R.color.purple_500));
+        ArrayList<String> tagList = new ArrayList<>();
+        tagList.add("여성서사");
+        sliderItems.add(new SliderItems(R.color.teal_200, "우리는 이 별을 떠나기로 했어", "도서", "천산란 외 4명",
+                "세계 여성의 날을 맞아 여성작가 5인이 모여 제한 \n된 시공간을 탈주하고 행성 시대의 " +
+                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tagList));
+        sliderItems.add(new SliderItems(R.color.green, "화장 지워주는 남자", "웹툰", "이연",
+                "밋밋한 얼굴의 대학생이\n천재 메이크업 아티스트의 뮤즈!?", tagList));
+        sliderItems.add(new SliderItems(R.color.teal_200, "우리는 이 별을 떠나기로 했어", "도서", "천산란 외 4명",
+                "세계 여성의 날을 맞아 여성작가 5인이 모여 제한 \n된 시공간을 탈주하고 행성 시대의 " +
+                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tagList));
+
 
         viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
 
@@ -75,9 +81,30 @@ public class MainActivity extends AppCompatActivity {
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
-                //TextView t = page.findViewById(R.id.textView);
-                //if(position != 0) t.setVisibility(View.INVISIBLE);
-                //else t.setVisibility(View.VISIBLE);
+                TextView title = page.findViewById(R.id.text_title_today);
+                TextView category = page.findViewById(R.id.text_category_today);
+                TextView author = page.findViewById(R.id.text_author_today);
+                TextView bar = page.findViewById(R.id.text_bar_today);
+                TextView desc = page.findViewById(R.id.text_desc_today);
+                TextView tag = page.findViewById(R.id.text_tag_today);
+
+                // 현재 페이지의 뷰만 나타나게 함
+                if(position == 1 || position == -1) {
+                    title.setVisibility(View.INVISIBLE);
+                    category.setVisibility(View.INVISIBLE);
+                    author.setVisibility(View.INVISIBLE);
+                    bar.setVisibility(View.INVISIBLE);
+                    desc.setVisibility(View.INVISIBLE);
+                    tag.setVisibility(View.INVISIBLE);
+                }
+                else {
+                    title.setVisibility(View.VISIBLE);
+                    category.setVisibility(View.VISIBLE);
+                    author.setVisibility(View.VISIBLE);
+                    bar.setVisibility(View.VISIBLE);
+                    desc.setVisibility(View.VISIBLE);
+                    tag.setVisibility(View.VISIBLE);
+                }
             }
         });
 
