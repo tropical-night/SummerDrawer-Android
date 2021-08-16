@@ -85,21 +85,11 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     //document.getData() or document.getId()
-                    String title = (String) document.getData().get("wTitle");
+                    String title = (String) document.getData().get("title");
                     String category = (String) document.getData().get("category");
+                    String tag = setTagListToString((String) document.getData().get("tag"));
 
-                    db.collection("webtoon").document(document.getId()).collection("tag").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                tagList.add((String) document.getData().get("name"));
-                            }
-                            tag = setTagListToString(tagList);
-                        }
-                    });
-                    Log.d("tag", tag);
-
-                    String desc = (String) document.getData().get("wSummary");
+                    String desc = (String) document.getData().get("summary");
                     sliderItems.add(new SliderItems(R.color.darker_gray, title, category, "이연", desc, tag));
                 }
                 // 어댑터 설정
@@ -140,14 +130,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 태그리스트를 하나의 string으로 바꿔주는 함수
-    String setTagListToString(ArrayList<String> tagList){
+    String setTagListToString(String tagDB){
+        String [] tagList = tagDB.split("_");
         StringBuilder tag = new StringBuilder();
-        for(int i=0; i<tagList.size(); i++ )
+        for(int i=0; i<tagList.length; i++ )
         {
-            tag.append("#").append(tagList.get(i));
-            if(i != tagList.size()-1) tag.append("   ");
+            tag.append("#").append(tagList[i]);
+            if(i != tagList.length-1) tag.append("   ");
         }
         return tag.toString();
+    }
+
+    // 작가리스트를 하나의 string으로 바꿔주는 함수
+    String setAuthorToString(String authorDB){
+        String [] authorList = authorDB.split("_");
+        StringBuilder author = new StringBuilder();
+        for(int i=0; i<authorList.length; i++ )
+        {
+            author.append(authorList[i]);
+            if(i != authorList.length-1) author.append("   ");
+        }
+        return author.toString();
     }
 
     // 어댑터 설정
