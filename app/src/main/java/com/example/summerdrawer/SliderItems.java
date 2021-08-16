@@ -1,12 +1,14 @@
 package com.example.summerdrawer;
 
+import java.util.ArrayList;
+
 public class SliderItems {
-    private int image;
-    private String title;
-    private String category;
-    private String author;
-    private String desc;
-    private String tag;
+    private final int image;
+    private final String title;
+    private final String category;
+    private final String author;
+    private final String desc;
+    private final String tag;
 
     SliderItems (int image, String title, String category, String author, String desc, String tag) {
         this.image = image;
