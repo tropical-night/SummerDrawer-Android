@@ -25,12 +25,11 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    ImageButton goProfile, goSearch;
 
     ViewPager2 viewPager2;
     ArrayList<SliderItems> sliderItems;
     DotsIndicator dots_indicator;
-    ViewPager2 viewPager2_recycler;
-    Button btn_movie, btn_book, btn_webtoon, btn_instaToon, btn_magazine;
     FirebaseFirestore db;
     String tag=""; // 작품의 태그값
     ArrayList<String> tagList = new ArrayList<>(); // 태그값 리스트
@@ -38,15 +37,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.splash);
 
-        ImageButton goProfile = (ImageButton)findViewById(R.id.btn_goProfile);
-        ImageButton goSearch = (ImageButton)findViewById(R.id.btn_goSearch);
-        viewPager2 = findViewById(R.id.viewpager);
-        dots_indicator = findViewById(R.id.dots_indicator);
-        viewPager2_recycler = findViewById(R.id.viewpager_recycler);
-
+        //db에서 메인 화면에 보여줄 데이터 받아오기
         db = FirebaseFirestore.getInstance();
+        sliderItems = new ArrayList<>();
+
+        db.collection("webtoon").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    //document.getData() or document.getId()
+                    String title = (String) document.getData().get("title");
+                    String category = (String) document.getData().get("category");
+                    String tag = setTagListToString((String) document.getData().get("tag"));
+                    String author = setAuthorToString((String) document.getData().get("author"));
+
+                    String desc = (String) document.getData().get("summary");
+                    sliderItems.add(new SliderItems(R.color.darker_gray, title, category, author, desc, tag));
+                }
+                setContentView(R.layout.activity_main);
+
+                goProfile = findViewById(R.id.btn_goProfile);
+                goSearch = findViewById(R.id.btn_goSearch);
+                viewPager2 = findViewById(R.id.viewpager);
+                dots_indicator = findViewById(R.id.dots_indicator);
+                // 어댑터 설정
+                setAdapter();
+
+
+
 
         // 상단바 프로필 이동
         goProfile.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // slider item 추가
-        sliderItems = new ArrayList<>();
 //        ArrayList<String> tagList = new ArrayList<>();
 //        tagList.add("여성서사");
 //        tagList.add("여성작가");
@@ -80,46 +99,7 @@ public class MainActivity extends AppCompatActivity {
 //                "세계 여성의 날을 맞아 여성작가 5인이 모여 제한 \n된 시공간을 탈주하고 행성 시대의 " +
 //                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tag));
 
-        db.collection("webtoon").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    //document.getData() or document.getId()
-                    String title = (String) document.getData().get("title");
-                    String category = (String) document.getData().get("category");
-                    String tag = setTagListToString((String) document.getData().get("tag"));
-                    String author = setAuthorToString((String) document.getData().get("author"));
-
-                    String desc = (String) document.getData().get("summary");
-                    sliderItems.add(new SliderItems(R.color.darker_gray, title, category, author, desc, tag));
-                }
-                // 어댑터 설정
-                setAdapter();
             }
-        });
-
-        btn_movie = findViewById(R.id.btn_movie);
-        //영화 버튼 클릭 시 화면 전환
-        btn_movie.setOnClickListener(view->{
-            toContentsList("영화");
-        });
-
-        btn_book = findViewById(R.id.btn_book);
-        //책 버튼 클릭 시 화면 전환환
-       btn_book.setOnClickListener(view->{
-            toContentsList("책");
-        });
-
-        btn_webtoon = findViewById(R.id.btn_webtoon);
-        //웹툰 버튼 클릭 시 화면 전환환
-        btn_webtoon.setOnClickListener(view->{
-            toContentsList("웹툰");
-        });
-
-        btn_instaToon = findViewById(R.id.btn_instaToon);
-        //인스타툰 버튼 클릭 시 화면 전환환
-        btn_instaToon.setOnClickListener(view->{
-            toContentsList("인스타툰");
         });
     }
 
