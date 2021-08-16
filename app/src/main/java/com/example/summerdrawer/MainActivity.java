@@ -88,9 +88,10 @@ public class MainActivity extends AppCompatActivity {
                     String title = (String) document.getData().get("title");
                     String category = (String) document.getData().get("category");
                     String tag = setTagListToString((String) document.getData().get("tag"));
+                    String author = setAuthorToString((String) document.getData().get("author"));
 
                     String desc = (String) document.getData().get("summary");
-                    sliderItems.add(new SliderItems(R.color.darker_gray, title, category, "이연", desc, tag));
+                    sliderItems.add(new SliderItems(R.color.darker_gray, title, category, author, desc, tag));
                 }
                 // 어댑터 설정
                 setAdapter();
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 태그리스트를 하나의 string으로 바꿔주는 함수
     String setTagListToString(String tagDB){
-        String [] tagList = tagDB.split("_");
+        String[] tagList = tagDB.split("_");
         StringBuilder tag = new StringBuilder();
         for(int i=0; i<tagList.length; i++ )
         {
@@ -143,13 +144,16 @@ public class MainActivity extends AppCompatActivity {
 
     // 작가리스트를 하나의 string으로 바꿔주는 함수
     String setAuthorToString(String authorDB){
-        String [] authorList = authorDB.split("_");
+        String[] authorList = authorDB.split("_");
         StringBuilder author = new StringBuilder();
-        for(int i=0; i<authorList.length; i++ )
-        {
-            author.append(authorList[i]);
-            if(i != authorList.length-1) author.append("   ");
+
+        if(authorList.length > 3) {
+            author.append(authorList[0]).append(" 외 " + (authorList.length - 1)).append("명");
         }
+        else if(authorList.length == 2){
+            author.append(authorList[0]).append(", ").append(authorList[1]);
+        }
+        else author.append(authorList[0]);
         return author.toString();
     }
 
