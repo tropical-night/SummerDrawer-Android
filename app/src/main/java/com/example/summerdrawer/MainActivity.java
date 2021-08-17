@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
     DotsIndicator dots_indicator;
     FirebaseFirestore db;
 
+    //인기 작품 서랍장의 뷰
+    ConstraintLayout movieLayout, bookLayout, dramaLayout, webtoonLayout,
+            movieContentLayout, bookContentLayout, dramaContentLayout, webtoonContentLayout;
+    TextView movieTxt, bookTxt, dramaTxt, webtoonTxt;
+    boolean isMOpen, isBOpen, isDOpen, isWOpen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,128 +73,177 @@ public class MainActivity extends AppCompatActivity {
                 }
                 setContentView(R.layout.activity_main);
 
-        //네비게이션 드로어 추가
-        drawerLayout = findViewById(R.id.drawer_layout);
-        drawerView = findViewById(R.id.navbar);
+                //인기 작품 서랍장의 뷰 초기화
+                movieLayout = findViewById(R.id.movieLayout);
+                movieTxt = findViewById(R.id.movieTxt);
+                movieContentLayout = findViewById(R.id.movieContentLayout);
 
-        drawerLayout.addDrawerListener(listener);
-        drawerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return true;
-            }
-        });
+                bookLayout = findViewById(R.id.bookLayout);
+                bookTxt = findViewById(R.id.bookTxt);
+                bookContentLayout = findViewById(R.id.bookContentLayout);
 
-        //왼쪽 상단의 프로필 이미지 클릭 시
-        btn_goProfile = findViewById(R.id.btn_goProfile);
-        btn_goProfile.setOnClickListener(view->{
-            Log.d("test", "버튼 누름");
-            drawerLayout.openDrawer(drawerView);
-        });
+                webtoonLayout = findViewById(R.id.webtoonLayout);
+                webtoonTxt = findViewById(R.id.webtoonTxt);
+                webtoonContentLayout = findViewById(R.id.webtoonContentLayout);
 
-        ImageButton goSearch = findViewById(R.id.btn_goSearch);
-        viewPager2 = findViewById(R.id.viewpager);
-        dots_indicator = findViewById(R.id.dots_indicator);
-        goProfile = findViewById(R.id.btn_goProfile);
-        goSearch = findViewById(R.id.btn_goSearch);
-        viewPager2 = findViewById(R.id.viewpager);
-        dots_indicator = findViewById(R.id.dots_indicator);
-        // 어댑터 설정
-        setAdapter();
+                dramaLayout = findViewById(R.id.dramaLayout);
+                dramaTxt = findViewById(R.id.dramaTxt);
+                dramaContentLayout = findViewById(R.id.dramaContentLayout);
 
-        // 상단바 프로필 이동
-        goProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 클릭시 이벤트
-                btnOnclick(view);
-            }
-        });
+                //인기 작품 서랍장의 뷰 클릭 시 열림/닫힘 이벤트 추가
+                movieLayout.setOnClickListener(view->{
+                    popularDrawer("영화");
+                });
+                movieTxt.setOnClickListener(view->{
+                    popularDrawer("영화");
 
-        // 상단바 검색 페이지로 이동
-        goSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 클릭시 이벤트
-            }
-        });
+                });
 
-        //사용자 이름 받아와서 설정해주기
-        userNameTxt = findViewById(R.id.userNameTxt);
-        userNameTxt.setText("김뫄뫄");
+                bookLayout.setOnClickListener(view->{
+                    popularDrawer("도서");
 
-        //좋아하는 버튼 클릭 시
-        toLike = findViewById(R.id.toLike);
-        toLikeTxt = findViewById(R.id.toLikeTxt);
-        //좋아하는 작품으로 액티비티 이동
-        toLike.setOnClickListener(view->{
-        });
-        toLikeTxt.setOnClickListener(view->{
-        });
+                });
+                bookTxt.setOnClickListener(view->{
+                    popularDrawer("도서");
 
-        //저장해둔 버튼 클릭 시
-        toScrap = findViewById(R.id.toLike);
-        toScrapTxt = findViewById(R.id.toLikeTxt);
-        //저장해둔 작품으로 액티비티 이동
-        toLike.setOnClickListener(view->{
-        });
-        toLikeTxt.setOnClickListener(view->{
-        });
+                });
 
-        //영화 버튼 클릭시
-        toMovie = findViewById(R.id.toMovie);
-        toMovieTxt = findViewById(R.id.toMovieTxt);
-        //영화 추천 리스트 액티비티로 이동
-        toMovie.setOnClickListener(view->{
-            toContentsList("영화");
-        });
-        toMovieTxt.setOnClickListener(view->{
-            toContentsList("영화");
-        });
+                webtoonLayout.setOnClickListener(view->{
+                    popularDrawer("웹툰");
+                });
+                webtoonTxt.setOnClickListener(view->{
+                    popularDrawer("웹툰");
+                });
 
-        //도서 버튼 클릭시
-        toBook = findViewById(R.id.toBook);
-        toBookTxt = findViewById(R.id.toBookTxt);
-        //도서 추천 리스트 액티비티로 이동
-        toBook.setOnClickListener(view->{
-            toContentsList("도서");
-        });
-        toBookTxt.setOnClickListener(view->{
-            toContentsList("도서");
-        });
+                dramaLayout.setOnClickListener(view->{
+                    popularDrawer("드라마");
+                });
+                dramaTxt.setOnClickListener(view->{
+                    popularDrawer("드라마");
+                });
 
-        //웹툰 버튼 클릭시
-        toWebtoon = findViewById(R.id.toWebtoon);
-        toWebtoonTxt = findViewById(R.id.toWebtoonTxt);
-        //도서 추천 리스트 액티비티로 이동
-        toWebtoon.setOnClickListener(view->{
-            toContentsList("웹툰");
-        });
-        toWebtoonTxt.setOnClickListener(view->{
-            toContentsList("웹툰");
-        });
+                drawerLayout = findViewById(R.id.drawer_layout);
+                drawerView = findViewById(R.id.navbar);
 
-        //드라마 버튼 클릭시
-        toDrama = findViewById(R.id.toDrama);
-        toDramaTxt = findViewById(R.id.toDramaTxt);
-        //드라마 추천 리스트 액티비티로 이동
-        toDrama.setOnClickListener(view->{
-            toContentsList("드라마");
-        });
-        toDramaTxt.setOnClickListener(view->{
-            toContentsList("드라마");
-        });
+                drawerLayout.addDrawerListener(listener);
+                drawerView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        return true;
+                    }
+                });
 
-        //읽을거리 버튼 클릭시
-        toMagazine = findViewById(R.id.toMagazine);
-        toMagazineTxt = findViewById(R.id.toMagazineTxt);
-//        //읽을거리 리스트 액티비티로 이동
-//        toDrama.setOnClickListener(view->{
-//        });
-//        toDramaTxt.setOnClickListener(view->{
-//        });
-            }
-        });
+                //왼쪽 상단의 프로필 이미지 클릭 시
+                btn_goProfile = findViewById(R.id.btn_goProfile);
+                btn_goProfile.setOnClickListener(view->{
+                    Log.d("test", "버튼 누름");
+                //네비게이션 드로어 추가
+                    drawerLayout.openDrawer(drawerView);
+                });
+
+                ImageButton goSearch = findViewById(R.id.btn_goSearch);
+                viewPager2 = findViewById(R.id.viewpager);
+                dots_indicator = findViewById(R.id.dots_indicator);
+                goProfile = findViewById(R.id.btn_goProfile);
+                goSearch = findViewById(R.id.btn_goSearch);
+                viewPager2 = findViewById(R.id.viewpager);
+                dots_indicator = findViewById(R.id.dots_indicator);
+                // 어댑터 설정
+                setAdapter();
+
+                // 상단바 프로필 이동
+                goProfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // 클릭시 이벤트
+                        btnOnclick(view);
+                    }
+                });
+
+                // 상단바 검색 페이지로 이동
+                goSearch.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // 클릭시 이벤트
+                    }
+                });
+
+                //사용자 이름 받아와서 설정해주기
+                userNameTxt = findViewById(R.id.userNameTxt);
+                userNameTxt.setText("김뫄뫄");
+
+                //좋아하는 버튼 클릭 시
+                toLike = findViewById(R.id.toLike);
+                toLikeTxt = findViewById(R.id.toLikeTxt);
+                //좋아하는 작품으로 액티비티 이동
+                toLike.setOnClickListener(view->{
+                });
+                toLikeTxt.setOnClickListener(view->{
+                });
+
+                //저장해둔 버튼 클릭 시
+                toScrap = findViewById(R.id.toLike);
+                toScrapTxt = findViewById(R.id.toLikeTxt);
+                //저장해둔 작품으로 액티비티 이동
+                toLike.setOnClickListener(view->{
+                });
+                toLikeTxt.setOnClickListener(view->{
+                });
+
+                //영화 버튼 클릭시
+                toMovie = findViewById(R.id.toMovie);
+                toMovieTxt = findViewById(R.id.toMovieTxt);
+                //영화 추천 리스트 액티비티로 이동
+                toMovie.setOnClickListener(view->{
+                    toContentsList("영화");
+                });
+                toMovieTxt.setOnClickListener(view->{
+                    toContentsList("영화");
+                });
+
+                //도서 버튼 클릭시
+                toBook = findViewById(R.id.toBook);
+                toBookTxt = findViewById(R.id.toBookTxt);
+                //도서 추천 리스트 액티비티로 이동
+                toBook.setOnClickListener(view->{
+                    toContentsList("도서");
+                });
+                toBookTxt.setOnClickListener(view->{
+                    toContentsList("도서");
+                });
+
+                //웹툰 버튼 클릭시
+                toWebtoon = findViewById(R.id.toWebtoon);
+                toWebtoonTxt = findViewById(R.id.toWebtoonTxt);
+                //도서 추천 리스트 액티비티로 이동
+                toWebtoon.setOnClickListener(view->{
+                    toContentsList("웹툰");
+                });
+                toWebtoonTxt.setOnClickListener(view->{
+                    toContentsList("웹툰");
+                });
+
+                //드라마 버튼 클릭시
+                toDrama = findViewById(R.id.toDrama);
+                toDramaTxt = findViewById(R.id.toDramaTxt);
+                //드라마 추천 리스트 액티비티로 이동
+                toDrama.setOnClickListener(view->{
+                    toContentsList("드라마");
+                });
+                toDramaTxt.setOnClickListener(view->{
+                    toContentsList("드라마");
+                });
+
+                //읽을거리 버튼 클릭시
+                toMagazine = findViewById(R.id.toMagazine);
+                toMagazineTxt = findViewById(R.id.toMagazineTxt);
+//                //읽을거리 리스트 액티비티로 이동
+//                toDrama.setOnClickListener(view->{
+//                });
+//                toDramaTxt.setOnClickListener(view->{
+//                });
+                    }
+                });
     }
 
     //클릭한 버튼에 따라 카테고리를 지정하여 contentList에 넘겨주는 함수
@@ -302,5 +357,84 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewPager2.setPageTransformer(compositePageTransformer);
+    }
+
+    //인기 작품서랍장 열기/닫기
+    void popularDrawer(String category){
+        switch (category){
+            case "영화":
+                if(isMOpen){
+                    //영화 서랍 닫기
+                    movieContentLayout.setVisibility(View.GONE);
+                    isMOpen=false;
+                }else{
+                    //영화 서랍은 열고
+                    movieContentLayout.setVisibility(View.VISIBLE);
+                    isMOpen=true;
+                    //나머지는 닫기
+                    bookContentLayout.setVisibility(View.GONE);
+                    isBOpen = false;
+                    webtoonContentLayout.setVisibility(View.GONE);
+                    isWOpen = false;
+                    dramaContentLayout.setVisibility(View.GONE);
+                    isDOpen = false;
+                }
+                break;
+            case "도서":
+                if(isBOpen){
+                    //도서 서랍 닫기
+                    bookContentLayout.setVisibility(View.GONE);
+                    isBOpen=false;
+                }else{
+                    //도서 서랍은 열고
+                    bookContentLayout.setVisibility(View.VISIBLE);
+                    isBOpen=true;
+                    //나머지는 닫기
+                    movieContentLayout.setVisibility(View.GONE);
+                    isMOpen = false;
+                    webtoonContentLayout.setVisibility(View.GONE);
+                    isWOpen = false;
+                    dramaContentLayout.setVisibility(View.GONE);
+                    isDOpen = false;
+                }
+                break;
+            case "웹툰":
+                if(isWOpen){
+                    //웹툰 서랍 닫기
+                    webtoonContentLayout.setVisibility(View.GONE);
+                    isWOpen=false;
+                }else{
+                    //웹툰 서랍은 열고
+                    webtoonContentLayout.setVisibility(View.VISIBLE);
+                    isWOpen=true;
+                    //나머지는 닫기
+                    movieContentLayout.setVisibility(View.GONE);
+                    isMOpen = false;
+                    bookContentLayout.setVisibility(View.GONE);
+                    isBOpen = false;
+                    dramaContentLayout.setVisibility(View.GONE);
+                    isDOpen = false;
+                }
+                break;
+            case "드라마":
+                if(isDOpen){
+                    //드라마 서랍 닫기
+                    dramaContentLayout.setVisibility(View.GONE);
+                    isDOpen=false;
+                }else{
+                    //도서 서랍은 열고
+                    dramaContentLayout.setVisibility(View.VISIBLE);
+                    isDOpen=true;
+                    //나머지는 닫기
+                    movieContentLayout.setVisibility(View.GONE);
+                    isMOpen = false;
+                    bookContentLayout.setVisibility(View.GONE);
+                    isBOpen = false;
+                    webtoonContentLayout.setVisibility(View.GONE);
+                    isWOpen = false;
+                }
+                break;
+        }
+
     }
 }
