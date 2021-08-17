@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button"
+        android:id="@+id/toLike"
         android:layout_width="192dp"
         android:layout_height="41dp"
         android:layout_marginTop="24dp"
@@ -47,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view" >
 
         <TextView
+            android:id="@+id/toLikeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="좋아하는 작품"
@@ -54,27 +55,28 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        </ androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button2"
+        android:id="@+id/toScrap"
         android:layout_width="192dp"
         android:layout_height="41dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/drawer_default"
-        android:text="저장해둔 작품"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" >
+        app:layout_constraintTop_toBottomOf="@+id/toLike" >
 
         <TextView
+            android:id="@+id/toScrapTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="좋아하는 작품"
+            android:text="저장해둔 작품"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -87,7 +89,7 @@
         android:textColor="@color/main_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/toScrap" />
 
     <View
         android:id="@+id/view2"
@@ -101,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button3"
+        android:id="@+id/toMovie"
         android:layout_width="192dp"
         android:layout_height="41dp"
         android:layout_marginTop="24dp"
@@ -111,6 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" >
 
         <TextView
+            android:id="@+id/toMovieTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="영화"
@@ -122,7 +125,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button4"
+        android:id="@+id/toBook"
         android:layout_width="192dp"
         android:layout_height="41dp"
         android:layout_marginTop="10dp"
@@ -130,9 +133,10 @@
         android:text="도서"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3">
+        app:layout_constraintTop_toBottomOf="@+id/toMovie">
 
         <TextView
+            android:id="@+id/toBookTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="도서"
@@ -141,10 +145,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </ androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button5"
+        android:id="@+id/toWebtoon"
         android:layout_width="192dp"
         android:layout_height="41dp"
         android:layout_marginTop="10dp"
@@ -152,9 +156,10 @@
         android:text="웹툰"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4">
+        app:layout_constraintTop_toBottomOf="@+id/toBook">
 
         <TextView
+            android:id="@+id/toWebtoonTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="웹툰"
@@ -166,16 +171,17 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button6"
+        android:id="@+id/toDrama"
         android:layout_width="192dp"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/drawer_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5">
+        app:layout_constraintTop_toBottomOf="@+id/toWebtoon">
 
         <TextView
+            android:id="@+id/toDramaTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="드라마"
@@ -187,16 +193,17 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button7"
+        android:id="@+id/toMagazine"
         android:layout_width="192dp"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/drawer_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6">
+        app:layout_constraintTop_toBottomOf="@+id/toDrama">
 
         <TextView
+            android:id="@+id/toMagazineTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="읽을거리"
@@ -213,9 +220,9 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle"
         android:backgroundTint="@color/main_green"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintBottom_toBottomOf="@+id/toLike"
+        app:layout_constraintEnd_toEndOf="@+id/toLike"
+        app:layout_constraintTop_toTopOf="@+id/toLike" />
 
     <View
         android:id="@+id/view10"
@@ -223,63 +230,63 @@
         android:layout_height="4dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="@+id/button4" />
+        app:layout_constraintBottom_toBottomOf="@+id/toBook"
+        app:layout_constraintStart_toStartOf="@+id/toBook"
+        app:layout_constraintTop_toTopOf="@+id/toBook" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button6"
-        app:layout_constraintEnd_toEndOf="@+id/button6"
-        app:layout_constraintTop_toTopOf="@+id/button6" />
+        app:layout_constraintBottom_toBottomOf="@+id/toDrama"
+        app:layout_constraintEnd_toEndOf="@+id/toDrama"
+        app:layout_constraintTop_toTopOf="@+id/toDrama" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="@+id/button5"
-        app:layout_constraintTop_toTopOf="@+id/button5" />
+        app:layout_constraintBottom_toBottomOf="@+id/toWebtoon"
+        app:layout_constraintEnd_toEndOf="@+id/toWebtoon"
+        app:layout_constraintTop_toTopOf="@+id/toWebtoon" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button6"
-        app:layout_constraintStart_toStartOf="@+id/button6"
-        app:layout_constraintTop_toTopOf="@+id/button6" />
+        app:layout_constraintBottom_toBottomOf="@+id/toDrama"
+        app:layout_constraintStart_toStartOf="@+id/toDrama"
+        app:layout_constraintTop_toTopOf="@+id/toDrama" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintBottom_toBottomOf="@+id/toMovie"
+        app:layout_constraintStart_toStartOf="@+id/toMovie"
+        app:layout_constraintTop_toTopOf="@+id/toMovie" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintBottom_toBottomOf="@+id/toMovie"
+        app:layout_constraintEnd_toEndOf="@+id/toMovie"
+        app:layout_constraintTop_toTopOf="@+id/toMovie" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintStart_toStartOf="@+id/button5"
-        app:layout_constraintTop_toTopOf="@+id/button5" />
+        app:layout_constraintBottom_toBottomOf="@+id/toWebtoon"
+        app:layout_constraintStart_toStartOf="@+id/toWebtoon"
+        app:layout_constraintTop_toTopOf="@+id/toWebtoon" />
 
     <View
         android:id="@+id/view9"
@@ -287,9 +294,9 @@
         android:layout_height="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="@+id/button4" />
+        app:layout_constraintBottom_toBottomOf="@+id/toBook"
+        app:layout_constraintEnd_toEndOf="@+id/toBook"
+        app:layout_constraintTop_toTopOf="@+id/toBook" />
 
     <View
         android:id="@+id/view"
@@ -307,44 +314,44 @@
         android:layout_height="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button7"
-        app:layout_constraintEnd_toEndOf="@+id/button7"
-        app:layout_constraintTop_toTopOf="@+id/button7" />
+        app:layout_constraintBottom_toBottomOf="@+id/toMagazine"
+        app:layout_constraintEnd_toEndOf="@+id/toMagazine"
+        app:layout_constraintTop_toTopOf="@+id/toMagazine" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintBottom_toBottomOf="@+id/toLike"
+        app:layout_constraintStart_toStartOf="@+id/toLike"
+        app:layout_constraintTop_toTopOf="@+id/toLike" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button7"
-        app:layout_constraintStart_toStartOf="@+id/button7"
-        app:layout_constraintTop_toTopOf="@+id/button7" />
+        app:layout_constraintBottom_toBottomOf="@+id/toMagazine"
+        app:layout_constraintStart_toStartOf="@+id/toMagazine"
+        app:layout_constraintTop_toTopOf="@+id/toMagazine" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button2" />
+        app:layout_constraintBottom_toBottomOf="@+id/toScrap"
+        app:layout_constraintStart_toStartOf="@+id/toScrap"
+        app:layout_constraintTop_toTopOf="@+id/toScrap" />
 
     <View
         android:layout_width="4dp"
         android:layout_height="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button2" />
+        app:layout_constraintBottom_toBottomOf="@+id/toScrap"
+        app:layout_constraintEnd_toEndOf="@+id/toScrap"
+        app:layout_constraintTop_toTopOf="@+id/toScrap" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
