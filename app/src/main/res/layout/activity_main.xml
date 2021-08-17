@@ -507,15 +507,13 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/movieLayout"
                 android:layout_width="320dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/main_gray"
                 android:backgroundTint="@color/main_gray"
-                android:gravity="center"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
@@ -524,22 +522,160 @@
                     android:id="@+id/movieTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:fontFamily="@font/kopubworlddotummedium"
                     android:text="•  영화  •"
                     android:textColor="@color/main_green"
-                    android:textSize="23dp" />
-            </LinearLayout>
+                    android:textSize="23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-            <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/movieContentLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="29dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movieTxt">
+
+                    <ImageView
+                        android:id="@+id/popularMImg1"
+                        android:layout_width="137dp"
+                        android:layout_height="137dp"
+                        android:visibility="visible"
+                        app:srcCompat="@android:mipmap/sym_def_app_icon"
+                        tools:layout_editor_absoluteY="51dp" />
+
+                    <TextView
+                        android:id="@+id/popularMTitleTxt1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotumbold"
+                        android:text="영화1"
+                        android:textColor="@color/main_green"
+                        android:textSize="15sp"
+                        android:visibility="visible"
+                        tools:layout_editor_absoluteY="51dp" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotummedium"
+                        android:text="영화 | "
+                        android:textColor="#919191"
+                        android:textSize="11sp"
+                        android:visibility="visible"
+                        tools:layout_editor_absoluteY="51dp" />
+
+                    <TextView
+                        android:id="@+id/popularMAuthorTxt1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotummedium"
+                        android:text="TextView"
+                        android:textColor="#919191"
+                        android:textSize="11sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/popularMImg2"
+                        android:layout_width="137dp"
+                        android:layout_height="137dp"
+                        android:visibility="visible"
+                        app:srcCompat="@android:mipmap/sym_def_app_icon"
+                        tools:layout_editor_absoluteY="51dp" />
+
+                    <TextView
+                        android:id="@+id/popularMTitleTxt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotumbold"
+                        android:text="영화2"
+                        android:textColor="@color/main_green"
+                        android:textSize="15sp"
+                        android:visibility="visible"
+                        tools:layout_editor_absoluteY="51dp" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotummedium"
+                        android:text="영화 | "
+                        android:textColor="#919191"
+                        android:textSize="11sp"
+                        android:visibility="visible"
+                        tools:layout_editor_absoluteY="51dp" />
+
+                    <TextView
+                        android:id="@+id/popularMAuthorTxt3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotummedium"
+                        android:text="TextView"
+                        android:textColor="#919191"
+                        android:textSize="11sp"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/popularMImg3"
+                        android:layout_width="137dp"
+                        android:layout_height="137dp"
+                        android:visibility="visible"
+                        app:srcCompat="@android:mipmap/sym_def_app_icon"
+                        tools:layout_editor_absoluteY="59dp" />
+
+                    <TextView
+                        android:id="@+id/popularMTitleTxt3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotumbold"
+                        android:text="TextView"
+                        android:textColor="@color/main_green"
+                        android:textSize="15sp"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotummedium"
+                        android:text="영화 | "
+                        android:textColor="#919191"
+                        android:textSize="11sp"
+                        android:visibility="visible"
+                        tools:layout_editor_absoluteY="51dp" />
+
+                    <TextView
+                        android:id="@+id/popularMAuthorTxt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotummedium"
+                        android:text="TextView"
+                        android:textColor="#919191"
+                        android:textSize="11sp"
+                        android:visibility="visible" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bookLayout"
                 android:layout_width="320dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:background="@color/main_gray"
                 android:backgroundTint="@color/main_gray"
-                android:gravity="center"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movieLayout">
@@ -548,22 +684,179 @@
                     android:id="@+id/bookTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:fontFamily="@font/kopubworlddotummedium"
                     android:text="•  도서  •"
                     android:textColor="@color/main_green"
-                    android:textSize="23dp" />
-            </LinearLayout>
+                    android:textSize="23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-            <LinearLayout
+                <ImageView
+                    android:id="@+id/popularBImg1"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="29dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bookTxt"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularBTitleTxt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularBImg1"
+                    app:layout_constraintTop_toTopOf="@+id/popularBImg1" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="영화 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularBImg1"
+                    app:layout_constraintTop_toBottomOf="@+id/popularBTitleTxt1" />
+
+                <TextView
+                    android:id="@+id/popularBAuthorTxt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView16"
+                    app:layout_constraintTop_toBottomOf="@+id/popularBTitleTxt1" />
+
+                <ImageView
+                    android:id="@+id/popularBImg2"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularBImg1"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularBTitleTxt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularBImg2"
+                    app:layout_constraintTop_toTopOf="@+id/popularBImg2" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="영화 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularBImg2"
+                    app:layout_constraintTop_toBottomOf="@+id/popularBTitleTxt2" />
+
+                <TextView
+                    android:id="@+id/popularBAuthorTxt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularBImg2"
+                    app:layout_constraintTop_toBottomOf="@+id/popularBTitleTxt2" />
+
+                <ImageView
+                    android:id="@+id/popularBImg3"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="23dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularBImg2"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularBTitleTxt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularBImg3"
+                    app:layout_constraintTop_toTopOf="@+id/popularBImg3" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="영화 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularBImg3"
+                    app:layout_constraintTop_toBottomOf="@+id/popularBTitleTxt3" />
+
+                <TextView
+                    android:id="@+id/popularBAuthorTxt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView18"
+                    app:layout_constraintTop_toBottomOf="@+id/popularBTitleTxt3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/webtoonLayout"
                 android:layout_width="320dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:background="@color/main_gray"
                 android:backgroundTint="@color/main_gray"
-                android:gravity="center"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bookLayout">
@@ -572,22 +865,179 @@
                     android:id="@+id/webtoonTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:fontFamily="@font/kopubworlddotummedium"
                     android:text="•  웹툰  •"
                     android:textColor="@color/main_green"
-                    android:textSize="23dp" />
-            </LinearLayout>
+                    android:textSize="23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-            <LinearLayout
+                <ImageView
+                    android:id="@+id/popularWImg1"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="29dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/webtoonTxt"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularWTitleTxt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularWImg1"
+                    app:layout_constraintTop_toTopOf="@+id/popularWImg1" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="영화 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularWImg1"
+                    app:layout_constraintTop_toBottomOf="@+id/popularWTitleTxt1" />
+
+                <TextView
+                    android:id="@+id/popularWAuthorTxt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView19"
+                    app:layout_constraintTop_toBottomOf="@+id/popularWTitleTxt1" />
+
+                <ImageView
+                    android:id="@+id/popularWImg2"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularWImg1"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularWTitleTxt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularWImg2"
+                    app:layout_constraintTop_toTopOf="@+id/popularWImg2" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="영화 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularWImg2"
+                    app:layout_constraintTop_toBottomOf="@+id/popularWTitleTxt2" />
+
+                <TextView
+                    android:id="@+id/popularWAuthorTxt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView20"
+                    app:layout_constraintTop_toBottomOf="@+id/popularWTitleTxt2" />
+
+                <ImageView
+                    android:id="@+id/popularWImg3"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="23dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularWImg2"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularWTitleTxt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularWImg3"
+                    app:layout_constraintTop_toTopOf="@+id/popularWImg3" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="영화 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularWImg3"
+                    app:layout_constraintTop_toBottomOf="@+id/popularWTitleTxt3" />
+
+                <TextView
+                    android:id="@+id/popularWAuthorTxt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView21"
+                    app:layout_constraintTop_toBottomOf="@+id/popularWTitleTxt3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/dramaLayout"
                 android:layout_width="320dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:background="@color/main_gray"
                 android:backgroundTint="@color/main_gray"
-                android:gravity="center"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/webtoonLayout">
@@ -596,11 +1046,172 @@
                     android:id="@+id/dramaTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:fontFamily="@font/kopubworlddotummedium"
                     android:text="•  드라마  •"
                     android:textColor="@color/main_green"
-                    android:textSize="23dp" />
-            </LinearLayout>
+                    android:textSize="23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/popularDImg1"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="29dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dramaTxt"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularDTitleTxt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularDImg1"
+                    app:layout_constraintTop_toTopOf="@+id/popularDImg1" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="드라마 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularDImg1"
+                    app:layout_constraintTop_toBottomOf="@+id/popularDTitleTxt1" />
+
+                <TextView
+                    android:id="@+id/popularDAuthorTxt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/popularDTitleTxt1" />
+
+                <ImageView
+                    android:id="@+id/popularDImg2"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularDImg1"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularDTitleTxt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularDImg2"
+                    app:layout_constraintTop_toTopOf="@+id/popularDImg2" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="영화 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularDImg2"
+                    app:layout_constraintTop_toBottomOf="@+id/popularDTitleTxt2" />
+
+                <TextView
+                    android:id="@+id/popularDAuthorTxt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView14"
+                    app:layout_constraintTop_toBottomOf="@+id/popularDTitleTxt2" />
+
+                <ImageView
+                    android:id="@+id/popularDImg3"
+                    android:layout_width="137dp"
+                    android:layout_height="137dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="23dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularDImg2"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+
+                <TextView
+                    android:id="@+id/popularDTitleTxt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="18dp"
+                    android:fontFamily="@font/kopubworlddotumbold"
+                    android:text="TextView"
+                    android:textColor="@color/main_green"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularDImg3"
+                    app:layout_constraintTop_toTopOf="@+id/popularDImg3" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="영화 | "
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/popularDImg3"
+                    app:layout_constraintTop_toBottomOf="@+id/popularDTitleTxt3" />
+
+                <TextView
+                    android:id="@+id/popularDAuthorTxt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="TextView"
+                    android:textColor="#919191"
+                    android:textSize="11sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView15"
+                    app:layout_constraintTop_toBottomOf="@+id/popularDTitleTxt3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
