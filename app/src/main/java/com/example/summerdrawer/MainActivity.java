@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,11 +19,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
@@ -49,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
     TextView movieTxt, bookTxt, dramaTxt, webtoonTxt;
     boolean isMOpen, isBOpen, isDOpen, isWOpen = false;
 
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    StorageReference pathReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +68,12 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         sliderItems = new ArrayList<>();
 
-        db.collection("webtoon").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        // db에서 이미지 불러오기
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
+        // 좋아요 수가 많은 상위 5개 작품 불러오기
+        db.collection("contents").orderBy("like", Query.Direction.DESCENDING).limit(5).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
@@ -67,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
                     String category = (String) document.getData().get("category");
                     String tag = setTagListToString((String) document.getData().get("tag"));
                     String author = setAuthorToString((String) document.getData().get("author"));
-
+                    String img = (String) document.getData().get("img_thumbnail");
                     String desc = (String) document.getData().get("summary");
-                    sliderItems.add(new SliderItems(R.color.darker_gray, title, category, author, desc, tag));
+                    sliderItems.add(new SliderItems(img, title, category, author, desc, tag));
                 }
                 setContentView(R.layout.activity_main);
 
@@ -435,6 +450,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
+
+    }
+
+    void loadImg(){
 
     }
 }

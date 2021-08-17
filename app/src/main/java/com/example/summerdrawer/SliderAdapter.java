@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderViewHolder> {
@@ -33,7 +35,8 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
 
     @Override
     public void onBindViewHolder(@NonNull SliderAdapter.SliderViewHolder holder, int position) {
-        holder.setImage(sliderItems.get(position));
+        Glide.with(holder.itemView).load(sliderItems.get(position).getImage()).into(holder.imageView);
+        //holder.setImage(sliderItems.get(position));
         holder.title.setText(sliderItems.get(position).getTitle());
         holder.category.setText(sliderItems.get(position).getCategory());
         holder.author.setText(sliderItems.get(position).getAuthor());
@@ -62,11 +65,6 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
             author = itemView.findViewById(R.id.text_author_today);
             desc = itemView.findViewById(R.id.text_desc_today);
             tag = itemView.findViewById(R.id.text_tag_today);
-        }
-
-        // 이미지 가져올 경우
-        void setImage (SliderItems sliderItems) {
-            imageView.setImageResource(sliderItems.getImage());
         }
     }
 }
