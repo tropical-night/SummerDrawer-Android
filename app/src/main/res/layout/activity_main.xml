@@ -14,47 +14,47 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/btn_goProfile"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#00FFFFFF"
-            android:padding="10dp"
-            app:srcCompat="@drawable/ic_baseline_person_black_24" />
+            android:background="@color/main_gray"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btn_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00FFFFFF"
-            android:fontFamily="@font/kopubworldbatangmedium"
-            android:text="여름서랍"
-            android:textSize="20sp" />
+            <ImageButton
+                android:id="@+id/btn_goProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_baseline_person_black_24" />
 
-        <ImageButton
-            android:id="@+id/btn_goSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00FFFFFF"
-            android:padding="10dp"
-            app:srcCompat="@drawable/ic_search_black_24dp" />
+            <Button
+                android:id="@+id/btn_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00FFFFFF"
+                android:fontFamily="@font/kopubworldbatangmedium"
+                android:text="여름서랍"
+                android:textSize="20sp" />
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/btn_goSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:padding="10dp"
+                app:srcCompat="@drawable/ic_search_black_24dp" />
+
+        </LinearLayout>
 
 
     <ScrollView
@@ -196,8 +196,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="202dp"
-                    android:layout_height="340dp"
-                    android:layout_marginRight="6dp"
+                    android:layout_height="380dp"
+                    android:layout_marginRight="8dp"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray">
 
@@ -205,6 +205,7 @@
                         android:id="@+id/img_latest1"
                         android:layout_width="202dp"
                         android:layout_height="218dp"
+                        android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -216,12 +217,12 @@
                         android:id="@+id/title_latest1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="13dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="신작 제목"
                         android:textColor=" #555555"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/img_latest1" />
 
@@ -229,11 +230,11 @@
                         android:id="@+id/category_latest1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="16dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="카테고리"
                         android:textColor=" #919191"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/title_latest1" />
 
@@ -244,19 +245,23 @@
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text=" | 작가"
                         android:textColor=" #919191"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/category_latest1"
                         app:layout_constraintTop_toBottomOf="@+id/title_latest1" />
 
                     <TextView
                         android:id="@+id/summary_latest1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="TextView"
                         android:textColor="@color/main_green"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -265,8 +270,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="202dp"
-                    android:layout_height="340dp"
-                    android:layout_marginLeft="6dp"
+                    android:layout_height="380dp"
+                    android:layout_marginLeft="8dp"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray">
 
@@ -274,6 +279,7 @@
                         android:id="@+id/img_latest2"
                         android:layout_width="202dp"
                         android:layout_height="218dp"
+                        android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -285,12 +291,12 @@
                         android:id="@+id/title_latest2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="13dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="신작 제목"
                         android:textColor=" #555555"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/img_latest2" />
 
@@ -298,11 +304,11 @@
                         android:id="@+id/category_latest2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="16dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="카테고리"
                         android:textColor=" #919191"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/title_latest2" />
 
@@ -313,19 +319,23 @@
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text=" | 작가"
                         android:textColor=" #919191"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/category_latest2"
                         app:layout_constraintTop_toBottomOf="@+id/title_latest2" />
 
                     <TextView
                         android:id="@+id/summary_latest2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="TextView"
                         android:textColor="@color/main_green"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -338,7 +348,7 @@
                 android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
@@ -349,8 +359,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="202dp"
-                    android:layout_height="340dp"
-                    android:layout_marginRight="6dp"
+                    android:layout_height="380dp"
+                    android:layout_marginRight="8dp"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray">
 
@@ -358,6 +368,7 @@
                         android:id="@+id/img_latest3"
                         android:layout_width="202dp"
                         android:layout_height="218dp"
+                        android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -369,12 +380,12 @@
                         android:id="@+id/title_latest3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="13dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="신작 제목"
                         android:textColor=" #555555"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/img_latest3" />
 
@@ -382,11 +393,11 @@
                         android:id="@+id/category_latest3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="16dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="카테고리"
                         android:textColor=" #919191"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/title_latest3" />
 
@@ -397,19 +408,23 @@
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text=" | 작가"
                         android:textColor=" #919191"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/category_latest3"
                         app:layout_constraintTop_toBottomOf="@+id/title_latest3" />
 
                     <TextView
                         android:id="@+id/summary_latest3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="TextView"
                         android:textColor="@color/main_green"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -418,8 +433,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="202dp"
-                    android:layout_height="340dp"
-                    android:layout_marginLeft="6dp"
+                    android:layout_height="380dp"
+                    android:layout_marginLeft="8dp"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray">
 
@@ -427,6 +442,7 @@
                         android:id="@+id/img_latest4"
                         android:layout_width="202dp"
                         android:layout_height="218dp"
+                        android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -438,12 +454,12 @@
                         android:id="@+id/title_latest4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="13dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="신작 제목"
                         android:textColor=" #555555"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/img_latest4" />
 
@@ -451,11 +467,11 @@
                         android:id="@+id/category_latest4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_marginStart="16dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="카테고리"
                         android:textColor=" #919191"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/title_latest4" />
 
@@ -466,19 +482,23 @@
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text=" | 작가"
                         android:textColor=" #919191"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/category_latest4"
                         app:layout_constraintTop_toBottomOf="@+id/title_latest4" />
 
                     <TextView
                         android:id="@+id/summary_latest4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="11dp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="TextView"
                         android:textColor="@color/main_green"
-                        android:textSize="17dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
