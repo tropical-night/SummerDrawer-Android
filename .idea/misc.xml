@@ -5,8 +5,10 @@
       <map>
         <entry key="app/src/main/res/layout/activity_contents_list.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/navbar.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/pager_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/rank_list_item.xml" value="0.13722826086956522" />
+        <entry key="app/src/main/res/layout/rv_content_list.xml" value="0.24010416666666667" />
       </map>
     </option>
   </component>

@@ -17,10 +17,11 @@
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:background="@color/main_gray"
             android:gravity="center"
             android:orientation="horizontal"
+            android:padding="10dp"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/scrollView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
                 android:background="#00FFFFFF"
                 android:fontFamily="@font/kopubworldbatangmedium"
                 android:text="여름서랍"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <ImageButton
                 android:id="@+id/btn_goSearch"
@@ -99,16 +100,16 @@
 
                 <LinearLayout
                     android:id="@+id/box1"
-                    android:layout_width="160dp"
+                    android:layout_width="150dp"
                     android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="30dp"
                     android:background="#E0E0E0"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toTopOf="@+id/viewpager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_title_recommend" >
+                    app:layout_constraintTop_toBottomOf="@+id/text_title_recommend">
 
                 </LinearLayout>
 
@@ -170,9 +171,9 @@
 
             <LinearLayout
                 android:id="@+id/box2"
-                android:layout_width="160dp"
+                android:layout_width="120dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:background="#E0E0E0"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -196,7 +197,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="202dp"
-                    android:layout_height="380dp"
+                    android:layout_height="360dp"
                     android:layout_marginRight="8dp"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray">
@@ -256,7 +257,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="18dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="TextView"
                         android:textColor="@color/main_green"
@@ -270,7 +271,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="202dp"
-                    android:layout_height="380dp"
+                    android:layout_height="360dp"
                     android:layout_marginLeft="8dp"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray">
@@ -330,7 +331,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="18dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="TextView"
                         android:textColor="@color/main_green"
@@ -359,7 +360,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="202dp"
-                    android:layout_height="380dp"
+                    android:layout_height="360dp"
                     android:layout_marginRight="8dp"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray">
@@ -419,7 +420,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="18dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="TextView"
                         android:textColor="@color/main_green"
@@ -433,7 +434,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="202dp"
-                    android:layout_height="380dp"
+                    android:layout_height="360dp"
                     android:layout_marginLeft="8dp"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray">
@@ -493,7 +494,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="18dp"
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="TextView"
                         android:textColor="@color/main_green"
@@ -524,7 +525,7 @@
                 android:id="@+id/box3"
                 android:layout_width="160dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:background="#E0E0E0"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"

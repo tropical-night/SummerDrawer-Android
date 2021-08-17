@@ -18,9 +18,10 @@
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:gravity="center"
             android:orientation="horizontal"
+            android:padding="10dp"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/scrollView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
                 android:background="#00FFFFFF"
                 android:fontFamily="@font/kopubworlddotummedium"
                 android:text="여름서랍"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <ImageButton
                 android:id="@+id/btn_goSearch"
