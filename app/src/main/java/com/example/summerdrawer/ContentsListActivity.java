@@ -147,12 +147,7 @@ public class ContentsListActivity extends AppCompatActivity {
             contentList.add(c);
         }
         contentListRV = findViewById(R.id.contentListRV);
-        contentListRV.setLayoutManager(new LinearLayoutManager(this){
-            @Override
-            public boolean canScrollVertically(){
-                return false;
-            }
-        });
+        contentListRV.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new RVAdapter(contentList);
         contentListRV.setAdapter(adapter);
