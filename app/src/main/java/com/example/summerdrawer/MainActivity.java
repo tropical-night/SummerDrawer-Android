@@ -2,6 +2,8 @@ package com.example.summerdrawer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -10,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -29,10 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
     ViewPager2 viewPager2;
     ArrayList<SliderItems> sliderItems;
+
+    ImageButton btn_goProfile;
+    private DrawerLayout drawerLayout;
+    private View drawerView;
+
+    ConstraintLayout toLike, toScrap, toMovie, toBook, toWebtoon, toDrama, toMagazine;
+    TextView userNameTxt, toLikeTxt, toScrapTxt,
+            toMovieTxt, toBookTxt, toWebtoonTxt, toDramaTxt, toMagazineTxt;
     DotsIndicator dots_indicator;
     FirebaseFirestore db;
-    String tag=""; // 작품의 태그값
-    ArrayList<String> tagList = new ArrayList<>(); // 태그값 리스트
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +67,28 @@ public class MainActivity extends AppCompatActivity {
                 }
                 setContentView(R.layout.activity_main);
 
+                //네비게이션 드로어 추가
+                drawerLayout = findViewById(R.id.drawer_layout);
+                drawerView = findViewById(R.id.navbar);
+
+                drawerLayout.addDrawerListener(listener);
+                drawerView.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        return true;
+                    }
+                });
+
+                //왼쪽 상단의 프로필 이미지 클릭 시
+                btn_goProfile = findViewById(R.id.btn_goProfile);
+                btn_goProfile.setOnClickListener(view->{
+                    Log.d("test", "버튼 누름");
+                    drawerLayout.openDrawer(drawerView);
+                });
+
+                ImageButton goSearch = findViewById(R.id.btn_goSearch);
+                viewPager2 = findViewById(R.id.viewpager);
+                dots_indicator = findViewById(R.id.dots_indicator);
                 goProfile = findViewById(R.id.btn_goProfile);
                 goSearch = findViewById(R.id.btn_goSearch);
                 viewPager2 = findViewById(R.id.viewpager);
@@ -65,40 +96,97 @@ public class MainActivity extends AppCompatActivity {
                 // 어댑터 설정
                 setAdapter();
 
+                // 상단바 프로필 이동
+                goProfile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // 클릭시 이벤트
+                        btnOnclick(view);
+                    }
+                });
 
+                // 상단바 검색 페이지로 이동
+                goSearch.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // 클릭시 이벤트
+                    }
+                });
 
+                //사용자 이름 받아와서 설정해주기
+                userNameTxt = findViewById(R.id.userNameTxt);
+                userNameTxt.setText("김뫄뫄");
 
-        // 상단바 프로필 이동
-        goProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 클릭시 이벤트
-            }
-        });
+                //좋아하는 버튼 클릭 시
+                toLike = findViewById(R.id.toLike);
+                toLikeTxt = findViewById(R.id.toLikeTxt);
+                //좋아하는 작품으로 액티비티 이동
+                toLike.setOnClickListener(view->{
+                });
+                toLikeTxt.setOnClickListener(view->{
+                });
 
-        // 상단바 검색 페이지로 이동
-        goSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // 클릭시 이벤트
-            }
-        });
+                //저장해둔 버튼 클릭 시
+                toScrap = findViewById(R.id.toLike);
+                toScrapTxt = findViewById(R.id.toLikeTxt);
+                //저장해둔 작품으로 액티비티 이동
+                toLike.setOnClickListener(view->{
+                });
+                toLikeTxt.setOnClickListener(view->{
+                });
 
-        // slider item 추가
-//        ArrayList<String> tagList = new ArrayList<>();
-//        tagList.add("여성서사");
-//        tagList.add("여성작가");
-//        String tag = setTagListToString(tagList);
+                //영화 버튼 클릭시
+                toMovie = findViewById(R.id.toMovie);
+                toMovieTxt = findViewById(R.id.toMovieTxt);
+                //영화 추천 리스트 액티비티로 이동
+                toMovie.setOnClickListener(view->{
+                    toContentsList("영화");
+                });
+                toMovieTxt.setOnClickListener(view->{
+                    toContentsList("영화");
+                });
 
-//        sliderItems.add(new SliderItems(R.color.darker_gray, "우리는 이 별을 떠나기로 했어", "도서", "천산란 외 4명",
-//                "세계 여성의 날을 맞아 여성작가 5인이 모여 제한 \n된 시공간을 탈주하고 행성 시대의 " +
-//                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tag));
-//        sliderItems.add(new SliderItems(R.color.darker_gray, "화장 지워주는 남자", "웹툰", "이연",
-//                "밋밋한 얼굴의 대학생이\n천재 메이크업 아티스트의 뮤즈!?", tag));
-//        sliderItems.add(new SliderItems(R.color.darker_gray, "우리는 이 별을 떠나기로 했어", "도서", "천산란 외 4명",
-//                "세계 여성의 날을 맞아 여성작가 5인이 모여 제한 \n된 시공간을 탈주하고 행성 시대의 " +
-//                        "\n새로운 공동체를 치열하게 고민한 SF 소설", tag));
+                //도서 버튼 클릭시
+                toBook = findViewById(R.id.toBook);
+                toBookTxt = findViewById(R.id.toBookTxt);
+                //도서 추천 리스트 액티비티로 이동
+                toBook.setOnClickListener(view->{
+                    toContentsList("도서");
+                });
+                toBookTxt.setOnClickListener(view->{
+                    toContentsList("도서");
+                });
 
+                //웹툰 버튼 클릭시
+                toWebtoon = findViewById(R.id.toWebtoon);
+                toWebtoonTxt = findViewById(R.id.toWebtoonTxt);
+                //도서 추천 리스트 액티비티로 이동
+                toWebtoon.setOnClickListener(view->{
+                    toContentsList("웹툰");
+                });
+                toWebtoonTxt.setOnClickListener(view->{
+                    toContentsList("웹툰");
+                });
+
+                //드라마 버튼 클릭시
+                toDrama = findViewById(R.id.toDrama);
+                toDramaTxt = findViewById(R.id.toDramaTxt);
+                //드라마 추천 리스트 액티비티로 이동
+                toDrama.setOnClickListener(view->{
+                    toContentsList("드라마");
+                });
+                toDramaTxt.setOnClickListener(view->{
+                    toContentsList("드라마");
+                });
+
+                //읽을거리 버튼 클릭시
+                toMagazine = findViewById(R.id.toMagazine);
+                toMagazineTxt = findViewById(R.id.toMagazineTxt);
+//        //읽을거리 리스트 액티비티로 이동
+//        toDrama.setOnClickListener(view->{
+//        });
+//        toDramaTxt.setOnClickListener(view->{
+//        });
             }
         });
     }
@@ -108,6 +196,39 @@ public class MainActivity extends AppCompatActivity {
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
         startActivity(toList);
+    }
+
+    DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
+        @Override
+        public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+            //슬라이드 했을 때
+        }
+
+        @Override
+        public void onDrawerOpened(@NonNull View drawerView) {
+            //Drawer가 오픈된 상황일 때 호출
+        }
+
+        @Override
+        public void onDrawerClosed(@NonNull View drawerView) {
+            //닫힌 상황일 때 호출
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+            //특정 상태가 변경되었을 때 호출
+        }
+    };
+
+    public void btnOnclick(View view) {
+        switch (view.getId()){
+            case R.id.btn_goProfile:
+                drawerLayout.openDrawer(drawerView);
+                break;
+            case R.id.btn_goSearch:
+                //Intent searchI = new Intent(this, SearchActivity);
+                break;
+        }
     }
 
     // 태그리스트를 하나의 string으로 바꿔주는 함수
