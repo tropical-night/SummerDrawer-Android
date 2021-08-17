@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,6 +19,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ContentsListActivity extends AppCompatActivity {
     String content;
     Button btn_logo;
@@ -27,6 +31,9 @@ public class ContentsListActivity extends AppCompatActivity {
     ConstraintLayout toLike, toScrap, toMovie, toBook, toWebtoon, toDrama, toMagazine;
     TextView userNameTxt, toLikeTxt, toScrapTxt,
             toMovieTxt, toBookTxt, toWebtoonTxt, toDramaTxt, toMagazineTxt;
+
+    RecyclerView contentListRV;
+    RVAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +138,24 @@ public class ContentsListActivity extends AppCompatActivity {
                 break;
         }
 
+        ArrayList<Contents> contentList = new ArrayList<>();
+        for (int i = 0; i<10; i++){
+            Contents c = new Contents("고래별", "웹툰", "나윤희","1926년 일제 식민 지배 하의 조선. 어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하게 되는데..",
+                    "1926년 일제 식민 지배 하의 조선. 17세 소녀 수아는 전북 군산 일대 친일파 대지주의 집에서 몸종으로 일하고 있다.  어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하고, 그를 보호하게 되는데...",
+                    "1926년 일제 식민 지배 하의 조선. 17세 소녀 수아는 전북 군산 일대 친일파 대지주의 집에서 몸종으로 일하고 있다.  어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하고, 그를 보호하게 되는데...",
+                    "여성서사_여성작가", 4.3, 0, 0);
+            contentList.add(c);
+        }
+        contentListRV = findViewById(R.id.contentListRV);
+        contentListRV.setLayoutManager(new LinearLayoutManager(this){
+            @Override
+            public boolean canScrollVertically(){
+                return false;
+            }
+        });
+
+        adapter = new RVAdapter(contentList);
+        contentListRV.setAdapter(adapter);
 
         //네비게이션 드로어 추가
         drawerLayout = findViewById(R.id.drawer_layout);
