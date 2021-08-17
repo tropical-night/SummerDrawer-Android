@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +34,11 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
     @Override
     public void onBindViewHolder(@NonNull SliderAdapter.SliderViewHolder holder, int position) {
         holder.setImage(sliderItems.get(position));
+        holder.title.setText(sliderItems.get(position).getTitle());
+        holder.category.setText(sliderItems.get(position).getCategory());
+        holder.author.setText(sliderItems.get(position).getAuthor());
+        holder.desc.setText(sliderItems.get(position).getDesc());
+        holder.tag.setText(sliderItems.get(position).getTag());
     }
 
     @Override
@@ -42,9 +48,20 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
 
     class SliderViewHolder extends RecyclerView.ViewHolder{
         private ImageView imageView;
+        private TextView title;
+        public TextView category;
+        public TextView author;
+        public TextView desc;
+        public TextView tag;
+
         public SliderViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image);
+            imageView = itemView.findViewById(R.id.image_today);
+            title = itemView.findViewById(R.id.text_title_today);
+            category = itemView.findViewById(R.id.text_category_today);
+            author = itemView.findViewById(R.id.text_author_today);
+            desc = itemView.findViewById(R.id.text_desc_today);
+            tag = itemView.findViewById(R.id.text_tag_today);
         }
 
         // 이미지 가져올 경우
