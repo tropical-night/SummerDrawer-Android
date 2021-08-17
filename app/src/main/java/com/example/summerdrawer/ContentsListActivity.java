@@ -118,20 +118,16 @@ public class ContentsListActivity extends AppCompatActivity {
 
         switch (content){
             case "영화":
-                toMovie.setBackgroundResource(R.drawable.drawer_clicked);
-                toMovieTxt.setTextColor(Color.parseColor("#FAF9F9"));
+                toMovie.setBackgroundResource(R.drawable.drawer_pressed);
                 break;
             case "도서":
-                toBook.setBackgroundResource(R.drawable.drawer_clicked);
-                toBookTxt.setTextColor(Color.parseColor("#FAF9F9"));
+                toBook.setBackgroundResource(R.drawable.drawer_pressed);
                 break;
             case "웹툰":
-                toWebtoon.setBackgroundResource(R.drawable.drawer_clicked);
-                toWebtoonTxt.setTextColor(Color.parseColor("#FAF9F9"));
+                toWebtoon.setBackgroundResource(R.drawable.drawer_pressed);
                 break;
             case "드라마":
-                toDrama.setBackgroundResource(R.drawable.drawer_clicked);
-                toDramaTxt.setTextColor(Color.parseColor("#FAF9F9"));
+                toDrama.setBackgroundResource(R.drawable.drawer_pressed);
                 break;
         }
 
