@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // 클릭시 이벤트
+                btnOnclick(view);
             }
         });
 
