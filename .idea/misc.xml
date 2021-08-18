@@ -5,8 +5,10 @@
       <map>
         <entry key="app/src/main/res/layout/activity_contents_list.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/navbar.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/pager_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/rank_list_item.xml" value="0.13722826086956522" />
+        <entry key="app/src/main/res/layout/rv_content_list.xml" value="0.24010416666666667" />
       </map>
     </option>
   </component>
@@ -16,7 +18,7 @@
     <option name="priority" value="Medium" />
     <option name="excludeFilter" value="" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15_PREVIEW" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
