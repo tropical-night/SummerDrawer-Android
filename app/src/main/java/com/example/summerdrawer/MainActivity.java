@@ -16,9 +16,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -403,6 +407,8 @@ public class MainActivity extends AppCompatActivity {
 
     //인기 작품서랍장 열기/닫기
     void popularDrawer(String category){
+        Animation ani = new AlphaAnimation(0, 1);
+        ani.setDuration(1000);
         switch (category){
             case "영화":
                 if(isMOpen){
@@ -412,7 +418,9 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     //영화 서랍은 열고
                     movieContentLayout.setVisibility(View.VISIBLE);
+                    movieContentLayout.setAnimation(ani);
                     isMOpen=true;
+
                     //나머지는 닫기
                     bookContentLayout.setVisibility(View.GONE);
                     isBOpen = false;
@@ -430,6 +438,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     //도서 서랍은 열고
                     bookContentLayout.setVisibility(View.VISIBLE);
+                    bookContentLayout.setAnimation(ani);
                     isBOpen=true;
                     //나머지는 닫기
                     movieContentLayout.setVisibility(View.GONE);
@@ -449,6 +458,7 @@ public class MainActivity extends AppCompatActivity {
                     //웹툰 서랍은 열고
                     webtoonContentLayout.setVisibility(View.VISIBLE);
                     isWOpen=true;
+                    webtoonContentLayout.setAnimation(ani);
                     //나머지는 닫기
                     movieContentLayout.setVisibility(View.GONE);
                     isMOpen = false;
@@ -463,6 +473,7 @@ public class MainActivity extends AppCompatActivity {
                     //드라마 서랍 닫기
                     dramaContentLayout.setVisibility(View.GONE);
                     isDOpen=false;
+                    dramaContentLayout.setAnimation(ani);
                 }else{
                     //도서 서랍은 열고
                     dramaContentLayout.setVisibility(View.VISIBLE);
@@ -474,6 +485,7 @@ public class MainActivity extends AppCompatActivity {
                     isBOpen = false;
                     webtoonContentLayout.setVisibility(View.GONE);
                     isWOpen = false;
+
                 }
                 break;
         }
