@@ -10,7 +10,9 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +42,9 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
     ImageButton goProfile, goSearch;
 
     ViewPager2 viewPager2;
@@ -92,6 +97,25 @@ public class MainActivity extends AppCompatActivity {
                     String desc = (String) document.getData().get("summary");
                     sliderItems.add(new SliderItems(img, title, category, author, desc, tag));
                 }
+
+                pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+                editor = pref.edit();
+
+                boolean isLogin = pref.getBoolean("isLogin", false);
+
+                if(!isLogin){
+                    toLogin();
+                }else{
+                    //사용자 데이터 불러오기
+                    String userName = pref.getString("userName", "null");
+                    String userID = pref.getString("userID", "null");
+                    String password = pref.getString("password", "null");
+
+                    //메뉴 탭의 사용자 이름 수정해주기
+                    TextView userNameTxt = findViewById(R.id.userNameTxt);
+                    userNameTxt.setText(userName);
+                }
+
                 setContentView(R.layout.activity_main);
 
                 //인기 작품 서랍장의 뷰 초기화
@@ -539,4 +563,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    //로그인 액티비티로 이동
+    void toLogin(){
+        Intent toLoginI = new Intent(this, LoginActivity.class);
+        startActivity(toLoginI);
+    }
+
 }
