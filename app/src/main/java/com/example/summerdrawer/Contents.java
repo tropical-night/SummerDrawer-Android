@@ -31,6 +31,7 @@ public class Contents {
         this.img1 = img1;
     }
 
+    public String getId() { return id;}
     public String getTitle() {
         return title;
     }

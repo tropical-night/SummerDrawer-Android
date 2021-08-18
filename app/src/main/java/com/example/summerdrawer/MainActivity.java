@@ -222,10 +222,11 @@ public class MainActivity extends AppCompatActivity {
                             int scrap = (int) Integer.parseInt(String.valueOf(document.getData().get("scrap")));
                             likeScrapList.add(new LikeScrap(id, category, like, scrap));
                         }
+
+                        // 어댑터 설정(인기 작품 5개)
                         setAdapter();
                     }
                 });
-                // 어댑터 설정
 
 
                 // 상단바 프로필 이동
@@ -424,8 +425,17 @@ public class MainActivity extends AppCompatActivity {
         return dateString;
     }
 
-    // 어댑터 설정
+    // 어댑터 설정(인기작품 5개)
     void setAdapter() {
+        // 전체 작품 중 좋아요 수가 많은 5개 불러오기
+        for(int i=0; i<5; i++) {
+            for(Contents contents: contentList) {
+                if(contents.getId().equals(likeScrapList.get(i).getId())){
+                    sliderItems.add(new SliderItems(contents.getImg1(), contents.getTitle(), contents.getCategory(), contents.getAuthor(), contents.getSummary(), contents.getTag()));
+                }
+            }
+        }
+
         viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
 
         viewPager2.setClipChildren(false);
