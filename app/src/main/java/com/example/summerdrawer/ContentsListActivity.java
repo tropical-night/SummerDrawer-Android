@@ -1,6 +1,5 @@
 package com.example.summerdrawer;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -9,14 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -149,7 +145,7 @@ public class ContentsListActivity extends AppCompatActivity {
         contentListRV = findViewById(R.id.contentListRV);
         contentListRV.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new RVAdapter(contentList);
+        adapter = new RVAdapter(this, contentList);
         contentListRV.setAdapter(adapter);
 
         //네비게이션 드로어 추가

@@ -2,7 +2,9 @@ package com.example.summerdrawer;
 
 import com.google.firebase.Timestamp;
 
-public class Contents {
+import java.io.Serializable;
+
+public class Contents implements Serializable {
     private String title;
     private String category;
     private String author;
