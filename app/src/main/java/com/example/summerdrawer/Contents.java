@@ -3,32 +3,32 @@ package com.example.summerdrawer;
 import com.google.firebase.Timestamp;
 
 public class Contents {
+    private String id;
     private String title;
     private String category;
     private String author;
-    private Timestamp date;
+    private String date;
     private String summary;
     private String introduction;
     private String story;
     private String tag;
     private double rating;
-    private int like;
-    private int scrap;
+    private String img1; // 썸네일 이미지
 
-    Contents(String title, String category, String author,
+    Contents(String id, String title, String category, String author, String date,
              String summary, String introduction, String story, String tag,
-             double rating, int like, int scrap){
+             double rating, String img1){
+        this.id = id;
         this.title = title;
         this.category = category;
         this.author = author;
-        //this.date = date;
+        this.date = date;
         this.summary = summary;
         this.introduction = introduction;
         this.story = story;
         this.tag = tag;
         this.rating = rating;
-        this.like = like;
-        this.scrap = scrap;
+        this.img1 = img1;
     }
 
     public String getTitle() {
@@ -59,11 +59,11 @@ public class Contents {
         return category+" | "+author;
     }
 
-    public Timestamp getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -107,19 +107,5 @@ public class Contents {
         this.rating = rating;
     }
 
-    public String getLike() {
-        return like+"";
-    }
-
-    public void setLike(int like) {
-        this.like = like;
-    }
-
-    public String getScrap() {
-        return scrap+"";
-    }
-
-    public void setScrap(int scrap) {
-        this.scrap = scrap;
-    }
+    public String getImg1() { return img1; }
 }

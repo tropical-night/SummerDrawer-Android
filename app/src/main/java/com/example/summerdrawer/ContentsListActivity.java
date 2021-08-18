@@ -140,10 +140,10 @@ public class ContentsListActivity extends AppCompatActivity {
 
         ArrayList<Contents> contentList = new ArrayList<>();
         for (int i = 0; i<10; i++){
-            Contents c = new Contents("고래별", "웹툰", "나윤희","1926년 일제 식민 지배 하의 조선. 어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하게 되는데..",
+            Contents c = new Contents("id","고래별", "웹툰", "나윤희", "2018-01-02","1926년 일제 식민 지배 하의 조선. 어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하게 되는데..",
                     "1926년 일제 식민 지배 하의 조선. 17세 소녀 수아는 전북 군산 일대 친일파 대지주의 집에서 몸종으로 일하고 있다.  어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하고, 그를 보호하게 되는데...",
                     "1926년 일제 식민 지배 하의 조선. 17세 소녀 수아는 전북 군산 일대 친일파 대지주의 집에서 몸종으로 일하고 있다.  어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하고, 그를 보호하게 되는데...",
-                    "여성서사_여성작가", 4.3, 0, 0);
+                    "여성서사_여성작가", 4.3, "img");
             contentList.add(c);
         }
         contentListRV = findViewById(R.id.contentListRV);

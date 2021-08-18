@@ -29,6 +29,8 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -37,7 +39,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton goProfile, goSearch;
@@ -68,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
             writer_latest1, writer_latest2, writer_latest3, writer_latest4,
             summary_latest1, summary_latest2, summary_latest3, summary_latest4;
 
+    // 데이터 불러오기
+    ArrayList<Contents> contentList; // 전체 작품 리스트
+    ArrayList<Contents> movieList;
+    ArrayList<Contents> bookList;
+    ArrayList<Contents> webtoonList;
+    ArrayList<Contents> dramaList;
+    ArrayList<LikeScrap> likeScrapList; // 좋아요,스크랩 리스트
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,21 +90,49 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         sliderItems = new ArrayList<>();
 
+        contentList = new ArrayList<>();
+        movieList = new ArrayList<>();
+        bookList = new ArrayList<>();
+        webtoonList = new ArrayList<>();
+        dramaList = new ArrayList<>();
+        likeScrapList = new ArrayList<>();
 
-        // 좋아요 수가 많은 상위 5개 작품 불러오기
-        db.collection("contents").orderBy("like", Query.Direction.DESCENDING).limit(5).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+        // 날짜순으로 데이터베이스 불러오기(카테고리별로 분류하여 객체에 저장)
+        db.collection("contents").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    //document.getData() or document.getId()
+                    String id = document.getId();
                     String title = (String) document.getData().get("title");
                     String category = (String) document.getData().get("category");
                     String tag = setTagListToString((String) document.getData().get("tag"));
                     String author = setAuthorToString((String) document.getData().get("author"));
-                    String img = (String) document.getData().get("img_thumbnail");
-                    String desc = (String) document.getData().get("summary");
-                    sliderItems.add(new SliderItems(img, title, category, author, desc, tag));
+                    String date = setTimestampToString((Timestamp) document.getData().get("date"));
+                    String summary = (String) document.getData().get("summary");
+                    String story = (String) document.getData().get("story");
+                    String introduction = (String) document.getData().get("introduction");
+                    double rating = (double) document.getData().get("rating");
+                    String img1 = (String) document.getData().get("img_thumbnail");
+
+                    // 전체 리스트에 저장
+                    contentList.add(new Contents(id, title, category, author, date, summary, introduction, story, tag, rating,img1));
+
+                    // 카테고리별 저장
+                    if(category.equals("영화")){
+                        movieList.add(new Contents(id, title, "영화", author, date, summary, introduction, story, tag, rating,img1));
+                    }
+                    else if (category.equals("도서")){
+                        bookList.add(new Contents(id, title, "도서", author, date, summary, introduction, story, tag, rating,img1));
+                    }
+                    else if (category.equals("웹툰")){
+                        bookList.add(new Contents(id, title, "웹툰", author, date, summary, introduction, story, tag, rating,img1));
+                    }
+                    else if (category.equals("드라마")){
+                        bookList.add(new Contents(id, title, "드라마", author, date, summary, introduction, story, tag, rating,img1));
+                    }
                 }
+
                 setContentView(R.layout.activity_main);
 
                 //인기 작품 서랍장의 뷰 초기화
@@ -169,8 +210,23 @@ public class MainActivity extends AppCompatActivity {
                 goSearch = findViewById(R.id.btn_goSearch);
                 viewPager2 = findViewById(R.id.viewpager);
                 dots_indicator = findViewById(R.id.dots_indicator);
+
+                // 좋아요 순으로 데이터베이스 불러오기
+                db.collection("contents").orderBy("like", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String id = document.getId();
+                            String category = (String) document.getData().get("category");
+                            int like = (int) Integer.parseInt(String.valueOf(document.getData().get("like")));
+                            int scrap = (int) Integer.parseInt(String.valueOf(document.getData().get("scrap")));
+                            likeScrapList.add(new LikeScrap(id, category, like, scrap));
+                        }
+                        setAdapter();
+                    }
+                });
                 // 어댑터 설정
-                setAdapter();
+
 
                 // 상단바 프로필 이동
                 goProfile.setOnClickListener(new View.OnClickListener() {
@@ -359,6 +415,15 @@ public class MainActivity extends AppCompatActivity {
         return author.toString();
     }
 
+    // Timestamp를 String으로 변경해주는 함수
+    String setTimestampToString(Timestamp timestamp) {
+        Date date = timestamp.toDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY년 MM월 dd일");
+        String dateString = simpleDateFormat.format(date);
+
+        return dateString;
+    }
+
     // 어댑터 설정
     void setAdapter() {
         viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
@@ -493,50 +558,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 최신 작품 4개 불러오기
+    @SuppressLint("SetTextI18n")
     void loadLatest(){
-        db.collection("contents").orderBy("date", Query.Direction.DESCENDING).limit(4).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                int i = 1;
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    String title = (String) document.getData().get("title");
-                    String category = (String) document.getData().get("category");
-                    String author = setAuthorToString((String) document.getData().get("author"));
-                    String img = (String) document.getData().get("img_thumbnail");
-                    String summary = (String) document.getData().get("summary");
+        Glide.with(MainActivity.this).load(contentList.get(0).getImg1()).into(img_latest1);
+        title_latest1.setText(contentList.get(0).getTitle());
+        category_latest1.setText(contentList.get(0).getCategory() + " | ");
+        writer_latest1.setText(contentList.get(0).getAuthor());
+        summary_latest1.setText(contentList.get(0).getSummary());
 
-                    if(i == 1) {
-                        Glide.with(MainActivity.this).load(img).into(img_latest1);
-                        title_latest1.setText(title);
-                        category_latest1.setText(category + " | ");
-                        writer_latest1.setText(author);
-                        summary_latest1.setText(summary);
-                    }
-                    else if(i == 2) {
-                        Glide.with(MainActivity.this).load(img).into(img_latest2);
-                        title_latest2.setText(title);
-                        category_latest2.setText(category + " | ");
-                        writer_latest2.setText(author);
-                        summary_latest2.setText(summary);
-                    }
-                    else if(i == 3) {
-                        Glide.with(MainActivity.this).load(img).into(img_latest3);
-                        title_latest3.setText(title);
-                        category_latest3.setText(category + " | ");
-                        writer_latest3.setText(author);
-                        summary_latest3.setText(summary);
-                    }
-                    else {
-                        Glide.with(MainActivity.this).load(img).into(img_latest4);
-                        title_latest4.setText(title);
-                        category_latest4.setText(category + " | ");
-                        writer_latest4.setText(author);
-                        summary_latest4.setText(summary);
-                    }
-                    i++;
-                }
-            }
-        });
+        Glide.with(MainActivity.this).load(contentList.get(1).getImg1()).into(img_latest2);
+        title_latest2.setText(contentList.get(1).getTitle());
+        category_latest2.setText(contentList.get(1).getCategory() + " | ");
+        writer_latest2.setText(contentList.get(1).getAuthor());
+        summary_latest2.setText(contentList.get(1).getSummary());
+
+        Glide.with(MainActivity.this).load(contentList.get(2).getImg1()).into(img_latest3);
+        title_latest3.setText(contentList.get(2).getTitle());
+        category_latest3.setText(contentList.get(2).getCategory() + " | ");
+        writer_latest3.setText(contentList.get(2).getAuthor());
+        summary_latest3.setText(contentList.get(2).getSummary());
+
+        Glide.with(MainActivity.this).load(contentList.get(3).getImg1()).into(img_latest4);
+        title_latest4.setText(contentList.get(3).getTitle());
+        category_latest4.setText(contentList.get(3).getCategory() + " | ");
+        writer_latest4.setText(contentList.get(3).getAuthor());
+        summary_latest4.setText(contentList.get(3).getSummary());
     }
 }
