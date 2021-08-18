@@ -9,14 +9,20 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -55,9 +61,12 @@ public class MainActivity extends AppCompatActivity {
     TextView movieTxt, bookTxt, dramaTxt, webtoonTxt;
     boolean isMOpen, isBOpen, isDOpen, isWOpen = false;
 
-    FirebaseStorage storage;
-    StorageReference storageReference;
-    StorageReference pathReference;
+    // 지금 뜨는 신작의 뷰
+    ImageView img_latest1, img_latest2, img_latest3, img_latest4;
+    TextView title_latest1, title_latest2, title_latest3, title_latest4,
+            category_latest1, category_latest2, category_latest3, category_latest4,
+            writer_latest1, writer_latest2, writer_latest3, writer_latest4,
+            summary_latest1, summary_latest2, summary_latest3, summary_latest4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +77,6 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         sliderItems = new ArrayList<>();
 
-        // db에서 이미지 불러오기
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
 
         // 좋아요 수가 많은 상위 5개 작품 불러오기
         db.collection("contents").orderBy("like", Query.Direction.DESCENDING).limit(5).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -257,8 +263,33 @@ public class MainActivity extends AppCompatActivity {
 //                });
 //                toDramaTxt.setOnClickListener(view->{
 //                });
-                    }
-                });
+
+                // 최신 작품 4개 불러오기
+                img_latest1 = findViewById(R.id.img_latest1);
+                img_latest2 = findViewById(R.id.img_latest2);
+                img_latest3 = findViewById(R.id.img_latest3);
+                img_latest4 = findViewById(R.id.img_latest4);
+                title_latest1 = findViewById(R.id.title_latest1);
+                title_latest2 = findViewById(R.id.title_latest2);
+                title_latest3 = findViewById(R.id.title_latest3);
+                title_latest4 = findViewById(R.id.title_latest4);
+                category_latest1 = findViewById(R.id.category_latest1);
+                category_latest2 = findViewById(R.id.category_latest2);
+                category_latest3 = findViewById(R.id.category_latest3);
+                category_latest4 = findViewById(R.id.category_latest4);
+                writer_latest1 = findViewById(R.id.writer_latest1);
+                writer_latest2 = findViewById(R.id.writer_latest2);
+                writer_latest3 = findViewById(R.id.writer_latest3);
+                writer_latest4 = findViewById(R.id.writer_latest4);
+                summary_latest1 = findViewById(R.id.summary_latest1);
+                summary_latest2 = findViewById(R.id.summary_latest2);
+                summary_latest3 = findViewById(R.id.summary_latest3);
+                summary_latest4 = findViewById(R.id.summary_latest4);
+                loadLatest();
+            }
+
+        });
+
     }
 
     //클릭한 버튼에 따라 카테고리를 지정하여 contentList에 넘겨주는 함수
@@ -376,6 +407,8 @@ public class MainActivity extends AppCompatActivity {
 
     //인기 작품서랍장 열기/닫기
     void popularDrawer(String category){
+        Animation ani = new AlphaAnimation(0, 1);
+        ani.setDuration(1000);
         switch (category){
             case "영화":
                 if(isMOpen){
@@ -385,7 +418,9 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     //영화 서랍은 열고
                     movieContentLayout.setVisibility(View.VISIBLE);
+                    movieContentLayout.setAnimation(ani);
                     isMOpen=true;
+
                     //나머지는 닫기
                     bookContentLayout.setVisibility(View.GONE);
                     isBOpen = false;
@@ -403,6 +438,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     //도서 서랍은 열고
                     bookContentLayout.setVisibility(View.VISIBLE);
+                    bookContentLayout.setAnimation(ani);
                     isBOpen=true;
                     //나머지는 닫기
                     movieContentLayout.setVisibility(View.GONE);
@@ -422,6 +458,7 @@ public class MainActivity extends AppCompatActivity {
                     //웹툰 서랍은 열고
                     webtoonContentLayout.setVisibility(View.VISIBLE);
                     isWOpen=true;
+                    webtoonContentLayout.setAnimation(ani);
                     //나머지는 닫기
                     movieContentLayout.setVisibility(View.GONE);
                     isMOpen = false;
@@ -436,6 +473,7 @@ public class MainActivity extends AppCompatActivity {
                     //드라마 서랍 닫기
                     dramaContentLayout.setVisibility(View.GONE);
                     isDOpen=false;
+                    dramaContentLayout.setAnimation(ani);
                 }else{
                     //도서 서랍은 열고
                     dramaContentLayout.setVisibility(View.VISIBLE);
@@ -447,13 +485,58 @@ public class MainActivity extends AppCompatActivity {
                     isBOpen = false;
                     webtoonContentLayout.setVisibility(View.GONE);
                     isWOpen = false;
+
                 }
                 break;
         }
 
     }
 
-    void loadImg(){
+    // 최신 작품 4개 불러오기
+    void loadLatest(){
+        db.collection("contents").orderBy("date", Query.Direction.DESCENDING).limit(4).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                int i = 1;
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    String title = (String) document.getData().get("title");
+                    String category = (String) document.getData().get("category");
+                    String author = setAuthorToString((String) document.getData().get("author"));
+                    String img = (String) document.getData().get("img_thumbnail");
+                    String summary = (String) document.getData().get("summary");
 
+                    if(i == 1) {
+                        Glide.with(MainActivity.this).load(img).into(img_latest1);
+                        title_latest1.setText(title);
+                        category_latest1.setText(category + " | ");
+                        writer_latest1.setText(author);
+                        summary_latest1.setText(summary);
+                    }
+                    else if(i == 2) {
+                        Glide.with(MainActivity.this).load(img).into(img_latest2);
+                        title_latest2.setText(title);
+                        category_latest2.setText(category + " | ");
+                        writer_latest2.setText(author);
+                        summary_latest2.setText(summary);
+                    }
+                    else if(i == 3) {
+                        Glide.with(MainActivity.this).load(img).into(img_latest3);
+                        title_latest3.setText(title);
+                        category_latest3.setText(category + " | ");
+                        writer_latest3.setText(author);
+                        summary_latest3.setText(summary);
+                    }
+                    else {
+                        Glide.with(MainActivity.this).load(img).into(img_latest4);
+                        title_latest4.setText(title);
+                        category_latest4.setText(category + " | ");
+                        writer_latest4.setText(author);
+                        summary_latest4.setText(summary);
+                    }
+                    i++;
+                }
+            }
+        });
     }
 }
