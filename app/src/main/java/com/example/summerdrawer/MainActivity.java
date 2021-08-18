@@ -11,38 +11,29 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton goProfile, goSearch;
@@ -64,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout movieLayout, bookLayout, dramaLayout, webtoonLayout,
             movieContentLayout, bookContentLayout, dramaContentLayout, webtoonContentLayout;
     TextView movieTxt, bookTxt, dramaTxt, webtoonTxt;
+    ImageView img_movie1, img_movie2, img_movie3, img_book1, img_book2, img_book3, img_webtoon1,
+            img_webtoon2, img_webtoon3, img_drama1, img_drama2, img_drama3;
+    TextView text_book_title1, text_book_title2, text_book_title3, text_movie_title1, text_movie_title2,
+            text_movie_title3, text_webtoon_title1, text_webtoon_title2, text_webtoon_title3,
+            text_drama_title1, text_drama_title2, text_drama_title3,
+            text_book_desc1, text_book_desc2, text_book_desc3, text_movie_desc1, text_movie_desc2,
+            text_movie_desc3, text_webtoon_desc1, text_webtoon_desc2, text_webtoon_desc3,
+            text_drama_desc1, text_drama_desc2, text_drama_desc3;
     boolean isMOpen, isBOpen, isDOpen, isWOpen = false;
 
     // 지금 뜨는 신작의 뷰
@@ -225,9 +224,10 @@ public class MainActivity extends AppCompatActivity {
 
                         // 어댑터 설정(인기 작품 5개)
                         setAdapter();
+
+                        // 카데고리별 인기 작품 3개 불러오기
                     }
                 });
-
 
                 // 상단바 프로필 이동
                 goProfile.setOnClickListener(new View.OnClickListener() {
@@ -343,6 +343,44 @@ public class MainActivity extends AppCompatActivity {
                 summary_latest3 = findViewById(R.id.summary_latest3);
                 summary_latest4 = findViewById(R.id.summary_latest4);
                 loadLatest();
+
+                // 카테고리별 인기작품 3개 불러오기
+                img_book1 = findViewById(R.id.img_book1);
+                img_book2 = findViewById(R.id.img_book2);
+                img_book3 = findViewById(R.id.img_book3);
+                img_movie1 = findViewById(R.id.img_movie1);
+                img_movie2 = findViewById(R.id.img_movie2);
+                img_movie3 = findViewById(R.id.img_movie3);
+                img_webtoon1 = findViewById(R.id.img_webtoon1);
+                img_webtoon2 = findViewById(R.id.img_webtoon2);
+                img_webtoon3 = findViewById(R.id.img_webtoon3);
+                img_drama1 = findViewById(R.id.img_drama1);
+                img_drama2 = findViewById(R.id.img_drama2);
+                img_drama3 = findViewById(R.id.img_drama3);
+                text_book_title1 = findViewById(R.id.text_book_title1);
+                text_book_title2 = findViewById(R.id.text_book_title2);
+                text_book_title3 = findViewById(R.id.text_book_title3);
+                text_movie_title1 = findViewById(R.id.text_movie_title1);
+                text_movie_title2 = findViewById(R.id.text_movie_title2);
+                text_movie_title3 = findViewById(R.id.text_movie_title3);
+                text_webtoon_title1 = findViewById(R.id.text_webtoon_title1);
+                text_webtoon_title2 = findViewById(R.id.text_webtoon_title2);
+                text_webtoon_title3 = findViewById(R.id.text_webtoon_title3);
+                text_drama_title1 = findViewById(R.id.text_drama_title1);
+                text_drama_title2 = findViewById(R.id.text_drama_title2);
+                text_drama_title3 = findViewById(R.id.text_drama_title3);
+                text_book_desc1 = findViewById(R.id.text_book_desc1);
+                text_book_desc2 = findViewById(R.id.text_book_desc2);
+                text_book_desc3 = findViewById(R.id.text_book_desc3);
+                text_movie_desc1 = findViewById(R.id.text_movie_desc1);
+                text_movie_desc2 = findViewById(R.id.text_movie_desc2);
+                text_movie_desc3 = findViewById(R.id.text_movie_desc3);
+                text_webtoon_desc1 = findViewById(R.id.text_webtoon_desc1);
+                text_webtoon_desc2 = findViewById(R.id.text_webtoon_desc2);
+                text_webtoon_desc3 = findViewById(R.id.text_webtoon_desc3);
+                text_drama_desc1 = findViewById(R.id.text_drama_desc1);
+                text_drama_desc2 = findViewById(R.id.text_drama_desc2);
+                text_drama_desc3 = findViewById(R.id.text_drama_desc3);
             }
 
         });
@@ -593,5 +631,18 @@ public class MainActivity extends AppCompatActivity {
         category_latest4.setText(contentList.get(3).getCategory() + " | ");
         writer_latest4.setText(contentList.get(3).getAuthor());
         summary_latest4.setText(contentList.get(3).getSummary());
+    }
+
+    // 인기 작품 불러오기
+    void loadLike(){
+
+    }
+
+    // 인기 작품 서랍장 뷰와 연결하는 함수
+    void setData(ImageView img, TextView title, TextView category, TextView author, Contents contents) {
+        Glide.with(MainActivity.this).load(contents.getImg1()).into(img);
+        title.setText(contents.getTitle());
+        category.setText(contents.getCategory());
+        author.setText(contents.getAuthor());
     }
 }
