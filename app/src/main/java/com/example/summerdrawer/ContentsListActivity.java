@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -22,6 +23,9 @@ import java.util.ArrayList;
 public class ContentsListActivity extends AppCompatActivity{
     public static Activity listActivity;
     String content;
+
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
     ArrayList<Contents> movieList = new ArrayList<>();
     ArrayList<Contents> bookList = new ArrayList<>();
@@ -75,8 +79,9 @@ public class ContentsListActivity extends AppCompatActivity{
         btn_logo.setText(content+"서랍");
 
         //사용자 이름 받아와서 설정해주기
+        pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
         userNameTxt = findViewById(R.id.userNameTxt);
-        userNameTxt.setText("김뫄뫄");
+        userNameTxt.setText(pref.getString("userName", "null"));
 
         //좋아하는 버튼 클릭 시
         toLike = findViewById(R.id.toLike);

@@ -133,17 +133,11 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInAccount acct = completedTask.getResult(ApiException.class);
 
             if (acct != null) {
-                String personName = acct.getDisplayName();
-                String personGivenName = acct.getGivenName();
-                String personFamilyName = acct.getFamilyName();
-                String personEmail = acct.getEmail();
+                userName = acct.getDisplayName();
+                userMail = acct.getEmail();
                 String personId = acct.getId();
 
-                Log.d("Google Login", "handleSignInResult:personName "+personName);
-                Log.d("Google Login", "handleSignInResult:personGivenName "+personGivenName);
-                Log.d("Google Login", "handleSignInResult:personEmail "+personEmail);
                 Log.d("Google Login", "handleSignInResult:personId "+personId);
-                Log.d("Google Login", "handleSignInResult:personFamilyName "+personFamilyName);
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -166,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            updateUI(null);
+                            Toast.makeText(getBaseContext(), "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -178,9 +172,6 @@ public class LoginActivity extends AppCompatActivity {
             editor.putBoolean("isLogin", true);
 
             //사용자 데이터 저장
-            userName = "아무개";
-            userMail = "@naver.com";
-            password = "12341234";
             editor.putString("userName", userName);
             editor.putString("userId", userMail);
             editor.putString("password", password);
