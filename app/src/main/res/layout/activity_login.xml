@@ -59,16 +59,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
-    <com.google.android.gms.common.SignInButton
+    <Button
         android:id="@+id/googleLoginBtn"
         android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:background="#00FFFFFF"
+        android:text="구글로 시작하기"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background=" #faf9f9"
+        android:backgroundTint=" #faf9f9"
+        app:layout_constraintBottom_toBottomOf="@+id/googleLoginBtn"
+        app:layout_constraintEnd_toEndOf="@+id/googleLoginBtn"
+        app:layout_constraintStart_toStartOf="@+id/googleLoginBtn"
+        app:layout_constraintTop_toTopOf="@+id/googleLoginBtn" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/googleLoginBtn"
+        app:layout_constraintStart_toStartOf="@+id/googleLoginBtn"
+        app:layout_constraintTop_toTopOf="@+id/googleLoginBtn"
+        app:srcCompat="@drawable/googleg_standard_color_18" />
 
     <TextView
         android:id="@+id/textView3"
@@ -94,6 +116,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <View
+        android:id="@+id/view4"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="#9b9b9b"
