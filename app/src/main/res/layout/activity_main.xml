@@ -640,6 +640,8 @@
                             android:id="@+id/first_movie"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -683,8 +685,9 @@
 
                             <View
                                 android:id="@+id/view9"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -697,6 +700,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="40dp"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/first_movie">
@@ -740,8 +745,9 @@
 
                             <View
                                 android:id="@+id/view10"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -754,6 +760,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="40dp"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/second_movie">
@@ -794,10 +802,12 @@
                                 android:visibility="visible"
                                 app:layout_constraintStart_toEndOf="@+id/img_movie3"
                                 app:layout_constraintTop_toBottomOf="@+id/text_movie_title3" />
+
                             <View
                                 android:id="@+id/view11"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -851,6 +861,8 @@
                             android:id="@+id/first_book"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -894,8 +906,9 @@
 
                             <View
                                 android:id="@+id/view12"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -907,6 +920,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="40dp"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/first_book">
@@ -950,8 +965,9 @@
 
                             <View
                                 android:id="@+id/view13"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -963,6 +979,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="40dp"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/second_book1">
@@ -1006,8 +1024,9 @@
 
                             <View
                                 android:id="@+id/view14"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1060,6 +1079,8 @@
                             android:id="@+id/first_webtoon"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -1103,8 +1124,9 @@
 
                             <View
                                 android:id="@+id/view15"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1116,6 +1138,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="40dp"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/first_webtoon">
@@ -1159,8 +1183,9 @@
 
                             <View
                                 android:id="@+id/view16"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1172,6 +1197,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="40dp"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/second_webtoon">
@@ -1215,8 +1242,9 @@
 
                             <View
                                 android:id="@+id/view17"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1269,6 +1297,8 @@
                             android:id="@+id/first_drama"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
@@ -1312,8 +1342,9 @@
 
                             <View
                                 android:id="@+id/view18"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1325,6 +1356,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="40dp"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/first_drama">
@@ -1368,8 +1401,9 @@
 
                             <View
                                 android:id="@+id/view19"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1381,6 +1415,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="40dp"
+                            android:background="#FFFFFF"
+                            android:backgroundTint="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/second_drama">
@@ -1424,8 +1460,9 @@
 
                             <View
                                 android:id="@+id/view20"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:onClick="btnOnclick"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
