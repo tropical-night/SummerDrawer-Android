@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             text_book_desc1, text_book_desc2, text_book_desc3, text_movie_desc1, text_movie_desc2,
             text_movie_desc3, text_webtoon_desc1, text_webtoon_desc2, text_webtoon_desc3,
             text_drama_desc1, text_drama_desc2, text_drama_desc3;
+    View view5, view6, view7, view8, view9, view10, view11, view12, view13, view14, view15, view16, view17, view18, view19, view20;
     boolean isMOpen, isBOpen, isDOpen, isWOpen = false;
 
     // 지금 뜨는 신작의 뷰
@@ -147,6 +148,19 @@ public class MainActivity extends AppCompatActivity {
         dramaLayout = findViewById(R.id.dramaLayout);
         dramaTxt = findViewById(R.id.dramaTxt);
         dramaContentLayout = findViewById(R.id.dramaContentLayout);
+
+        view9 = findViewById(R.id.view9);
+        view10 = findViewById(R.id.view10);
+        view11 = findViewById(R.id.view11);
+        view12 = findViewById(R.id.view12);
+        view13 = findViewById(R.id.view13);
+        view14 = findViewById(R.id.view14);
+        view15 = findViewById(R.id.view15);
+        view16 = findViewById(R.id.view16);
+        view17 = findViewById(R.id.view17);
+        view18 = findViewById(R.id.view18);
+        view19 = findViewById(R.id.view19);
+        view20 = findViewById(R.id.view20);
 
         //인기 작품 서랍장의 뷰 클릭 시 열림/닫힘 이벤트 추가
         movieLayout.setOnClickListener(view->{
@@ -403,12 +417,30 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void btnOnclick(View view) {
+        Intent detailI = new Intent(this, ContentDetailActivity.class);
+        Contents c = null;
         switch (view.getId()){
             case R.id.btn_goProfile:
                 drawerLayout.openDrawer(drawerView);
                 break;
             case R.id.btn_goSearch:
                 //Intent searchI = new Intent(this, SearchActivity);
+                break;
+            case R.id.view5:
+                detailI.putExtra("content", contentList.get(0));
+                startActivity(detailI);
+                break;
+            case R.id.view6:
+                detailI.putExtra("content", contentList.get(1));
+                startActivity(detailI);
+                break;
+            case R.id.view7:
+                detailI.putExtra("content", contentList.get(2));
+                startActivity(detailI);
+                break;
+            case R.id.view8:
+                detailI.putExtra("content", contentList.get(3));
+                startActivity(detailI);
                 break;
         }
     }
@@ -593,9 +625,15 @@ public class MainActivity extends AppCompatActivity {
             // 도서 좋아요 수가 많은 3개 불러오기
             for(Contents bookList: bookList) {
                 if(contents.getId().equals(bookList.getId())){
-                    if(b == 0) setData(img_book1, text_book_title1, text_book_desc1, bookList);
-                    else if(b == 1) setData(img_book2, text_book_title2, text_book_desc2, bookList);
-                    else if(b == 2) setData(img_book3, text_book_title3, text_book_desc3, bookList);
+                    if(b == 0) {
+                        setData(img_book1, text_book_title1, text_book_desc1, bookList);
+                    }
+                    else if(b == 1) {
+                        setData(img_book2, text_book_title2, text_book_desc2, bookList);
+                    }
+                    else if(b == 2) {
+                        setData(img_book3, text_book_title3, text_book_desc3, bookList);
+                    }
                     else break;
                     b++;
                 }
