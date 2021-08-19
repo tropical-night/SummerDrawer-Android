@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
 
     //아이템 뷰를 저장하는 뷰홀더 클래스
     public class ViewHolder extends RecyclerView.ViewHolder{
+        ConstraintLayout contentLayout;
         ImageView contentImg;
         TextView contentTitle, contentCategoryAuthor, contentSummary,
                 likeNumTxt, scrapNumTxt;
@@ -27,6 +31,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            contentLayout = itemView.findViewById(R.id.contentLayout);
             contentImg = itemView.findViewById(R.id.contentImg);
             contentTitle = itemView.findViewById(R.id.contentTitleRV);
             contentCategoryAuthor = itemView.findViewById(R.id.contentCategoryAuthorRV);
@@ -65,7 +70,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull RVAdapter.ViewHolder holder, int position) {
         //이미지 받아오는 방식에 따라 변경
-        //holder.contentImg
+        Glide.with(holder.itemView).load(contentListData.get(position).getImg1()).into(holder.contentImg);
         holder.contentTitle.setText(contentListData.get(position).getTitle());
         holder.contentSummary.setText(contentListData.get(position).getSummary());
         holder.contentCategoryAuthor.setText(contentListData.get(position).getCategoryAuthor());
