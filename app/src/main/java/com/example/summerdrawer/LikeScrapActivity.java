@@ -79,13 +79,19 @@ public class LikeScrapActivity extends AppCompatActivity {
         likeScrapList = (ArrayList<LikeScrap>) getIntent().getSerializableExtra("likeScrapList");
 
         recyclerView = findViewById(R.id.recyclerView);
+
+        toLike = findViewById(R.id.toLike);
+        toScrap = findViewById(R.id.toScrap);
+
         // 이미지 설정
         if(category.equals("like")){
             img_topmenu.setImageResource(R.drawable.like_drawer_img);
+            toLike.setBackgroundResource(R.drawable.drawer_pressed);
             loadList("myLike", myLikeList);
         }
         else if(category.equals("scrap")) {
             img_topmenu.setImageResource(R.drawable.scrap_drawer_img);
+            toScrap.setBackgroundResource(R.drawable.drawer_pressed);
             loadList("myScrap", myScrapList);
         }
 
@@ -99,7 +105,6 @@ public class LikeScrapActivity extends AppCompatActivity {
         userNameTxt.setText(pref.getString("userName", "null"));
 
         //좋아하는 버튼 클릭 시
-        toLike = findViewById(R.id.toLike);
         toLikeTxt = findViewById(R.id.toLikeTxt);
         //좋아하는 작품으로 액티비티 이동
         toLike.setOnClickListener(view->{
@@ -110,7 +115,6 @@ public class LikeScrapActivity extends AppCompatActivity {
         });
 
         //저장해둔 버튼 클릭 시
-        toScrap = findViewById(R.id.toScrap);
         toScrapTxt = findViewById(R.id.toScrapTxt);
         //저장해둔 작품으로 액티비티 이동
         toScrap.setOnClickListener(view->{
@@ -167,11 +171,34 @@ public class LikeScrapActivity extends AppCompatActivity {
         //읽을거리 버튼 클릭시
         toMagazine = findViewById(R.id.toMagazine);
         toMagazineTxt = findViewById(R.id.toMagazineTxt);
-//        //읽을거리 리스트 액티비티로 이동
-//        toDrama.setOnClickListener(view->{
-//        });
-//        toDramaTxt.setOnClickListener(view->{
-//        });
+        //읽을거리 리스트 액티비티로 이동
+        toMagazineTxt.setOnClickListener(view->{
+            Intent toMagazineI = new Intent(this, MagazineListActivity.class);
+
+            toMagazineI.putExtra("content", "읽을거리");
+            toMagazineI.putExtra("allContents", contentList);
+            toMagazineI.putExtra("movieList", movieList);
+            toMagazineI.putExtra("bookList", bookList);
+            toMagazineI.putExtra("webtoonList", webtoonList);
+            toMagazineI.putExtra("dramaList", dramaList);
+            toMagazineI.putExtra("likeScrapList", likeScrapList);
+            startActivity(toMagazineI);
+            finish();
+        });
+        toMagazine.setOnClickListener(view->{
+            Intent toMagazineI = new Intent(this, MagazineListActivity.class);
+
+            toMagazineI.putExtra("content", "읽을거리");
+            toMagazineI.putExtra("allContents", contentList);
+            toMagazineI.putExtra("movieList", movieList);
+            toMagazineI.putExtra("bookList", bookList);
+            toMagazineI.putExtra("webtoonList", webtoonList);
+            toMagazineI.putExtra("dramaList", dramaList);
+            toMagazineI.putExtra("likeScrapList", likeScrapList);
+            startActivity(toMagazineI);
+            finish();
+        });
+
 
         //네비게이션 드로어 추가
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -223,6 +250,7 @@ public class LikeScrapActivity extends AppCompatActivity {
         toList.putExtra("dramaList", dramaList);
         toList.putExtra("likeScrapList", likeScrapList);
         startActivity(toList);
+        finish();
     }
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {

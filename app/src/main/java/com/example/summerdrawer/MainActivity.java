@@ -287,11 +287,31 @@ public class MainActivity extends AppCompatActivity {
         //읽을거리 버튼 클릭시
         toMagazine = findViewById(R.id.toMagazine);
         toMagazineTxt = findViewById(R.id.toMagazineTxt);
-//        //읽을거리 리스트 액티비티로 이동
-//        toDrama.setOnClickListener(view->{
-//        });
-//        toDramaTxt.setOnClickListener(view->{
-//        });
+        //읽을거리 리스트 액티비티로 이동
+        toMagazineTxt.setOnClickListener(view->{
+            Intent toMagazineI = new Intent(this, MagazineListActivity.class);
+
+            toMagazineI.putExtra("content", "읽을거리");
+            toMagazineI.putExtra("allContents", contentList);
+            toMagazineI.putExtra("movieList", movieList);
+            toMagazineI.putExtra("bookList", bookList);
+            toMagazineI.putExtra("webtoonList", webtoonList);
+            toMagazineI.putExtra("dramaList", dramaList);
+            toMagazineI.putExtra("likeScrapList", likeScrapList);
+            startActivity(toMagazineI);
+        });
+        toMagazine.setOnClickListener(view->{
+            Intent toMagazineI = new Intent(this, MagazineListActivity.class);
+
+            toMagazineI.putExtra("content", "읽을거리");
+            toMagazineI.putExtra("allContents", contentList);
+            toMagazineI.putExtra("movieList", movieList);
+            toMagazineI.putExtra("bookList", bookList);
+            toMagazineI.putExtra("webtoonList", webtoonList);
+            toMagazineI.putExtra("dramaList", dramaList);
+            toMagazineI.putExtra("likeScrapList", likeScrapList);
+            startActivity(toMagazineI);
+        });
 
         // 최신 작품 4개 불러오기
         img_latest1 = findViewById(R.id.img_latest1);

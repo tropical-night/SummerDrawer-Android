@@ -14,7 +14,6 @@
         android:orientation="horizontal"
         android:padding="10dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,13 +26,14 @@
             android:layout_weight="1"
             android:background="#00FFFFFF"
             android:fontFamily="@font/kopubworlddotummedium"
-            android:text="여름서랍"
+            android:text="읽을거리"
             android:textSize="17sp" />
 
     </LinearLayout>
 
     <include
-        layout="@layout/magazine_lost_brother"
+        android:id="@+id/magazineInclude"
+        layout="@layout/magazine_lostbrother"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
