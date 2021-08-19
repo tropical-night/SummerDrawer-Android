@@ -180,6 +180,7 @@ tools:context=".ContentDetailActivity">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
+            android:layout_marginBottom="10dp"
             android:fontFamily="@font/kopubworlddotummedium"
             android:text="감상 바로가기"
             android:textAlignment="viewStart"
@@ -191,6 +192,7 @@ tools:context=".ContentDetailActivity">
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/btn_naver" />
 
     </LinearLayout>
