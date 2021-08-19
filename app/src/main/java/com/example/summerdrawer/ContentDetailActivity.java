@@ -232,5 +232,4 @@ public class ContentDetailActivity extends AppCompatActivity {
 
     }
 
-    }
 }
