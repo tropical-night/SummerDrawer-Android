@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SummerDrawer">
-        <activity android:name=".SearchActivity"></activity>
-        <activity android:name=".MagazineActivity"></activity>
+        <activity android:name=".MagazineListActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".MagazineActivity" />
         <activity
             android:name=".LikeScrapActivity"
             android:exported="true" />
