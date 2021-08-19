@@ -293,7 +293,7 @@ public class LikeScrapActivity extends AppCompatActivity {
                         if(contents.getId().equals(id)) {
                             list.add(new Contents(id, contents.getTitle(), contents.getCategory(), contents.getAuthor()
                                     , contents.getDate(), contents.getSummary(), contents.getIntroduction(),
-                                    contents.getStory(), contents.getTag(), contents.getImg1(), contents.getImg2()));
+                                    contents.getStory(), contents.getTag(), contents.getImg1(), contents.getImg2(), contents.getLink(), contents.getLinkName()));
                         }
                     }
                 }

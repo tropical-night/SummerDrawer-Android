@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/kopubworlddotumbold"
+        android:gravity="center"
         android:text="우리는 이 별을 떠나기로 했어"
         android:textColor="@color/main_green"
         android:textSize="20dp"
@@ -101,9 +102,11 @@
 
     <TextView
         android:id="@+id/text_desc_today"
-        android:layout_width="320dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
         android:fontFamily="@font/kopubworldbatanglight"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="8dp"
@@ -112,8 +115,8 @@
         android:textColor="@color/textColor"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/text_tag_today"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/layout_mid_today" />
 
     <TextView
