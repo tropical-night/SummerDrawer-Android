@@ -62,50 +62,104 @@ tools:context=".ContentDetailActivity">
             android:backgroundTint="@color/main_gray"
             android:padding="20dp">
 
-            <TextView
-                android:id="@+id/contentTagTxt"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/kopubworlddotummedium"
-                android:text="#여성서사  #여성작가"
-                android:textColor="@color/main_green"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/contentTagTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="#여성서사  #여성작가"
+                    android:textColor="@color/main_green"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_mLike"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintEnd_toStartOf="@+id/img_mScrap"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/unlike" />
+
+                <TextView
+                    android:id="@+id/text_detail_like"
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="22dp"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="20"
+                    android:textAlignment="center"
+                    android:textColor="@color/main_green"
+                    app:layout_constraintEnd_toStartOf="@+id/text_detail_scrap"
+                    app:layout_constraintTop_toBottomOf="@+id/img_mLike" />
+
+                <ImageView
+                    android:id="@+id/img_mScrap"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/unscrap" />
+
+                <TextView
+                    android:id="@+id/text_detail_scrap"
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:text="109"
+                    android:textAlignment="center"
+                    android:textColor="@color/main_green"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_mScrap" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/contentTitleTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/kopubworlddotumbold"
                 android:text="TextView"
                 android:textColor="#0a0f15"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/contentTagTxt"
-                app:layout_constraintTop_toBottomOf="@+id/contentTagTxt" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
             <TextView
                 android:id="@+id/contentCategoryAuthorTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/kopubworlddotumlight"
                 android:text="TextView"
                 android:textColor="#919191"
-                app:layout_constraintStart_toStartOf="@+id/contentTitleTxt"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contentTitleTxt" />
 
             <TextView
                 android:id="@+id/contentStoryTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="30dp"
                 android:fontFamily="@font/kopubworlddotummedium"
                 android:text="TextView"
                 android:textColor="#707070"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/contentCategoryAuthorTxt"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contentCategoryAuthorTxt" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
