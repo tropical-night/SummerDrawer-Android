@@ -14,6 +14,9 @@
         android:theme="@style/Theme.SummerDrawer">
         <activity android:name=".SearchActivity"></activity>
         <activity
+            android:name=".LikeScrapActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>

@@ -13,10 +13,11 @@ public class Contents implements Serializable {
     private String story;
     private String tag;
     private String img1; // 썸네일 이미지
+    private String img2; // top 이미지
 
     Contents(String id, String title, String category, String author, String date,
              String summary, String introduction, String story, String tag,
-             String img1){
+             String img1, String img2){
         this.id = id;
         this.title = title;
         this.category = category;
@@ -27,6 +28,7 @@ public class Contents implements Serializable {
         this.story = story;
         this.tag = tag;
         this.img1 = img1;
+        this.img2 = img2;
     }
 
     public String getId() { return id;}
@@ -99,5 +101,6 @@ public class Contents implements Serializable {
     }
 
     public String getImg1() { return img1; }
+    public String getImg2() { return img2; }
 
 }

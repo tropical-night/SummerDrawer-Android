@@ -13,7 +13,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -27,20 +26,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     SharedPreferences pref;
@@ -241,8 +232,10 @@ public class MainActivity extends AppCompatActivity {
             toLikeTxt = findViewById(R.id.toLikeTxt);
             //좋아하는 작품으로 액티비티 이동
             toLike.setOnClickListener(view->{
+                toLikeScrapList("like");
             });
             toLikeTxt.setOnClickListener(view->{
+                toLikeScrapList("like");
             });
 
             //저장해둔 버튼 클릭 시
@@ -250,8 +243,10 @@ public class MainActivity extends AppCompatActivity {
             toScrapTxt = findViewById(R.id.toScrapTxt);
             //저장해둔 작품으로 액티비티 이동
             toLike.setOnClickListener(view->{
+                toLikeScrapList("scrap");
             });
             toLikeTxt.setOnClickListener(view->{
+                toLikeScrapList("scrap");
             });
 
             //영화 버튼 클릭시
@@ -383,6 +378,13 @@ public class MainActivity extends AppCompatActivity {
         toList.putExtra("webtoonList", webtoonList);
         toList.putExtra("dramaList", dramaList);
         toList.putExtra("likeScrapList", likeScrapList);
+        startActivity(toList);
+    }
+
+    // 좋아하는 작품/저장해둔 작품으로 넘어가는 함수
+    void toLikeScrapList(String category){
+        Intent toList = new Intent(this, LikeScrapActivity.class);
+        toList.putExtra("category", category);
         startActivity(toList);
     }
 
