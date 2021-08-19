@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
     tools:context=".SearchActivity">
 
     <ImageView
@@ -36,8 +38,10 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="40dp"
         android:fontFamily="@font/kopubworlddotummedium"
+        android:onClick="btnOnclick"
         android:text="취소"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/editText"
@@ -49,15 +53,118 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="35dp"
         android:fontFamily="@font/kopubworlddotumbold"
-        android:text="'어쩌고' 검색 결과입니다"
+        android:text="인기 검색어"
         android:textColor="@color/main_green"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
+        android:paddingLeft="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/button_clicked"
+            android:fontFamily="@font/kopubworlddotummedium"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="btnOnclick"
+            android:text="#유미"
+            android:textColor="@color/main_green"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_clicked"
+            android:fontFamily="@font/kopubworlddotummedium"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="btnOnclick"
+            android:text="#리틀 포레스트"
+            android:textColor="@color/main_green"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_clicked"
+            android:fontFamily="@font/kopubworlddotummedium"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="btnOnclick"
+            android:text="#여성서사"
+            android:textColor="@color/main_green"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/button3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/button_clicked"
+            android:fontFamily="@font/kopubworlddotummedium"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="btnOnclick"
+            android:text="#김태리"
+            android:textColor="@color/main_green"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/button_clicked"
+            android:fontFamily="@font/kopubworlddotummedium"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="btnOnclick"
+            android:text="#여성작가"
+            android:textColor="@color/main_green"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/button5"
+            app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/button_clicked"
+            android:fontFamily="@font/kopubworlddotummedium"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="btnOnclick"
+            android:text="#멜로가 체질"
+            android:textColor="@color/main_green"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/button6"
+            app:layout_constraintTop_toBottomOf="@+id/button4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -67,6 +174,7 @@
         android:background="#FAF9F9"
         android:backgroundTint="#FAF9F9"
         android:padding="20dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
