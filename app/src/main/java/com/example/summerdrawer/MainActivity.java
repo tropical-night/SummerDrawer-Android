@@ -274,10 +274,10 @@ public class MainActivity extends AppCompatActivity {
                 toMovieTxt = findViewById(R.id.toMovieTxt);
                 //영화 추천 리스트 액티비티로 이동
                 toMovie.setOnClickListener(view->{
-                    toContentsList("영화");
+                    toContentsList("영화", movieList);
                 });
                 toMovieTxt.setOnClickListener(view->{
-                    toContentsList("영화");
+                    toContentsList("영화", movieList);
                 });
 
                 //도서 버튼 클릭시
@@ -285,10 +285,10 @@ public class MainActivity extends AppCompatActivity {
                 toBookTxt = findViewById(R.id.toBookTxt);
                 //도서 추천 리스트 액티비티로 이동
                 toBook.setOnClickListener(view->{
-                    toContentsList("도서");
+                    toContentsList("도서", bookList);
                 });
                 toBookTxt.setOnClickListener(view->{
-                    toContentsList("도서");
+                    toContentsList("도서", bookList);
                 });
 
                 //웹툰 버튼 클릭시
@@ -296,10 +296,10 @@ public class MainActivity extends AppCompatActivity {
                 toWebtoonTxt = findViewById(R.id.toWebtoonTxt);
                 //도서 추천 리스트 액티비티로 이동
                 toWebtoon.setOnClickListener(view->{
-                    toContentsList("웹툰");
+                    toContentsList("웹툰", webtoonList);
                 });
                 toWebtoonTxt.setOnClickListener(view->{
-                    toContentsList("웹툰");
+                    toContentsList("웹툰", webtoonList);
                 });
 
                 //드라마 버튼 클릭시
@@ -307,10 +307,10 @@ public class MainActivity extends AppCompatActivity {
                 toDramaTxt = findViewById(R.id.toDramaTxt);
                 //드라마 추천 리스트 액티비티로 이동
                 toDrama.setOnClickListener(view->{
-                    toContentsList("드라마");
+                    toContentsList("드라마", dramaList);
                 });
                 toDramaTxt.setOnClickListener(view->{
-                    toContentsList("드라마");
+                    toContentsList("드라마", dramaList);
                 });
 
                 //읽을거리 버튼 클릭시
@@ -389,10 +389,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //클릭한 버튼에 따라 카테고리를 지정하여 contentList에 넘겨주는 함수
-    void toContentsList(String category){
+    void toContentsList(String category, ArrayList<Contents> list){
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
-        toList.putExtra("list", bookList);
+        toList.putExtra("list", list);
         startActivity(toList);
     }
 
