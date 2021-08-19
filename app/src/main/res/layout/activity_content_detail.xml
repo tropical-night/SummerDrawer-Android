@@ -52,7 +52,8 @@ tools:context=".ContentDetailActivity">
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="420dp"
+            android:scaleType="centerCrop"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,13 +61,15 @@ tools:context=".ContentDetailActivity">
             android:layout_height="match_parent"
             android:background="@color/main_gray"
             android:backgroundTint="@color/main_gray"
-            android:padding="40dp">
+            android:paddingLeft="40dp"
+            android:paddingTop="20dp"
+            android:paddingRight="40dp"
+            android:paddingBottom="20dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +134,6 @@ tools:context=".ContentDetailActivity">
                 android:id="@+id/contentTitleTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:fontFamily="@font/kopubworlddotumbold"
                 android:text="TextView"
                 android:textColor="#0a0f15"
@@ -143,7 +145,6 @@ tools:context=".ContentDetailActivity">
                 android:id="@+id/contentCategoryAuthorTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:fontFamily="@font/kopubworlddotumlight"
                 android:text="TextView"
                 android:textColor="#919191"
@@ -178,11 +179,20 @@ tools:context=".ContentDetailActivity">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
             android:fontFamily="@font/kopubworlddotummedium"
-            android:paddingLeft="20dp"
             android:text="감상 바로가기"
+            android:textAlignment="viewStart"
             android:textColor="@color/main_green"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_link"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/btn_naver" />
+
     </LinearLayout>
 </ScrollView>
 
