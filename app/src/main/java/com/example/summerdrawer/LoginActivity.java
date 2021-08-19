@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         editor = pref.edit();
 
         mAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = mAuth.getCurrentUser();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -103,8 +104,34 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+                handleSignInResult(task);
             } catch (ApiException e) {
             }
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount acct = completedTask.getResult(ApiException.class);
+
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personGivenName = acct.getGivenName();
+                String personFamilyName = acct.getFamilyName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+
+                Log.d("Google Login", "handleSignInResult:personName "+personName);
+                Log.d("Google Login", "handleSignInResult:personGivenName "+personGivenName);
+                Log.d("Google Login", "handleSignInResult:personEmail "+personEmail);
+                Log.d("Google Login", "handleSignInResult:personId "+personId);
+                Log.d("Google Login", "handleSignInResult:personFamilyName "+personFamilyName);
+            }
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.e("Google Login", "signInResult:failed code=" + e.getStatusCode());
+
         }
     }
 
