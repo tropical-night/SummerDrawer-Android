@@ -120,9 +120,11 @@ public class MainActivity extends AppCompatActivity {
         db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(userName==null){
+                if(userName.equals("null")){
                     DocumentSnapshot document = task.getResult();
-                    userNameTxt.setText(document.getData().get("name").toString());
+                    editor.putString("userName", document.getData().get("name").toString());
+                    editor.apply();
+                    userNameTxt.setText(pref.getString("userName", "null"));
                 }else {
                     userNameTxt.setText(userName);
                 }
