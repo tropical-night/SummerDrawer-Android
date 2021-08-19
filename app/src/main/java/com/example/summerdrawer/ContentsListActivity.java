@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +20,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ContentsListActivity extends AppCompatActivity{
+    public static Activity listActivity;
     String content;
-    ArrayList<Contents> list = new ArrayList<>(); // 메인에셔 넘어온 리스트
+
+    ArrayList<Contents> movieList = new ArrayList<>();
+    ArrayList<Contents> bookList = new ArrayList<>();
+    ArrayList<Contents> webtoonList = new ArrayList<>();
+    ArrayList<Contents> dramaList = new ArrayList<>();
+    ArrayList<LikeScrap> likeScrapList = new ArrayList<>(); // 좋아요,스크랩 리스트
+
     Button btn_logo;
     ImageButton btn_goProfile;
     private DrawerLayout drawerLayout;
@@ -37,11 +45,30 @@ public class ContentsListActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contents_list);
+        listActivity = ContentsListActivity.this;
 
         content = getIntent().getStringExtra("content");
-        list = (ArrayList<Contents>) getIntent().getSerializableExtra("list");
 
-        Log.d("s", list.get(0).getTitle());
+        movieList = (ArrayList<Contents>) getIntent().getSerializableExtra("movieList");
+        bookList = (ArrayList<Contents>) getIntent().getSerializableExtra("bookList");
+        webtoonList = (ArrayList<Contents>) getIntent().getSerializableExtra("webtoonList");
+        dramaList = (ArrayList<Contents>) getIntent().getSerializableExtra("dramaList");
+        likeScrapList = (ArrayList<LikeScrap>) getIntent().getSerializableExtra("likeScrapList");
+
+        switch(content){
+            case "영화":
+                adapter = new RVAdapter(this, movieList);
+                break;
+            case "도서":
+                adapter = new RVAdapter(this, bookList);
+                break;
+            case "웹툰":
+                adapter = new RVAdapter(this, webtoonList);
+                break;
+            case "드라마":
+                adapter = new RVAdapter(this, dramaList);
+                break;
+        }
 
         //상단의 페이지 이름 수정
         btn_logo = findViewById(R.id.btn_logo);
@@ -142,7 +169,6 @@ public class ContentsListActivity extends AppCompatActivity{
         contentListRV = findViewById(R.id.contentListRV);
         contentListRV.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new RVAdapter(this, list);
         contentListRV.setAdapter(adapter);
 
         //네비게이션 드로어 추가
@@ -166,6 +192,11 @@ public class ContentsListActivity extends AppCompatActivity{
     void toContentsList(String category){
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
+        toList.putExtra("movieList", movieList);
+        toList.putExtra("bookList", bookList);
+        toList.putExtra("webtoonList", webtoonList);
+        toList.putExtra("dramaList", dramaList);
+        toList.putExtra("likeScrapList", likeScrapList);
         startActivity(toList);
         finish();
     }

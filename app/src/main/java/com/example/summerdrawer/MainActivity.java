@@ -365,7 +365,12 @@ public class MainActivity extends AppCompatActivity {
     void toContentsList(String category, ArrayList<Contents> list){
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
-        toList.putExtra("list", list);
+        toList.putExtra("allContents", contentList);
+        toList.putExtra("movieList", movieList);
+        toList.putExtra("bookList", bookList);
+        toList.putExtra("webtoonList", webtoonList);
+        toList.putExtra("dramaList", dramaList);
+        toList.putExtra("likeScrapList", likeScrapList);
         startActivity(toList);
     }
 
@@ -400,42 +405,6 @@ public class MainActivity extends AppCompatActivity {
                 //Intent searchI = new Intent(this, SearchActivity);
                 break;
         }
-    }
-
-    // 태그리스트를 하나의 string으로 바꿔주는 함수
-    String setTagListToString(String tagDB){
-        String[] tagList = tagDB.split("_");
-        StringBuilder tag = new StringBuilder();
-        for(int i=0; i<tagList.length; i++ )
-        {
-            tag.append("#").append(tagList[i]);
-            if(i != tagList.length-1) tag.append("   ");
-        }
-        return tag.toString();
-    }
-
-    // 작가리스트를 하나의 string으로 바꿔주는 함수
-    String setAuthorToString(String authorDB){
-        String[] authorList = authorDB.split("_");
-        StringBuilder author = new StringBuilder();
-
-        if(authorList.length > 3) {
-            author.append(authorList[0]).append(" 외 " + (authorList.length - 1)).append("명");
-        }
-        else if(authorList.length == 2){
-            author.append(authorList[0]).append(", ").append(authorList[1]);
-        }
-        else author.append(authorList[0]);
-        return author.toString();
-    }
-
-    // Timestamp를 String으로 변경해주는 함수
-    String setTimestampToString(Timestamp timestamp) {
-        Date date = timestamp.toDate();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY년 MM월 dd일");
-        String dateString = simpleDateFormat.format(date);
-
-        return dateString;
     }
 
     // 어댑터 설정(인기작품 5개)
