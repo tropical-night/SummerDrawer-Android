@@ -20,17 +20,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -39,7 +36,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     SharedPreferences pref;
@@ -64,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout movieLayout, bookLayout, dramaLayout, webtoonLayout,
             movieContentLayout, bookContentLayout, dramaContentLayout, webtoonContentLayout;
     TextView movieTxt, bookTxt, dramaTxt, webtoonTxt;
+    ImageView img_movie1, img_movie2, img_movie3, img_book1, img_book2, img_book3, img_webtoon1,
+            img_webtoon2, img_webtoon3, img_drama1, img_drama2, img_drama3;
+    TextView text_book_title1, text_book_title2, text_book_title3, text_movie_title1, text_movie_title2,
+            text_movie_title3, text_webtoon_title1, text_webtoon_title2, text_webtoon_title3,
+            text_drama_title1, text_drama_title2, text_drama_title3,
+            text_book_desc1, text_book_desc2, text_book_desc3, text_movie_desc1, text_movie_desc2,
+            text_movie_desc3, text_webtoon_desc1, text_webtoon_desc2, text_webtoon_desc3,
+            text_drama_desc1, text_drama_desc2, text_drama_desc3;
     boolean isMOpen, isBOpen, isDOpen, isWOpen = false;
 
     // 지금 뜨는 신작의 뷰
@@ -72,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
             category_latest1, category_latest2, category_latest3, category_latest4,
             writer_latest1, writer_latest2, writer_latest3, writer_latest4,
             summary_latest1, summary_latest2, summary_latest3, summary_latest4;
+
+    // 데이터 불러오기
+    ArrayList<Contents> contentList; // 전체 작품 리스트
+    ArrayList<Contents> movieList;
+    ArrayList<Contents> bookList;
+    ArrayList<Contents> webtoonList;
+    ArrayList<Contents> dramaList;
+    ArrayList<LikeScrap> likeScrapList; // 좋아요,스크랩 리스트
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,20 +97,47 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         sliderItems = new ArrayList<>();
 
+        contentList = new ArrayList<>();
+        movieList = new ArrayList<>();
+        bookList = new ArrayList<>();
+        webtoonList = new ArrayList<>();
+        dramaList = new ArrayList<>();
+        likeScrapList = new ArrayList<>();
 
-        // 좋아요 수가 많은 상위 5개 작품 불러오기
-        db.collection("contents").orderBy("like", Query.Direction.DESCENDING).limit(5).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+        // 날짜순으로 데이터베이스 불러오기(카테고리별로 분류하여 객체에 저장)
+        db.collection("contents").orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    //document.getData() or document.getId()
+                    String id = document.getId();
                     String title = (String) document.getData().get("title");
                     String category = (String) document.getData().get("category");
                     String tag = setTagListToString((String) document.getData().get("tag"));
                     String author = setAuthorToString((String) document.getData().get("author"));
-                    String img = (String) document.getData().get("img_thumbnail");
-                    String desc = (String) document.getData().get("summary");
-                    sliderItems.add(new SliderItems(img, title, category, author, desc, tag));
+                    String date = setTimestampToString((Timestamp) document.getData().get("date"));
+                    String summary = (String) document.getData().get("summary");
+                    String story = (String) document.getData().get("story");
+                    String introduction = (String) document.getData().get("introduction");
+                    double rating = (double) document.getData().get("rating");
+                    String img1 = (String) document.getData().get("img_thumbnail");
+
+                    // 전체 리스트에 저장
+                    contentList.add(new Contents(id, title, category, author, date, summary, introduction, story, tag, rating,img1));
+
+                    // 카테고리별 저장
+                    if(category.equals("영화")){
+                        movieList.add(new Contents(id, title, "영화", author, date, summary, introduction, story, tag, rating,img1));
+                    }
+                    else if (category.equals("도서")){
+                        bookList.add(new Contents(id, title, "도서", author, date, summary, introduction, story, tag, rating,img1));
+                    }
+                    else if (category.equals("웹툰")){
+                        webtoonList.add(new Contents(id, title, "웹툰", author, date, summary, introduction, story, tag, rating,img1));
+                    }
+                    else if (category.equals("드라마")){
+                        dramaList.add(new Contents(id, title, "드라마", author, date, summary, introduction, story, tag, rating,img1));
+                    }
                 }
 
                 pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
@@ -115,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     TextView userNameTxt = findViewById(R.id.userNameTxt);
                     userNameTxt.setText(userName);
                 }
+
 
                 setContentView(R.layout.activity_main);
 
@@ -193,8 +236,26 @@ public class MainActivity extends AppCompatActivity {
                 goSearch = findViewById(R.id.btn_goSearch);
                 viewPager2 = findViewById(R.id.viewpager);
                 dots_indicator = findViewById(R.id.dots_indicator);
-                // 어댑터 설정
-                setAdapter();
+
+                // 좋아요 순으로 데이터베이스 불러오기
+                db.collection("contents").orderBy("like", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String id = document.getId();
+                            String category = (String) document.getData().get("category");
+                            int like = (int) Integer.parseInt(String.valueOf(document.getData().get("like")));
+                            int scrap = (int) Integer.parseInt(String.valueOf(document.getData().get("scrap")));
+                            likeScrapList.add(new LikeScrap(id, category, like, scrap));
+                        }
+
+                        // 어댑터 설정(인기 작품 5개)
+                        setAdapter();
+
+                        // 카데고리별 인기 작품 3개 불러오기
+                        loadLike();
+                    }
+                });
 
                 // 상단바 프로필 이동
                 goProfile.setOnClickListener(new View.OnClickListener() {
@@ -240,10 +301,10 @@ public class MainActivity extends AppCompatActivity {
                 toMovieTxt = findViewById(R.id.toMovieTxt);
                 //영화 추천 리스트 액티비티로 이동
                 toMovie.setOnClickListener(view->{
-                    toContentsList("영화");
+                    toContentsList("영화", movieList);
                 });
                 toMovieTxt.setOnClickListener(view->{
-                    toContentsList("영화");
+                    toContentsList("영화", movieList);
                 });
 
                 //도서 버튼 클릭시
@@ -251,10 +312,10 @@ public class MainActivity extends AppCompatActivity {
                 toBookTxt = findViewById(R.id.toBookTxt);
                 //도서 추천 리스트 액티비티로 이동
                 toBook.setOnClickListener(view->{
-                    toContentsList("도서");
+                    toContentsList("도서", bookList);
                 });
                 toBookTxt.setOnClickListener(view->{
-                    toContentsList("도서");
+                    toContentsList("도서", bookList);
                 });
 
                 //웹툰 버튼 클릭시
@@ -262,10 +323,10 @@ public class MainActivity extends AppCompatActivity {
                 toWebtoonTxt = findViewById(R.id.toWebtoonTxt);
                 //도서 추천 리스트 액티비티로 이동
                 toWebtoon.setOnClickListener(view->{
-                    toContentsList("웹툰");
+                    toContentsList("웹툰", webtoonList);
                 });
                 toWebtoonTxt.setOnClickListener(view->{
-                    toContentsList("웹툰");
+                    toContentsList("웹툰", webtoonList);
                 });
 
                 //드라마 버튼 클릭시
@@ -273,10 +334,10 @@ public class MainActivity extends AppCompatActivity {
                 toDramaTxt = findViewById(R.id.toDramaTxt);
                 //드라마 추천 리스트 액티비티로 이동
                 toDrama.setOnClickListener(view->{
-                    toContentsList("드라마");
+                    toContentsList("드라마", dramaList);
                 });
                 toDramaTxt.setOnClickListener(view->{
-                    toContentsList("드라마");
+                    toContentsList("드라마", dramaList);
                 });
 
                 //읽을거리 버튼 클릭시
@@ -310,6 +371,44 @@ public class MainActivity extends AppCompatActivity {
                 summary_latest3 = findViewById(R.id.summary_latest3);
                 summary_latest4 = findViewById(R.id.summary_latest4);
                 loadLatest();
+
+                // 카테고리별 인기작품 3개 불러오기
+                img_book1 = findViewById(R.id.img_book1);
+                img_book2 = findViewById(R.id.img_book2);
+                img_book3 = findViewById(R.id.img_book3);
+                img_movie1 = findViewById(R.id.img_movie1);
+                img_movie2 = findViewById(R.id.img_movie2);
+                img_movie3 = findViewById(R.id.img_movie3);
+                img_webtoon1 = findViewById(R.id.img_webtoon1);
+                img_webtoon2 = findViewById(R.id.img_webtoon2);
+                img_webtoon3 = findViewById(R.id.img_webtoon3);
+                img_drama1 = findViewById(R.id.img_drama1);
+                img_drama2 = findViewById(R.id.img_drama2);
+                img_drama3 = findViewById(R.id.img_drama3);
+                text_book_title1 = findViewById(R.id.text_book_title1);
+                text_book_title2 = findViewById(R.id.text_book_title2);
+                text_book_title3 = findViewById(R.id.text_book_title3);
+                text_movie_title1 = findViewById(R.id.text_movie_title1);
+                text_movie_title2 = findViewById(R.id.text_movie_title2);
+                text_movie_title3 = findViewById(R.id.text_movie_title3);
+                text_webtoon_title1 = findViewById(R.id.text_webtoon_title1);
+                text_webtoon_title2 = findViewById(R.id.text_webtoon_title2);
+                text_webtoon_title3 = findViewById(R.id.text_webtoon_title3);
+                text_drama_title1 = findViewById(R.id.text_drama_title1);
+                text_drama_title2 = findViewById(R.id.text_drama_title2);
+                text_drama_title3 = findViewById(R.id.text_drama_title3);
+                text_book_desc1 = findViewById(R.id.text_book_desc1);
+                text_book_desc2 = findViewById(R.id.text_book_desc2);
+                text_book_desc3 = findViewById(R.id.text_book_desc3);
+                text_movie_desc1 = findViewById(R.id.text_movie_desc1);
+                text_movie_desc2 = findViewById(R.id.text_movie_desc2);
+                text_movie_desc3 = findViewById(R.id.text_movie_desc3);
+                text_webtoon_desc1 = findViewById(R.id.text_webtoon_desc1);
+                text_webtoon_desc2 = findViewById(R.id.text_webtoon_desc2);
+                text_webtoon_desc3 = findViewById(R.id.text_webtoon_desc3);
+                text_drama_desc1 = findViewById(R.id.text_drama_desc1);
+                text_drama_desc2 = findViewById(R.id.text_drama_desc2);
+                text_drama_desc3 = findViewById(R.id.text_drama_desc3);
             }
 
         });
@@ -317,9 +416,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //클릭한 버튼에 따라 카테고리를 지정하여 contentList에 넘겨주는 함수
-    void toContentsList(String category){
+    void toContentsList(String category, ArrayList<Contents> list){
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
+        toList.putExtra("list", list);
         startActivity(toList);
     }
 
@@ -383,8 +483,26 @@ public class MainActivity extends AppCompatActivity {
         return author.toString();
     }
 
-    // 어댑터 설정
+    // Timestamp를 String으로 변경해주는 함수
+    String setTimestampToString(Timestamp timestamp) {
+        Date date = timestamp.toDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY년 MM월 dd일");
+        String dateString = simpleDateFormat.format(date);
+
+        return dateString;
+    }
+
+    // 어댑터 설정(인기작품 5개)
     void setAdapter() {
+        // 전체 작품 중 좋아요 수가 많은 5개 불러오기
+        for(int i=0; i<5; i++) {
+            for(Contents contents: contentList) {
+                if(contents.getId().equals(likeScrapList.get(i).getId())){
+                    sliderItems.add(new SliderItems(contents.getImg1(), contents.getTitle(), contents.getCategory(), contents.getAuthor(), contents.getSummary(), contents.getTag()));
+                }
+            }
+        }
+
         viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
 
         viewPager2.setClipChildren(false);
@@ -517,51 +635,93 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 최신 작품 4개 불러오기
+    @SuppressLint("SetTextI18n")
     void loadLatest(){
-        db.collection("contents").orderBy("date", Query.Direction.DESCENDING).limit(4).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                int i = 1;
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    String title = (String) document.getData().get("title");
-                    String category = (String) document.getData().get("category");
-                    String author = setAuthorToString((String) document.getData().get("author"));
-                    String img = (String) document.getData().get("img_thumbnail");
-                    String summary = (String) document.getData().get("summary");
+        Glide.with(MainActivity.this).load(contentList.get(0).getImg1()).into(img_latest1);
+        title_latest1.setText(contentList.get(0).getTitle());
+        category_latest1.setText(contentList.get(0).getCategory() + " | ");
+        writer_latest1.setText(contentList.get(0).getAuthor());
+        summary_latest1.setText(contentList.get(0).getSummary());
 
-                    if(i == 1) {
-                        Glide.with(MainActivity.this).load(img).into(img_latest1);
-                        title_latest1.setText(title);
-                        category_latest1.setText(category + " | ");
-                        writer_latest1.setText(author);
-                        summary_latest1.setText(summary);
-                    }
-                    else if(i == 2) {
-                        Glide.with(MainActivity.this).load(img).into(img_latest2);
-                        title_latest2.setText(title);
-                        category_latest2.setText(category + " | ");
-                        writer_latest2.setText(author);
-                        summary_latest2.setText(summary);
-                    }
-                    else if(i == 3) {
-                        Glide.with(MainActivity.this).load(img).into(img_latest3);
-                        title_latest3.setText(title);
-                        category_latest3.setText(category + " | ");
-                        writer_latest3.setText(author);
-                        summary_latest3.setText(summary);
-                    }
-                    else {
-                        Glide.with(MainActivity.this).load(img).into(img_latest4);
-                        title_latest4.setText(title);
-                        category_latest4.setText(category + " | ");
-                        writer_latest4.setText(author);
-                        summary_latest4.setText(summary);
-                    }
-                    i++;
+        Glide.with(MainActivity.this).load(contentList.get(1).getImg1()).into(img_latest2);
+        title_latest2.setText(contentList.get(1).getTitle());
+        category_latest2.setText(contentList.get(1).getCategory() + " | ");
+        writer_latest2.setText(contentList.get(1).getAuthor());
+        summary_latest2.setText(contentList.get(1).getSummary());
+
+        Glide.with(MainActivity.this).load(contentList.get(2).getImg1()).into(img_latest3);
+        title_latest3.setText(contentList.get(2).getTitle());
+        category_latest3.setText(contentList.get(2).getCategory() + " | ");
+        writer_latest3.setText(contentList.get(2).getAuthor());
+        summary_latest3.setText(contentList.get(2).getSummary());
+
+        Glide.with(MainActivity.this).load(contentList.get(3).getImg1()).into(img_latest4);
+        title_latest4.setText(contentList.get(3).getTitle());
+        category_latest4.setText(contentList.get(3).getCategory() + " | ");
+        writer_latest4.setText(contentList.get(3).getAuthor());
+        summary_latest4.setText(contentList.get(3).getSummary());
+    }
+
+    // 카테고리별 인기 작품 불러오기
+    void loadLike(){
+        int b = 0;
+        int m = 0;
+        int w = 0;
+        int d = 0;
+        for(LikeScrap contents: likeScrapList) {
+            // 도서 좋아요 수가 많은 3개 불러오기
+            for(Contents bookList: bookList) {
+                if(contents.getId().equals(bookList.getId())){
+                    if(b == 0) setData(img_book1, text_book_title1, text_book_desc1, bookList);
+                    else if(b == 1) setData(img_book2, text_book_title2, text_book_desc2, bookList);
+                    else if(b == 2) setData(img_book3, text_book_title3, text_book_desc3, bookList);
+                    else break;
+                    b++;
                 }
             }
-        });
+
+            // 영화 좋아요 수가 많은 3개 불러오기
+            for(Contents movieList: movieList) {
+                if(contents.getId().equals(movieList.getId())){
+                    if(m == 0) setData(img_movie1, text_movie_title1, text_movie_desc1, movieList);
+                    else if(m == 1) setData(img_movie2, text_movie_title2, text_movie_desc2, movieList);
+                    else if(m == 2) setData(img_movie3, text_movie_title3, text_movie_desc3, movieList);
+                    else break;
+                    m++;
+                }
+            }
+
+            // 웹툰 좋아요 수가 많은 3개 불러오기
+            for(Contents webtoonList: webtoonList) {
+                if(contents.getId().equals(webtoonList.getId())){
+                    if(w == 0) setData(img_webtoon1, text_webtoon_title1, text_webtoon_desc1, webtoonList);
+                    else if(w == 1) setData(img_webtoon2, text_webtoon_title2, text_webtoon_desc2, webtoonList);
+                    else if(w == 2) setData(img_webtoon3, text_webtoon_title3, text_webtoon_desc3, webtoonList);
+                    else break;
+                    w++;
+                }
+            }
+
+            // 드라마 좋아요 수가 많은 3개 불러오기
+            for(Contents dramaList: dramaList) {
+                if(contents.getId().equals(dramaList.getId())){
+                    if(d == 0) setData(img_drama1, text_drama_title1, text_drama_desc1, dramaList);
+                    else if(d == 1) setData(img_drama2, text_drama_title2, text_drama_desc2, dramaList);
+                    else if(d == 2) setData(img_drama3, text_drama_title3, text_drama_desc3, dramaList);
+                    else break;
+                    d++;
+                }
+            }
+        }
+
+    }
+
+    // 인기 작품 서랍장 뷰와 연결하는 함수
+    @SuppressLint("SetTextI18n")
+    void setData(ImageView img, TextView title, TextView desc, Contents contents) {
+        Glide.with(MainActivity.this).load(contents.getImg1()).into(img);
+        title.setText(contents.getTitle());
+        desc.setText(contents.getCategory() + " | " + contents.getAuthor());
     }
 
     //로그인 액티비티로 이동

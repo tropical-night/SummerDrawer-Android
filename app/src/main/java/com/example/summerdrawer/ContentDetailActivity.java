@@ -4,53 +4,80 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+public class ContentDetailActivity extends AppCompatActivity {
 
-public class ContentsListActivity extends AppCompatActivity{
-    String content;
-    ArrayList<Contents> list = new ArrayList<>(); // 메인에셔 넘어온 리스트
+    Contents content;
     Button btn_logo;
     ImageButton btn_goProfile;
     private DrawerLayout drawerLayout;
     private View drawerView;
 
+    TextView contentTagTxt, contentTitleTxt, contentCategoryAuthorTxt, contentStoryTxt;
+
     ConstraintLayout toLike, toScrap, toMovie, toBook, toWebtoon, toDrama, toMagazine;
     TextView userNameTxt, toLikeTxt, toScrapTxt,
             toMovieTxt, toBookTxt, toWebtoonTxt, toDramaTxt, toMagazineTxt;
 
-    RecyclerView contentListRV;
-    RVAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contents_list);
-
-        content = getIntent().getStringExtra("content");
-        list = (ArrayList<Contents>) getIntent().getSerializableExtra("list");
-
-        Log.d("s", list.get(0).getTitle());
-
-        //상단의 페이지 이름 수정
-        btn_logo = findViewById(R.id.btn_logo);
-        btn_logo.setText(content+"서랍");
+        setContentView(R.layout.activity_content_detail);
 
         //사용자 이름 받아와서 설정해주기
         userNameTxt = findViewById(R.id.userNameTxt);
         userNameTxt.setText("김뫄뫄");
 
+        //클릭한 컨텐츠 정보 받아오기
+        content = (Contents)getIntent().getSerializableExtra("content");
+        String category = content.getCategory();
+
+        //화면에 가져온 컨텐츠 정보 뿌려주기
+        btn_logo = findViewById(R.id.btn_logo);
+        btn_logo.setText(content.getCategory()+"서랍");
+
+        contentTagTxt = findViewById(R.id.contentTagTxt);
+        contentTagTxt.setText(content.getTag());
+
+        contentTitleTxt = findViewById(R.id.contentTitleTxt);
+        contentTitleTxt.setText(content.getTitle());
+
+        contentCategoryAuthorTxt = findViewById(R.id.contentCategoryAuthorTxt);
+        contentCategoryAuthorTxt.setText(content.getCategoryAuthor());
+
+        contentStoryTxt = findViewById(R.id.contentStoryTxt);
+        contentStoryTxt.setText(content.getStory());
+
+        //네비게이션 드로어 추가
+        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerView = findViewById(R.id.navbar);
+
+        drawerLayout.addDrawerListener(listener);
+        drawerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
+        //왼쪽 상단의 프로필 이미지 클릭 시
+        btn_goProfile = findViewById(R.id.btn_goProfile);
+        btn_goProfile.setOnClickListener(view->{
+            //메뉴 탭 등장
+            drawerLayout.openDrawer(drawerView);
+        });
+
+
+        //*******************************아래는 메뉴 탭 기능입니다*******************************
         //좋아하는 버튼 클릭 시
         toLike = findViewById(R.id.toLike);
         toLikeTxt = findViewById(R.id.toLikeTxt);
@@ -122,9 +149,8 @@ public class ContentsListActivity extends AppCompatActivity{
 //        toDramaTxt.setOnClickListener(view->{
 //        });
 
-
-
-        switch (content){
+        //메뉴 탭 버튼 테두리 넣어주기
+        switch (category){
             case "영화":
                 toMovie.setBackgroundResource(R.drawable.drawer_pressed);
                 break;
@@ -139,37 +165,6 @@ public class ContentsListActivity extends AppCompatActivity{
                 break;
         }
 
-        ArrayList<Contents> contentList = new ArrayList<>();
-        for (int i = 0; i<10; i++){
-            Contents c = new Contents("id","고래별", "웹툰", "나윤희", "2018-01-02","1926년 일제 식민 지배 하의 조선. 어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하게 되는데..",
-                    "1926년 일제 식민 지배 하의 조선. 17세 소녀 수아는 전북 군산 일대 친일파 대지주의 집에서 몸종으로 일하고 있다.  어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하고, 그를 보호하게 되는데...",
-                    "1926년 일제 식민 지배 하의 조선. 17세 소녀 수아는 전북 군산 일대 친일파 대지주의 집에서 몸종으로 일하고 있다.  어느 날 수아는 부상을 입은 채 해변가에 쓰러져 있는 독립운동가 의현을 발견하고, 그를 보호하게 되는데...",
-                    "여성서사_여성작가", 4.3, "img");
-            contentList.add(c);
-        }
-        contentListRV = findViewById(R.id.contentListRV);
-        contentListRV.setLayoutManager(new LinearLayoutManager(this));
-
-        adapter = new RVAdapter(this, contentList);
-        contentListRV.setAdapter(adapter);
-
-        //네비게이션 드로어 추가
-        drawerLayout = findViewById(R.id.drawer_layout);
-        drawerView = findViewById(R.id.navbar);
-
-        drawerLayout.addDrawerListener(listener);
-        drawerView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return true;
-            }
-        });
-
-        //왼쪽 상단의 프로필 이미지 클릭 시
-        btn_goProfile = findViewById(R.id.btn_goProfile);
-        btn_goProfile.setOnClickListener(view->{
-            drawerLayout.openDrawer(drawerView);
-        });
     }
     void toContentsList(String category){
         Intent toList = new Intent(this, ContentsListActivity.class);
