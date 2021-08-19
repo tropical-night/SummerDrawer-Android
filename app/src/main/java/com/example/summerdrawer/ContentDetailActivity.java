@@ -2,6 +2,8 @@ package com.example.summerdrawer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,12 +26,16 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 
 public class ContentDetailActivity extends AppCompatActivity {
 
     Contents content;
     Button btn_logo;
 
+    ImageView imageView;
     TextView contentTagTxt, contentTitleTxt, contentCategoryAuthorTxt, contentStoryTxt;
     ImageView img_mLike, img_mScrap;
     TextView text_detail_like, text_detail_scrap;
@@ -48,6 +56,9 @@ public class ContentDetailActivity extends AppCompatActivity {
         String category = content.getCategory();
 
         //화면에 가져온 컨텐츠 정보 뿌려주기
+        imageView = findViewById(R.id.imageView);
+        Glide.with(ContentDetailActivity.this).load(content.getImg1()).into(imageView);
+
         btn_logo = findViewById(R.id.btn_logo);
         btn_logo.setText(content.getCategory()+"서랍");
 

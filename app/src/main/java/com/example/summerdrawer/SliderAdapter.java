@@ -1,5 +1,7 @@
 package com.example.summerdrawer;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +17,12 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderViewHolder> {
-    private List<SliderItems> sliderItems;
+    private List<Contents> sliderItems;
     private ViewPager2 viewPager2;
+    private Context context;
 
-    SliderAdapter(List <SliderItems>sliderItems, ViewPager2 viewPager2) {
+    SliderAdapter(Context context, List <Contents>sliderItems, ViewPager2 viewPager2) {
+        this.context = context;
         this.sliderItems = sliderItems;
         this.viewPager2 = viewPager2;
     }
@@ -35,12 +39,11 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
 
     @Override
     public void onBindViewHolder(@NonNull SliderAdapter.SliderViewHolder holder, int position) {
-        Glide.with(holder.itemView).load(sliderItems.get(position).getImage()).into(holder.imageView);
-        //holder.setImage(sliderItems.get(position));
+        Glide.with(holder.itemView).load(sliderItems.get(position).getImg1()).into(holder.imageView);
         holder.title.setText(sliderItems.get(position).getTitle());
         holder.category.setText(sliderItems.get(position).getCategory());
         holder.author.setText(sliderItems.get(position).getAuthor());
-        holder.desc.setText(sliderItems.get(position).getDesc());
+        holder.desc.setText(sliderItems.get(position).getSummary());
         holder.tag.setText(sliderItems.get(position).getTag());
     }
 
@@ -65,6 +68,15 @@ public class SliderAdapter extends RecyclerView.Adapter <SliderAdapter.SliderVie
             author = itemView.findViewById(R.id.text_author_today);
             desc = itemView.findViewById(R.id.text_desc_today);
             tag = itemView.findViewById(R.id.text_tag_today);
+
+            itemView.setOnClickListener(view->{
+                int position = getAdapterPosition();
+                if(position!=RecyclerView.NO_POSITION){
+                    Intent contentDetailI = new Intent(context, ContentDetailActivity.class);
+                    contentDetailI.putExtra("content", sliderItems.get(position));
+                    context.startActivity(contentDetailI);
+                }
+            });
         }
     }
 }
