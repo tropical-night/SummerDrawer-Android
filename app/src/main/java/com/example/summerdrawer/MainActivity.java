@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             text_book_desc1, text_book_desc2, text_book_desc3, text_movie_desc1, text_movie_desc2,
             text_movie_desc3, text_webtoon_desc1, text_webtoon_desc2, text_webtoon_desc3,
             text_drama_desc1, text_drama_desc2, text_drama_desc3;
+    View view5, view6, view7, view8, view9, view10, view11, view12, view13, view14, view15, view16, view17, view18, view19, view20;
     boolean isMOpen, isBOpen, isDOpen, isWOpen = false;
 
     // 지금 뜨는 신작의 뷰
@@ -88,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Contents> webtoonList = new ArrayList<>();
     ArrayList<Contents> dramaList = new ArrayList<>();
     ArrayList<LikeScrap> likeScrapList = new ArrayList<>(); // 좋아요,스크랩 리스트
+
+    Contents[] mPopular = new Contents[3];
+    Contents[] bPopular = new Contents[3];
+    Contents[] wPopular = new Contents[3];
+    Contents[] dPopular = new Contents[3];
 
     private FirebaseAuth firebaseAuth;
     FirebaseFirestore db;
@@ -403,6 +409,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void btnOnclick(View view) {
+        Intent detailI = new Intent(this, ContentDetailActivity.class);
         switch (view.getId()){
             case R.id.btn_goProfile:
                 drawerLayout.openDrawer(drawerView);
@@ -410,6 +417,71 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_goSearch:
                 //Intent searchI = new Intent(this, SearchActivity);
                 break;
+            case R.id.view5:
+                detailI.putExtra("content", contentList.get(0));
+                startActivity(detailI);
+                break;
+            case R.id.view6:
+                detailI.putExtra("content", contentList.get(1));
+                startActivity(detailI);
+                break;
+            case R.id.view7:
+                detailI.putExtra("content", contentList.get(2));
+                startActivity(detailI);
+                break;
+            case R.id.view8:
+                detailI.putExtra("content", contentList.get(3));
+                startActivity(detailI);
+                break;
+            case R.id.view9:
+                detailI.putExtra("content", mPopular[0]);
+                startActivity(detailI);
+                break;
+            case R.id.view10:
+                detailI.putExtra("content", mPopular[1]);
+                startActivity(detailI);
+                break;
+            case R.id.view11:
+                detailI.putExtra("content", mPopular[2]);
+                startActivity(detailI);
+                break;
+            case R.id.view12:
+                detailI.putExtra("content", bPopular[0]);
+                startActivity(detailI);
+                break;
+            case R.id.view13:
+                detailI.putExtra("content", bPopular[1]);
+                startActivity(detailI);
+                break;
+            case R.id.view14:
+                detailI.putExtra("content", bPopular[2]);
+                startActivity(detailI);
+                break;
+            case R.id.view15:
+                detailI.putExtra("content", wPopular[0]);
+                startActivity(detailI);
+                break;
+            case R.id.view16:
+                detailI.putExtra("content", wPopular[1]);
+                startActivity(detailI);
+                break;
+            case R.id.view17:
+                detailI.putExtra("content", wPopular[2]);
+                startActivity(detailI);
+                break;
+            case R.id.view18:
+                detailI.putExtra("content", dPopular[0]);
+                startActivity(detailI);
+                break;
+            case R.id.view19:
+                detailI.putExtra("content", dPopular[1]);
+                startActivity(detailI);
+                break;
+            case R.id.view20:
+                detailI.putExtra("content", dPopular[2]);
+                startActivity(detailI);
+                break;
+
         }
     }
 
@@ -593,9 +665,18 @@ public class MainActivity extends AppCompatActivity {
             // 도서 좋아요 수가 많은 3개 불러오기
             for(Contents bookList: bookList) {
                 if(contents.getId().equals(bookList.getId())){
-                    if(b == 0) setData(img_book1, text_book_title1, text_book_desc1, bookList);
-                    else if(b == 1) setData(img_book2, text_book_title2, text_book_desc2, bookList);
-                    else if(b == 2) setData(img_book3, text_book_title3, text_book_desc3, bookList);
+                    if(b == 0) {
+                        bPopular[b] = bookList;
+                        setData(img_book1, text_book_title1, text_book_desc1, bookList);
+                    }
+                    else if(b == 1) {
+                        bPopular[b] = bookList;
+                        setData(img_book2, text_book_title2, text_book_desc2, bookList);
+                    }
+                    else if(b == 2) {
+                        bPopular[b] = bookList;
+                        setData(img_book3, text_book_title3, text_book_desc3, bookList);
+                    }
                     else break;
                     b++;
                 }
@@ -604,9 +685,18 @@ public class MainActivity extends AppCompatActivity {
             // 영화 좋아요 수가 많은 3개 불러오기
             for(Contents movieList: movieList) {
                 if(contents.getId().equals(movieList.getId())){
-                    if(m == 0) setData(img_movie1, text_movie_title1, text_movie_desc1, movieList);
-                    else if(m == 1) setData(img_movie2, text_movie_title2, text_movie_desc2, movieList);
-                    else if(m == 2) setData(img_movie3, text_movie_title3, text_movie_desc3, movieList);
+                    if(m == 0) {
+                        mPopular[m] = movieList;
+                        setData(img_movie1, text_movie_title1, text_movie_desc1, movieList);
+                    }
+                    else if(m == 1) {
+                        mPopular[m] = movieList;
+                        setData(img_movie2, text_movie_title2, text_movie_desc2, movieList);
+                    }
+                    else if(m == 2) {
+                        mPopular[m] = movieList;
+                        setData(img_movie3, text_movie_title3, text_movie_desc3, movieList);
+                    }
                     else break;
                     m++;
                 }
@@ -615,9 +705,18 @@ public class MainActivity extends AppCompatActivity {
             // 웹툰 좋아요 수가 많은 3개 불러오기
             for(Contents webtoonList: webtoonList) {
                 if(contents.getId().equals(webtoonList.getId())){
-                    if(w == 0) setData(img_webtoon1, text_webtoon_title1, text_webtoon_desc1, webtoonList);
-                    else if(w == 1) setData(img_webtoon2, text_webtoon_title2, text_webtoon_desc2, webtoonList);
-                    else if(w == 2) setData(img_webtoon3, text_webtoon_title3, text_webtoon_desc3, webtoonList);
+                    if(w == 0) {
+                        wPopular[w] = webtoonList;
+                        setData(img_webtoon1, text_webtoon_title1, text_webtoon_desc1, webtoonList);
+                    }
+                    else if(w == 1) {
+                        wPopular[w] = webtoonList;
+                        setData(img_webtoon2, text_webtoon_title2, text_webtoon_desc2, webtoonList);
+                    }
+                    else if(w == 2) {
+                        wPopular[w] = webtoonList;
+                        setData(img_webtoon3, text_webtoon_title3, text_webtoon_desc3, webtoonList);
+                    }
                     else break;
                     w++;
                 }
@@ -626,9 +725,18 @@ public class MainActivity extends AppCompatActivity {
             // 드라마 좋아요 수가 많은 3개 불러오기
             for(Contents dramaList: dramaList) {
                 if(contents.getId().equals(dramaList.getId())){
-                    if(d == 0) setData(img_drama1, text_drama_title1, text_drama_desc1, dramaList);
-                    else if(d == 1) setData(img_drama2, text_drama_title2, text_drama_desc2, dramaList);
-                    else if(d == 2) setData(img_drama3, text_drama_title3, text_drama_desc3, dramaList);
+                    if(d == 0) {
+                        dPopular[d] = dramaList;
+                        setData(img_drama1, text_drama_title1, text_drama_desc1, dramaList);
+                    }
+                    else if(d == 1) {
+                        dPopular[d] = dramaList;
+                        setData(img_drama2, text_drama_title2, text_drama_desc2, dramaList);
+                    }
+                    else if(d == 2) {
+                        dPopular[d] = dramaList;
+                        setData(img_drama3, text_drama_title3, text_drama_desc3, dramaList);
+                    }
                     else break;
                     d++;
                 }
