@@ -157,17 +157,21 @@ public class ContentsListActivity extends AppCompatActivity{
         toLikeTxt = findViewById(R.id.toLikeTxt);
         //좋아하는 작품으로 액티비티 이동
         toLike.setOnClickListener(view->{
+            toLikeScrapList("like");
         });
         toLikeTxt.setOnClickListener(view->{
+            toLikeScrapList("like");
         });
 
         //저장해둔 버튼 클릭 시
-        toScrap = findViewById(R.id.toLike);
-        toScrapTxt = findViewById(R.id.toLikeTxt);
+        toScrap = findViewById(R.id.toScrap);
+        toScrapTxt = findViewById(R.id.toScrapTxt);
         //저장해둔 작품으로 액티비티 이동
-        toLike.setOnClickListener(view->{
+        toScrap.setOnClickListener(view->{
+            toLikeScrapList("scrap");
         });
-        toLikeTxt.setOnClickListener(view->{
+        toScrapTxt.setOnClickListener(view->{
+            toLikeScrapList("scrap");
         });
 
         //영화 버튼 클릭시
@@ -270,6 +274,18 @@ public class ContentsListActivity extends AppCompatActivity{
             startActivity(searchI);
         });
 
+    }
+
+    void toLikeScrapList(String category){
+        Intent toList = new Intent(this, LikeScrapActivity.class);
+        toList.putExtra("category", category);
+        toList.putExtra("allContents", contentList);
+        toList.putExtra("movieList", movieList);
+        toList.putExtra("bookList", bookList);
+        toList.putExtra("webtoonList", webtoonList);
+        toList.putExtra("dramaList", dramaList);
+        toList.putExtra("likeScrapList", likeScrapList);
+        startActivity(toList);
     }
 
     void toContentsList(String category){

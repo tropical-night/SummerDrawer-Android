@@ -72,7 +72,7 @@ public class ContentDetailActivity extends AppCompatActivity {
         contentCategoryAuthorTxt.setText(content.getCategoryAuthor());
 
         contentStoryTxt = findViewById(R.id.contentStoryTxt);
-        contentStoryTxt.setText(content.getStory());
+        contentStoryTxt.setText(content.getIntroduction());
 
         text_detail_like = findViewById(R.id.text_detail_like);
         text_detail_scrap = findViewById(R.id.text_detail_scrap);
