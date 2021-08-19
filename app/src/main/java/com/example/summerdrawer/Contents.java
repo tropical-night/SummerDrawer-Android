@@ -14,6 +14,8 @@ public class Contents implements Serializable {
     private String tag;
     private String img1; // 썸네일 이미지
     private String img2; // top 이미지
+    private String linkName;
+    private String link;
 
     Contents(String id, String title, String category, String author, String date,
              String summary, String introduction, String story, String tag,
@@ -102,5 +104,7 @@ public class Contents implements Serializable {
 
     public String getImg1() { return img1; }
     public String getImg2() { return img2; }
+    public String getLinkName() { return linkName; }
+    public String getLink() { return  link; }
 
 }

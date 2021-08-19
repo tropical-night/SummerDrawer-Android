@@ -39,6 +39,7 @@ public class ContentDetailActivity extends AppCompatActivity {
     TextView contentTagTxt, contentTitleTxt, contentCategoryAuthorTxt, contentStoryTxt;
     ImageView img_mLike, img_mScrap;
     TextView text_detail_like, text_detail_scrap;
+    Button btn_link;
 
     // db 연결
     FirebaseAuth mAuth;
@@ -98,6 +99,12 @@ public class ContentDetailActivity extends AppCompatActivity {
                     }
                 }
             }
+        });
+
+        // 버튼 이미지, 링크 할당
+        btn_link = findViewById(R.id.btn_link);
+        btn_link.setOnClickListener(view -> {
+            // 클릭 이벤트
         });
 
     }
