@@ -69,8 +69,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
         holder.contentTitle.setText(contentListData.get(position).getTitle());
         holder.contentSummary.setText(contentListData.get(position).getSummary());
         holder.contentCategoryAuthor.setText(contentListData.get(position).getCategoryAuthor());
-        holder.likeNumTxt.setText(contentListData.get(position).getLike());
-        holder.scrapNumTxt.setText(contentListData.get(position).getScrap());
+        //holder.likeNumTxt.setText(contentListData.get(position).getLike());
+        //holder.scrapNumTxt.setText(contentListData.get(position).getScrap());
     }
 
     @Override
