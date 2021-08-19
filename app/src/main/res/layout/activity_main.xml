@@ -197,7 +197,7 @@
                 app:layout_constraintTop_toTopOf="@+id/box2">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="202dp"
+                    android:layout_width="180dp"
                     android:layout_height="360dp"
                     android:layout_marginRight="8dp"
                     android:background="@color/main_gray"
@@ -205,8 +205,8 @@
 
                     <ImageView
                         android:id="@+id/img_latest1"
-                        android:layout_width="202dp"
-                        android:layout_height="218dp"
+                        android:layout_width="180dp"
+                        android:layout_height="190dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -284,7 +284,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="202dp"
+                    android:layout_width="180dp"
                     android:layout_height="360dp"
                     android:layout_marginLeft="8dp"
                     android:background="@color/main_gray"
@@ -292,8 +292,8 @@
 
                     <ImageView
                         android:id="@+id/img_latest2"
-                        android:layout_width="202dp"
-                        android:layout_height="218dp"
+                        android:layout_width="190dp"
+                        android:layout_height="190dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -386,7 +386,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="202dp"
+                    android:layout_width="180dp"
                     android:layout_height="360dp"
                     android:layout_marginRight="8dp"
                     android:background="@color/main_gray"
@@ -394,8 +394,8 @@
 
                     <ImageView
                         android:id="@+id/img_latest3"
-                        android:layout_width="202dp"
-                        android:layout_height="218dp"
+                        android:layout_width="180dp"
+                        android:layout_height="190dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -473,7 +473,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="202dp"
+                    android:layout_width="180dp"
                     android:layout_height="360dp"
                     android:layout_marginLeft="8dp"
                     android:background="@color/main_gray"
@@ -481,8 +481,8 @@
 
                     <ImageView
                         android:id="@+id/img_latest4"
-                        android:layout_width="202dp"
-                        android:layout_height="218dp"
+                        android:layout_width="180dp"
+                        android:layout_height="190dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
