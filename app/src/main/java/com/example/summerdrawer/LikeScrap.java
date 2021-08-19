@@ -1,6 +1,8 @@
 package com.example.summerdrawer;
 
-public class LikeScrap {
+import java.io.Serializable;
+
+public class LikeScrap implements Serializable {
     private String id;
     private String category;
     private int like;
