@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton goProfile, goSearch;
 
     ViewPager2 viewPager2;
-    ArrayList<SliderItems> sliderItems;
+    ArrayList<Contents> sliderItems;
 
     ImageButton btn_goProfile;
     private DrawerLayout drawerLayout;
@@ -419,12 +419,12 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0; i<5; i++) {
             for(Contents contents: contentList) {
                 if(contents.getId().equals(likeScrapList.get(i).getId())){
-                    sliderItems.add(new SliderItems(contents.getImg1(), contents.getTitle(), contents.getCategory(), contents.getAuthor(), contents.getSummary(), contents.getTag()));
+                    sliderItems.add(contents);
                 }
             }
         }
 
-        viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
+        viewPager2.setAdapter(new SliderAdapter(this, sliderItems, viewPager2));
 
         viewPager2.setClipChildren(false);
         viewPager2.setOffscreenPageLimit(3);
