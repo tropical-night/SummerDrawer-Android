@@ -392,6 +392,7 @@ public class MainActivity extends AppCompatActivity {
     void toContentsList(String category){
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
+        toList.putExtra("list", bookList);
         startActivity(toList);
     }
 

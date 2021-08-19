@@ -1,8 +1,8 @@
 package com.example.summerdrawer;
 
-import com.google.firebase.Timestamp;
+import java.io.Serializable;
 
-public class Contents {
+public class Contents implements Serializable {
     private String id;
     private String title;
     private String category;
@@ -109,4 +109,5 @@ public class Contents {
     }
 
     public String getImg1() { return img1; }
+
 }

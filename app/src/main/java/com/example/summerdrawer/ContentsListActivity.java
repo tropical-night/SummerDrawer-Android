@@ -21,8 +21,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ContentsListActivity extends AppCompatActivity {
+public class ContentsListActivity extends AppCompatActivity{
     String content;
+    ArrayList<Contents> list = new ArrayList<>();
     Button btn_logo;
     ImageButton btn_goProfile;
     private DrawerLayout drawerLayout;
@@ -41,6 +42,9 @@ public class ContentsListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contents_list);
 
         content = getIntent().getStringExtra("content");
+        list = (ArrayList<Contents>) getIntent().getSerializableExtra("list");
+
+        Log.d("ss", list.get(0).getTitle());
 
         //상단의 페이지 이름 수정
         btn_logo = findViewById(R.id.btn_logo);
