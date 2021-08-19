@@ -1,6 +1,8 @@
 package com.example.summerdrawer;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
     private ArrayList<Contents> contentListData = null;
+    private Context context;
 
     //아이템 뷰를 저장하는 뷰홀더 클래스
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -25,16 +28,26 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
             super(itemView);
 
             contentImg = itemView.findViewById(R.id.contentImg);
-            contentTitle = itemView.findViewById(R.id.contentTitle);
-            contentCategoryAuthor = itemView.findViewById(R.id.contentCategoryAuthor);
-            contentSummary = itemView.findViewById(R.id.contentSummary);
-            likeNumTxt = itemView.findViewById(R.id.likeNumTxt);
-            scrapNumTxt = itemView.findViewById(R.id.scrapNumTxt);
+            contentTitle = itemView.findViewById(R.id.contentTitleRV);
+            contentCategoryAuthor = itemView.findViewById(R.id.contentCategoryAuthorRV);
+            contentSummary = itemView.findViewById(R.id.contentSummaryRV);
+            likeNumTxt = itemView.findViewById(R.id.likeNumTxtRV);
+            scrapNumTxt = itemView.findViewById(R.id.scrapNumTxtRV);
+
+            itemView.setOnClickListener(view->{
+                int position = getAdapterPosition();
+                if(position!=RecyclerView.NO_POSITION){
+                    Intent contentDetailI = new Intent(context, ContentDetailActivity.class);
+                    contentDetailI.putExtra("content", contentListData.get(position));
+                    context.startActivity(contentDetailI);
+                }
+            });
         }
     }
 
-    RVAdapter(ArrayList list){
+    RVAdapter(Context context, ArrayList list){
         contentListData = list;
+        this.context = context;
     }
 
     @NonNull

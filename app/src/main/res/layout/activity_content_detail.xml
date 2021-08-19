@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContentsListActivity">
+    tools:context=".ContentDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,7 +13,6 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:context=".MainActivity">
-
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -68,94 +67,77 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="370dp"
+                    app:srcCompat="@mipmap/ic_launcher" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/mostPopularImg"
-                        android:layout_width="0dp"
-                        android:layout_height="300dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@android:mipmap/sym_def_app_icon" />
-
-                    <TextView
-                        android:id="@+id/mostPopularTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:fontFamily="@font/kopubworlddotumbold"
-                        android:text="제목"
-                        android:textColor="#000000"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView4"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0" />
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:fontFamily="@font/kopubworlddotummedium"
-                        android:text="설명설명설명\n설명설명설명"
-                        android:textColor="#000000"
-                        android:textSize="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@color/main_gray"
                     android:backgroundTint="@color/main_gray"
-                    android:padding="10dp">
-
-
-                    <Button
-                        android:id="@+id/button3"
-                        android:layout_width="90dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:fontFamily="@font/kopubworlddotummedium"
-                        android:text="#여성서사"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/button2"
-                        android:layout_width="90dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:fontFamily="@font/kopubworlddotummedium"
-                        android:text="#여성작가"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/button"
-                        android:layout_width="90dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:fontFamily="@font/kopubworlddotummedium"
-                        android:text="#페미니즘"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/contentListRV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:padding="20dp">
 
-                </androidx.recyclerview.widget.RecyclerView>
+                    <TextView
+                        android:id="@+id/contentTagTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotummedium"
+                        android:text="#여성서사  #여성작가"
+                        android:textColor="@color/main_green"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/contentTitleTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/kopubworlddotumbold"
+                        android:text="TextView"
+                        android:textColor="#0a0f15"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/contentTagTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/contentTagTxt" />
+
+                    <TextView
+                        android:id="@+id/contentCategoryAuthorTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopubworlddotumlight"
+                        android:text="TextView"
+                        android:textColor="#919191"
+                        app:layout_constraintStart_toStartOf="@+id/contentTitleTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/contentTitleTxt" />
+
+                    <TextView
+                        android:id="@+id/contentStoryTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/kopubworlddotummedium"
+                        android:text="TextView"
+                        android:textColor="#707070"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/contentCategoryAuthorTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/contentCategoryAuthorTxt" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/kopubworlddotummedium"
+                    android:paddingLeft="20dp"
+                    android:text="감상 바로가기"
+                    android:textColor="@color/main_green"
+                    android:textSize="16sp" />
             </LinearLayout>
         </ScrollView>
 

@@ -8,15 +8,15 @@
 
     <ImageView
         android:id="@+id/contentImg"
-        android:layout_width="124dp"
-        android:layout_height="133dp"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <TextView
-        android:id="@+id/contentTitle"
+        android:id="@+id/contentTitleRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
@@ -24,11 +24,12 @@
         android:fontFamily="@font/kopubworlddotumbold"
         android:text="TextView"
         android:textColor="#555555"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/contentImg"
         app:layout_constraintTop_toTopOf="@+id/contentImg" />
 
     <TextView
-        android:id="@+id/contentCategoryAuthor"
+        android:id="@+id/contentCategoryAuthorRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
@@ -36,12 +37,12 @@
         android:fontFamily="@font/kopubworlddotumlight"
         android:text="TextView"
         android:textColor="#919191"
-        android:textSize="11sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/contentImg"
-        app:layout_constraintTop_toBottomOf="@+id/contentTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/contentTitleRV" />
 
     <TextView
-        android:id="@+id/contentSummary"
+        android:id="@+id/contentSummaryRV"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
@@ -50,58 +51,58 @@
         android:fontFamily="@font/kopubworlddotumlight"
         android:text="TextView"
         android:textColor="#4a4a4a"
-        android:textSize="11sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/contentImg"
-        app:layout_constraintTop_toBottomOf="@+id/contentCategoryAuthor" />
+        app:layout_constraintTop_toBottomOf="@+id/contentCategoryAuthorRV" />
 
     <TextView
-        android:id="@+id/likeImg"
+        android:id="@+id/likeImgRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/kopubworlddotumbold"
         android:text="♡"
         android:textColor="@color/main_green"
-        android:textSize="11sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/contentImg" />
 
     <TextView
-        android:id="@+id/likeNumTxt"
+        android:id="@+id/likeNumTxtRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:fontFamily="@font/kopubworlddotummedium"
         android:text="TextView"
         android:textColor="@color/main_green"
-        android:textSize="7sp"
-        app:layout_constraintBottom_toBottomOf="@+id/likeImg"
-        app:layout_constraintStart_toEndOf="@+id/likeImg"
-        app:layout_constraintTop_toTopOf="@+id/likeImg" />
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/likeImgRV"
+        app:layout_constraintStart_toEndOf="@+id/likeImgRV"
+        app:layout_constraintTop_toTopOf="@+id/likeImgRV" />
 
     <ImageView
-        android:id="@+id/scrapImg"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
+        android:id="@+id/scrapImgRV"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_marginStart="80dp"
-        app:layout_constraintBottom_toBottomOf="@+id/likeNumTxt"
-        app:layout_constraintStart_toEndOf="@+id/likeImg"
-        app:layout_constraintTop_toTopOf="@+id/likeNumTxt"
+        app:layout_constraintBottom_toBottomOf="@+id/likeNumTxtRV"
+        app:layout_constraintStart_toEndOf="@+id/likeImgRV"
+        app:layout_constraintTop_toTopOf="@+id/likeNumTxtRV"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
     <TextView
-        android:id="@+id/scrapNumTxt"
+        android:id="@+id/scrapNumTxtRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:fontFamily="@font/kopubworlddotummedium"
         android:text="TextView"
         android:textColor="@color/main_green"
-        android:textSize="7sp"
-        app:layout_constraintBottom_toBottomOf="@+id/scrapImg"
-        app:layout_constraintStart_toEndOf="@+id/scrapImg"
-        app:layout_constraintTop_toTopOf="@+id/scrapImg" />
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/scrapImgRV"
+        app:layout_constraintStart_toEndOf="@+id/scrapImgRV"
+        app:layout_constraintTop_toTopOf="@+id/scrapImgRV" />
 </androidx.constraintlayout.widget.ConstraintLayout>
