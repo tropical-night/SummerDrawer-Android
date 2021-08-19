@@ -99,4 +99,5 @@ public class Contents implements Serializable {
     }
 
     public String getImg1() { return img1; }
+
 }

@@ -25,18 +25,22 @@ public class ContentsListActivity extends AppCompatActivity{
     String content;
 
     SharedPreferences pref;
-    SharedPreferences.Editor editor;
 
     ArrayList<Contents> movieList = new ArrayList<>();
+    ArrayList<Contents> movieListLike = new ArrayList<>();
     ArrayList<Contents> bookList = new ArrayList<>();
+    ArrayList<Contents> bookListLike = new ArrayList<>();
     ArrayList<Contents> webtoonList = new ArrayList<>();
+    ArrayList<Contents> webtoonListLike = new ArrayList<>();
     ArrayList<Contents> dramaList = new ArrayList<>();
+    ArrayList<Contents> dramaListLike = new ArrayList<>();
     ArrayList<LikeScrap> likeScrapList = new ArrayList<>(); // 좋아요,스크랩 리스트
 
-    Button btn_logo;
+    Button btn_logo, btn_arrange;
     ImageButton btn_goProfile;
     private DrawerLayout drawerLayout;
     private View drawerView;
+    boolean arrangeState = false; // false면 최신순, true면 인기순
 
     ConstraintLayout toLike, toScrap, toMovie, toBook, toWebtoon, toDrama, toMagazine;
     TextView userNameTxt, toLikeTxt, toScrapTxt,
@@ -59,20 +63,62 @@ public class ContentsListActivity extends AppCompatActivity{
         dramaList = (ArrayList<Contents>) getIntent().getSerializableExtra("dramaList");
         likeScrapList = (ArrayList<LikeScrap>) getIntent().getSerializableExtra("likeScrapList");
 
-        switch(content){
+        // 인기순으로 정렬
+        setLikeList();
+
+        switch(content) {
             case "영화":
-                adapter = new RVAdapter(this, movieList);
+                adapter = new RVAdapter(this, movieList, likeScrapList);
                 break;
             case "도서":
-                adapter = new RVAdapter(this, bookList);
+                adapter = new RVAdapter(this, bookListLike, likeScrapList);
                 break;
             case "웹툰":
-                adapter = new RVAdapter(this, webtoonList);
+                adapter = new RVAdapter(this, webtoonList, likeScrapList);
                 break;
             case "드라마":
-                adapter = new RVAdapter(this, dramaList);
-                break;
+                adapter = new RVAdapter(this, dramaList, likeScrapList);
         }
+
+
+        // 최신순/인기순 버튼 눌렀을 때
+        btn_arrange = findViewById(R.id.btn_arrange);
+        btn_arrange.setOnClickListener(view -> {
+            if(!arrangeState) {
+                btn_arrange.setText("인기순");
+                switch(content) {
+                    case "영화":
+                        adapter.fixItem(movieListLike);
+                        break;
+                    case "도서":
+                        adapter.fixItem(bookListLike);
+                        break;
+                    case "웹툰":
+                        adapter.fixItem(webtoonListLike);
+                        break;
+                    case "드라마":
+                        adapter.fixItem(dramaListLike);
+                }
+                arrangeState = true;
+            }
+            else {
+                btn_arrange.setText("최신순");
+                switch(content) {
+                    case "영화":
+                        adapter.fixItem(movieList);
+                        break;
+                    case "도서":
+                        adapter.fixItem(bookList);
+                        break;
+                    case "웹툰":
+                        adapter.fixItem(webtoonList);
+                        break;
+                    case "드라마":
+                        adapter.fixItem(dramaList);
+                }
+                arrangeState = false;
+            }
+        });
 
         //상단의 페이지 이름 수정
         btn_logo = findViewById(R.id.btn_logo);
@@ -194,6 +240,7 @@ public class ContentsListActivity extends AppCompatActivity{
             drawerLayout.openDrawer(drawerView);
         });
     }
+
     void toContentsList(String category){
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
@@ -227,5 +274,36 @@ public class ContentsListActivity extends AppCompatActivity{
             //특정 상태가 변경되었을 때 호출
         }
     };
+
+    // 좋아요 순으로 정렬하는 함수
+    void setLikeList(){
+        for(LikeScrap contents: likeScrapList) {
+            // 도서 좋아요 순서
+            for (Contents bookList : bookList) {
+                if (contents.getId().equals(bookList.getId())) {
+                    bookListLike.add(bookList);
+                }
+            }
+            // 영화 좋아요 순서
+            for (Contents movieList : movieList) {
+                if (contents.getId().equals(movieList.getId())) {
+                    movieListLike.add(movieList);
+                }
+            }
+            // 웹툰 좋아요 순서
+            for (Contents webtoonList : webtoonList) {
+                if (contents.getId().equals(webtoonList.getId())) {
+                    webtoonListLike.add(webtoonList);
+                }
+            }
+            // 드라마 좋아요 순서
+            for (Contents dramaList : dramaList) {
+                if (contents.getId().equals(dramaList.getId())) {
+                    dramaListLike.add(dramaList);
+                }
+            }
+        }
+    }
+
 
 }
