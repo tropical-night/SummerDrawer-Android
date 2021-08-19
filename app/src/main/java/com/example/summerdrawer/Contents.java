@@ -12,7 +12,6 @@ public class Contents implements Serializable {
     private String introduction;
     private String story;
     private String tag;
-    private double rating;
     private String img1; // 썸네일 이미지
 
     Contents(String id, String title, String category, String author, String date,
@@ -27,7 +26,6 @@ public class Contents implements Serializable {
         this.introduction = introduction;
         this.story = story;
         this.tag = tag;
-        this.rating = rating;
         this.img1 = img1;
     }
 
@@ -98,14 +96,6 @@ public class Contents implements Serializable {
 
     public void setTag(String tag) {
         this.tag = tag;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public String getImg1() { return img1; }
