@@ -25,7 +25,9 @@ public class ContentsListActivity extends AppCompatActivity{
     String content;
 
     SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
+    ArrayList<Contents> contentList = new ArrayList<>();
     ArrayList<Contents> movieList = new ArrayList<>();
     ArrayList<Contents> movieListLike = new ArrayList<>();
     ArrayList<Contents> bookList = new ArrayList<>();
@@ -37,7 +39,7 @@ public class ContentsListActivity extends AppCompatActivity{
     ArrayList<LikeScrap> likeScrapList = new ArrayList<>(); // 좋아요,스크랩 리스트
 
     Button btn_logo, btn_arrange;
-    ImageButton btn_goProfile;
+    ImageButton btn_goProfile, btn_goSearch;
     private DrawerLayout drawerLayout;
     private View drawerView;
     boolean arrangeState = false; // false면 최신순, true면 인기순
@@ -57,6 +59,7 @@ public class ContentsListActivity extends AppCompatActivity{
 
         content = getIntent().getStringExtra("content");
 
+        contentList = (ArrayList<Contents>)getIntent().getSerializableExtra("allContents");
         movieList = (ArrayList<Contents>) getIntent().getSerializableExtra("movieList");
         bookList = (ArrayList<Contents>) getIntent().getSerializableExtra("bookList");
         webtoonList = (ArrayList<Contents>) getIntent().getSerializableExtra("webtoonList");
@@ -71,7 +74,7 @@ public class ContentsListActivity extends AppCompatActivity{
                 adapter = new RVAdapter(this, movieList, likeScrapList);
                 break;
             case "도서":
-                adapter = new RVAdapter(this, bookListLike, likeScrapList);
+                adapter = new RVAdapter(this, bookList, likeScrapList);
                 break;
             case "웹툰":
                 adapter = new RVAdapter(this, webtoonList, likeScrapList);
@@ -239,11 +242,21 @@ public class ContentsListActivity extends AppCompatActivity{
         btn_goProfile.setOnClickListener(view->{
             drawerLayout.openDrawer(drawerView);
         });
+
+        //오른쪽 상단의 검색 이미지 클릭 시
+        btn_goSearch = findViewById(R.id.btn_goSearch);
+        btn_goSearch.setOnClickListener(view->{
+            Intent searchI = new Intent(this, SearchActivity.class);
+            searchI.putExtra("contentList", contentList);
+            startActivity(searchI);
+        });
+
     }
 
     void toContentsList(String category){
         Intent toList = new Intent(this, ContentsListActivity.class);
         toList.putExtra("content", category);
+        toList.putExtra("allContents", contentList);
         toList.putExtra("movieList", movieList);
         toList.putExtra("bookList", bookList);
         toList.putExtra("webtoonList", webtoonList);
