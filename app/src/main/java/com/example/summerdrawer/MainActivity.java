@@ -28,6 +28,8 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -87,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Contents> dramaList = new ArrayList<>();
     ArrayList<LikeScrap> likeScrapList = new ArrayList<>(); // 좋아요,스크랩 리스트
 
+    private FirebaseAuth firebaseAuth;
+    FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
         pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
         editor = pref.edit();
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         String userName = pref.getString("userName", "null");
         String userID = pref.getString("userID", "null");
@@ -110,8 +117,13 @@ public class MainActivity extends AppCompatActivity {
 
         //메뉴 탭의 사용자 이름 수정해주기
         userNameTxt = findViewById(R.id.userNameTxt);
-        userNameTxt.setText(userName);
-
+        db.collection("users").document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document = task.getResult();
+                userNameTxt.setText(document.getData().get("name").toString());
+            }
+        });
 
         //인기 작품 서랍장의 뷰 초기화
         movieLayout = findViewById(R.id.movieLayout);
@@ -210,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
             //사용자 이름 받아와서 설정해주기
             userNameTxt = findViewById(R.id.userNameTxt);
-            userNameTxt.setText("김뫄뫄");
+            //userNameTxt.setText("김뫄뫄");
 
             //좋아하는 버튼 클릭 시
             toLike = findViewById(R.id.toLike);
