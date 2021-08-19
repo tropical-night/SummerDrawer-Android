@@ -25,7 +25,6 @@ public class ContentsListActivity extends AppCompatActivity{
     String content;
 
     SharedPreferences pref;
-    SharedPreferences.Editor editor;
 
     ArrayList<Contents> movieList = new ArrayList<>();
     ArrayList<Contents> movieListLike = new ArrayList<>();
