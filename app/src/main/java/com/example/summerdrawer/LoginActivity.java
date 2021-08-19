@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(getBaseContext(), "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -200,6 +200,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     updateUI(mAuth.getCurrentUser());
+                }else{
+                    Toast.makeText(LoginActivity.this, "로그인에 실패하였습니다.\n아이디 또는 비밀번호를 확인해 주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
