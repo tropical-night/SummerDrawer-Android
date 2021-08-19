@@ -9,13 +9,17 @@
         <entry key="app/src/main/res/layout/activity_join.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/layout/activity_like_scrap.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19067028985507245" />
+        <entry key="app/src/main/res/layout/activity_magazine.xml" value="0.2509057971014493" />
+        <entry key="app/src/main/res/layout/activity_magazine_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.16261398176291794" />
+        <entry key="app/src/main/res/layout/magazine_lostbrother.xml" value="0.16843971631205673" />
         <entry key="app/src/main/res/layout/navbar.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/pager_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/pager_item2.xml" value="0.2265625" />
         <entry key="app/src/main/res/layout/rank_list_item.xml" value="0.13722826086956522" />
         <entry key="app/src/main/res/layout/rv_content_list.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/rv_magazine_list.xml" value="0.5" />
       </map>
     </option>
   </component>

@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +15,10 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
 
@@ -35,6 +41,15 @@ public class MagazineListActivity extends AppCompatActivity {
             toMovieTxt, toBookTxt, toWebtoonTxt, toDramaTxt, toMagazineTxt;
     ConstraintLayout toLike, toScrap, toMovie, toBook, toWebtoon, toDrama, toMagazine;
 
+    // 이미지 슬라이더
+    ViewPager2 viewPager2;
+    DotsIndicator dots_indicator;
+    ImageView mostPopularImg;
+    ArrayList<Contents> sliderItems;
+
+    RecyclerView contentListRV;
+    RVAdapter2 adapter;
+
     private DrawerLayout drawerLayout;
     private View drawerView;
     @Override
@@ -50,6 +65,20 @@ public class MagazineListActivity extends AppCompatActivity {
         webtoonList = (ArrayList<Contents>) getIntent().getSerializableExtra("webtoonList");
         dramaList = (ArrayList<Contents>) getIntent().getSerializableExtra("dramaList");
         likeScrapList = (ArrayList<LikeScrap>) getIntent().getSerializableExtra("likeScrapList");
+
+        // 슬라이더
+        sliderItems = new ArrayList<>();
+        viewPager2 = findViewById(R.id.viewpager2);
+        dots_indicator = findViewById(R.id.dots_indicator1);
+        setAdapter();
+
+        // 어댑터 생성
+        contentListRV = findViewById(R.id.contentListRV);
+        ArrayList<String> magazine = new ArrayList<>();
+        magazine.add("걸캅스");
+        adapter = new RVAdapter2(this, magazine);
+        contentListRV.setLayoutManager(new LinearLayoutManager(this));
+        contentListRV.setAdapter(adapter);
 
         //사용자 이름 받아와서 설정해주기
         pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
@@ -210,5 +239,20 @@ public class MagazineListActivity extends AppCompatActivity {
             //특정 상태가 변경되었을 때 호출
         }
     };
+
+    void setAdapter() {
+        ArrayList<String> name = new ArrayList<>();
+        name.add("lost_brother");
+        name.add("innocuousperson");
+        name.add("wannabeyou");
+
+        viewPager2.setAdapter(new MagazineSlider(this, name, viewPager2));
+
+        viewPager2.setClipChildren(false);
+        //viewPager2.setOffscreenPageLimit(3);
+        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        // indicator 설정
+        dots_indicator.setViewPager2(viewPager2);
+    }
 
 }
