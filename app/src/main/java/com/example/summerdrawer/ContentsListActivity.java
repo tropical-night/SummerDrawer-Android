@@ -6,6 +6,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +19,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
 
@@ -51,6 +57,12 @@ public class ContentsListActivity extends AppCompatActivity{
     RecyclerView contentListRV;
     RVAdapter adapter;
 
+    // 이미지 슬라이더
+    ViewPager2 viewPager2;
+    DotsIndicator dots_indicator;
+    ImageView mostPopularImg;
+    ArrayList<Contents> sliderItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,23 +78,31 @@ public class ContentsListActivity extends AppCompatActivity{
         dramaList = (ArrayList<Contents>) getIntent().getSerializableExtra("dramaList");
         likeScrapList = (ArrayList<LikeScrap>) getIntent().getSerializableExtra("likeScrapList");
 
+        // 슬라이더
+        sliderItems = new ArrayList<>();
+        viewPager2 = findViewById(R.id.viewpager2);
+        dots_indicator = findViewById(R.id.dots_indicator1);
+
         // 인기순으로 정렬
         setLikeList();
 
         switch(content) {
             case "영화":
                 adapter = new RVAdapter(this, movieList, likeScrapList);
+                setAdapter(movieList);
                 break;
             case "도서":
                 adapter = new RVAdapter(this, bookList, likeScrapList);
+                setAdapter(bookList);
                 break;
             case "웹툰":
                 adapter = new RVAdapter(this, webtoonList, likeScrapList);
+                setAdapter(webtoonList);
                 break;
             case "드라마":
                 adapter = new RVAdapter(this, dramaList, likeScrapList);
+                setAdapter(dramaList);
         }
-
 
         // 최신순/인기순 버튼 눌렀을 때
         btn_arrange = findViewById(R.id.btn_arrange);
@@ -204,7 +224,6 @@ public class ContentsListActivity extends AppCompatActivity{
 //        });
 
 
-
         switch (content){
             case "영화":
                 toMovie.setBackgroundResource(R.drawable.drawer_pressed);
@@ -318,5 +337,30 @@ public class ContentsListActivity extends AppCompatActivity{
         }
     }
 
+    void setAdapter(ArrayList<Contents> list) {
+        int i = 0;
+        for(LikeScrap likeScrap: likeScrapList) {
+            // 좋아요 수가 많은 5개 불러오기
+            for (Contents contents : list) {
+                if (likeScrap.getId().equals(contents.getId())) {
+                    if (i == 0) sliderItems.add(0, contents);
+                    else if (i == 1) sliderItems.add(1, contents);
+                    else if (i == 2) sliderItems.add(2, contents);
+                    else if (i == 3) sliderItems.add(3, contents);
+                    else if (i == 4) sliderItems.add(4, contents);
+                    else break;
+                    i++;
+                }
+            }
+        }
+
+        viewPager2.setAdapter(new TopSliderAdapter(this, sliderItems, viewPager2));
+
+        viewPager2.setClipChildren(false);
+        //viewPager2.setOffscreenPageLimit(3);
+        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        // indicator 설정
+        dots_indicator.setViewPager2(viewPager2);
+    }
 
 }
