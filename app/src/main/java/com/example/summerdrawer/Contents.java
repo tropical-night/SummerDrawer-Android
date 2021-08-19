@@ -19,7 +19,7 @@ public class Contents implements Serializable {
 
     Contents(String id, String title, String category, String author, String date,
              String summary, String introduction, String story, String tag,
-             String img1, String img2){
+             String img1, String img2, String link, String linkName){
         this.id = id;
         this.title = title;
         this.category = category;
@@ -31,6 +31,8 @@ public class Contents implements Serializable {
         this.tag = tag;
         this.img1 = img1;
         this.img2 = img2;
+        this.link = link;
+        this.linkName = linkName;
     }
 
     public String getId() { return id;}

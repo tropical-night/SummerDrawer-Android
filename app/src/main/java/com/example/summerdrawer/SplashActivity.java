@@ -61,22 +61,24 @@ public class SplashActivity extends AppCompatActivity {
                     String introduction = (String) document.getData().get("introduction");
                     String img1 = (String) document.getData().get("img_thumbnail");
                     String img2 = (String) document.getData().get("img_top");
+                    String link = (String) document.getData().get("link");
+                    String linkName = (String) document.getData().get("linkName");
 
                     // 전체 리스트에 저장
-                    contentList.add(new Contents(id, title, category, author, date, summary, introduction, story, tag, img1, img2));
+                    contentList.add(new Contents(id, title, category, author, date, summary, introduction, story, tag, img1, img2, link, linkName));
 
                     // 카테고리별 저장
                     if(category.equals("영화")){
-                        movieList.add(new Contents(id, title, "영화", author, date, summary, introduction, story, tag, img1, img2));
+                        movieList.add(new Contents(id, title, "영화", author, date, summary, introduction, story, tag, img1, img2, link, linkName));
                     }
                     else if (category.equals("도서")){
-                        bookList.add(new Contents(id, title, "도서", author, date, summary, introduction, story, tag, img1, img2));
+                        bookList.add(new Contents(id, title, "도서", author, date, summary, introduction, story, tag, img1, img2, link, linkName));
                     }
                     else if (category.equals("웹툰")){
-                        webtoonList.add(new Contents(id, title, "웹툰", author, date, summary, introduction, story, tag, img1, img2));
+                        webtoonList.add(new Contents(id, title, "웹툰", author, date, summary, introduction, story, tag, img1, img2, link, linkName));
                     }
                     else if (category.equals("드라마")){
-                        dramaList.add(new Contents(id, title, "드라마", author, date, summary, introduction, story, tag, img1, img2));
+                        dramaList.add(new Contents(id, title, "드라마", author, date, summary, introduction, story, tag, img1, img2, link, linkName));
                     }
                 }
 

@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +48,7 @@ public class ContentDetailActivity extends AppCompatActivity {
 
     boolean mLike, mScrap = false;
     String mLikeId, mScrapId;
+    String packageName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +105,37 @@ public class ContentDetailActivity extends AppCompatActivity {
 
         // 버튼 이미지, 링크 할당
         btn_link = findViewById(R.id.btn_link);
+        switch (content.getLinkName()){
+            case "왓챠":
+                btn_link.setBackgroundResource(R.drawable.btn_watcha);
+                packageName = "com.frograms.wplay";
+                break;
+            case "네이버웹툰":
+                btn_link.setBackgroundResource(R.drawable.btn_naver);
+                packageName = "com.nhn.android.webtoon";
+                break;
+            case "넷플릭스":
+                btn_link.setBackgroundResource(R.drawable.btn_netflix);
+                packageName = "com.netflix.mediaclient";
+                break;
+            case "딜리헙":
+                btn_link.setBackgroundResource(R.drawable.btn_dilihub);
+                packageName = "com.dillyhub.android";
+                break;
+            case "알라딘":
+                btn_link.setBackgroundResource(R.drawable.btn_aladin);
+                packageName = "kr.co.aladin.third_shop";
+                break;
+            case "티빙":
+                btn_link.setBackgroundResource(R.drawable.btn_tving);
+                packageName = "net.cj.cjhv.gs.tving";
+                break;
+        }
+
         btn_link.setOnClickListener(view -> {
-            // 클릭 이벤트
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(content.getLink()));
+            startActivity(intent);
         });
 
     }
@@ -237,6 +268,18 @@ public class ContentDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    void toMarket(){
+        try {
+            Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }catch (Exception e){
+            String url = "market://detail?id=" + packageName;
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(i);
+        }
     }
 
 }
