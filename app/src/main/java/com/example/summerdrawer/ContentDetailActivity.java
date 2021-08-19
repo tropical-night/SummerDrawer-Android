@@ -196,7 +196,7 @@ public class ContentDetailActivity extends AppCompatActivity {
                     hashMap.put("id", content.getId());
 
                     db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("myScrap").document().set(hashMap);
-                    db.collection("contents").document(content.getId()).update("like", Integer.parseInt(text_detail_scrap.getText().toString()) + 1);
+                    db.collection("contents").document(content.getId()).update("scrap", Integer.parseInt(text_detail_scrap.getText().toString()) + 1);
                     text_detail_scrap.setText(String.valueOf(Integer.parseInt(text_detail_scrap.getText().toString()) + 1));
 
                     mScrap = true;

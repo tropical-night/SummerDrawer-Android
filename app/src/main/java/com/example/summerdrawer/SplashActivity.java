@@ -59,24 +59,23 @@ public class SplashActivity extends AppCompatActivity {
                     String summary = (String) document.getData().get("summary");
                     String story = (String) document.getData().get("story");
                     String introduction = (String) document.getData().get("introduction");
-                    double rating = (double) document.getData().get("rating");
                     String img1 = (String) document.getData().get("img_thumbnail");
 
                     // 전체 리스트에 저장
-                    contentList.add(new Contents(id, title, category, author, date, summary, introduction, story, tag, rating,img1));
+                    contentList.add(new Contents(id, title, category, author, date, summary, introduction, story, tag, img1));
 
                     // 카테고리별 저장
                     if(category.equals("영화")){
-                        movieList.add(new Contents(id, title, "영화", author, date, summary, introduction, story, tag, rating,img1));
+                        movieList.add(new Contents(id, title, "영화", author, date, summary, introduction, story, tag, img1));
                     }
                     else if (category.equals("도서")){
-                        bookList.add(new Contents(id, title, "도서", author, date, summary, introduction, story, tag, rating,img1));
+                        bookList.add(new Contents(id, title, "도서", author, date, summary, introduction, story, tag, img1));
                     }
                     else if (category.equals("웹툰")){
-                        webtoonList.add(new Contents(id, title, "웹툰", author, date, summary, introduction, story, tag, rating,img1));
+                        webtoonList.add(new Contents(id, title, "웹툰", author, date, summary, introduction, story, tag, img1));
                     }
                     else if (category.equals("드라마")){
-                        dramaList.add(new Contents(id, title, "드라마", author, date, summary, introduction, story, tag, rating,img1));
+                        dramaList.add(new Contents(id, title, "드라마", author, date, summary, introduction, story, tag, img1));
                     }
                 }
 

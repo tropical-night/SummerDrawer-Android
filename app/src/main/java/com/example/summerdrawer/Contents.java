@@ -16,7 +16,7 @@ public class Contents implements Serializable {
 
     Contents(String id, String title, String category, String author, String date,
              String summary, String introduction, String story, String tag,
-             double rating, String img1){
+              String img1){
         this.id = id;
         this.title = title;
         this.category = category;
