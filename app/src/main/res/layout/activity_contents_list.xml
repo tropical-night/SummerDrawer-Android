@@ -147,6 +147,13 @@
                         android:fontFamily="@font/kopubworlddotummedium"
                         android:text="#페미니즘"
                         android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/btn_arrange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="최신순" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
