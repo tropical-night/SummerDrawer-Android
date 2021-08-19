@@ -203,170 +203,152 @@ public class MainActivity extends AppCompatActivity {
             Log.d("test", "버튼 누름");
             //네비게이션 드로어 추가
                 drawerLayout.openDrawer(drawerView);
-            });
+            btnOnclick(view);
+        });
 
-            goSearch = findViewById(R.id.btn_goSearch);
-            viewPager2 = findViewById(R.id.viewpager);
-            dots_indicator = findViewById(R.id.dots_indicator);
-            goProfile = findViewById(R.id.btn_goProfile);
-            viewPager2 = findViewById(R.id.viewpager);
-            dots_indicator = findViewById(R.id.dots_indicator);
+        viewPager2 = findViewById(R.id.viewpager);
+        dots_indicator = findViewById(R.id.dots_indicator);
+        viewPager2 = findViewById(R.id.viewpager);
+        dots_indicator = findViewById(R.id.dots_indicator);
 
-            // 좋아요 순으로 데이터베이스 불러오기
-            setAdapter();
+        // 좋아요 순으로 데이터베이스 불러오기
+        setAdapter();
 
-            // 상단바 프로필 이동
-            goProfile.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // 클릭시 이벤트
-                    btnOnclick(view);
-                }
-            });
+        //사용자 이름 받아와서 설정해주기
+        userNameTxt = findViewById(R.id.userNameTxt);
+        //userNameTxt.setText("김뫄뫄");
 
-            // 상단바 검색 페이지로 이동
-            goSearch.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // 클릭시 이벤트
-                }
-            });
+        //좋아하는 버튼 클릭 시
+        toLike = findViewById(R.id.toLike);
+        toLikeTxt = findViewById(R.id.toLikeTxt);
+        //좋아하는 작품으로 액티비티 이동
+        toLike.setOnClickListener(view->{
+        });
+        toLikeTxt.setOnClickListener(view->{
+        });
 
-            //사용자 이름 받아와서 설정해주기
-            userNameTxt = findViewById(R.id.userNameTxt);
-            //userNameTxt.setText("김뫄뫄");
+        //저장해둔 버튼 클릭 시
+        toScrap = findViewById(R.id.toScrap);
+        toScrapTxt = findViewById(R.id.toScrapTxt);
+        //저장해둔 작품으로 액티비티 이동
+        toLike.setOnClickListener(view->{
+        });
+        toLikeTxt.setOnClickListener(view->{
+        });
 
-            //좋아하는 버튼 클릭 시
-            toLike = findViewById(R.id.toLike);
-            toLikeTxt = findViewById(R.id.toLikeTxt);
-            //좋아하는 작품으로 액티비티 이동
-            toLike.setOnClickListener(view->{
-            });
-            toLikeTxt.setOnClickListener(view->{
-            });
+        //영화 버튼 클릭시
+        toMovie = findViewById(R.id.toMovie);
+        toMovieTxt = findViewById(R.id.toMovieTxt);
+        //영화 추천 리스트 액티비티로 이동
+        toMovie.setOnClickListener(view->{
+            toContentsList("영화", movieList);
+        });
+        toMovieTxt.setOnClickListener(view->{
+            toContentsList("영화", movieList);
+        });
 
-            //저장해둔 버튼 클릭 시
-            toScrap = findViewById(R.id.toScrap);
-            toScrapTxt = findViewById(R.id.toScrapTxt);
-            //저장해둔 작품으로 액티비티 이동
-            toLike.setOnClickListener(view->{
-            });
-            toLikeTxt.setOnClickListener(view->{
-            });
+        //도서 버튼 클릭시
+        toBook = findViewById(R.id.toBook);
+        toBookTxt = findViewById(R.id.toBookTxt);
+        //도서 추천 리스트 액티비티로 이동
+        toBook.setOnClickListener(view->{
+            toContentsList("도서", bookList);
+        });
+        toBookTxt.setOnClickListener(view->{
+            toContentsList("도서", bookList);
+        });
 
-            //영화 버튼 클릭시
-            toMovie = findViewById(R.id.toMovie);
-            toMovieTxt = findViewById(R.id.toMovieTxt);
-            //영화 추천 리스트 액티비티로 이동
-            toMovie.setOnClickListener(view->{
-                toContentsList("영화", movieList);
-            });
-            toMovieTxt.setOnClickListener(view->{
-                toContentsList("영화", movieList);
-            });
+        //웹툰 버튼 클릭시
+        toWebtoon = findViewById(R.id.toWebtoon);
+        toWebtoonTxt = findViewById(R.id.toWebtoonTxt);
+        //도서 추천 리스트 액티비티로 이동
+        toWebtoon.setOnClickListener(view->{
+            toContentsList("웹툰", webtoonList);
+        });
+        toWebtoonTxt.setOnClickListener(view->{
+            toContentsList("웹툰", webtoonList);
+        });
 
-            //도서 버튼 클릭시
-            toBook = findViewById(R.id.toBook);
-            toBookTxt = findViewById(R.id.toBookTxt);
-            //도서 추천 리스트 액티비티로 이동
-            toBook.setOnClickListener(view->{
-                toContentsList("도서", bookList);
-            });
-            toBookTxt.setOnClickListener(view->{
-                toContentsList("도서", bookList);
-            });
+        //드라마 버튼 클릭시
+        toDrama = findViewById(R.id.toDrama);
+        toDramaTxt = findViewById(R.id.toDramaTxt);
+        //드라마 추천 리스트 액티비티로 이동
+        toDrama.setOnClickListener(view->{
+            toContentsList("드라마", dramaList);
+        });
+        toDramaTxt.setOnClickListener(view->{
+            toContentsList("드라마", dramaList);
+        });
 
-            //웹툰 버튼 클릭시
-            toWebtoon = findViewById(R.id.toWebtoon);
-            toWebtoonTxt = findViewById(R.id.toWebtoonTxt);
-            //도서 추천 리스트 액티비티로 이동
-            toWebtoon.setOnClickListener(view->{
-                toContentsList("웹툰", webtoonList);
-            });
-            toWebtoonTxt.setOnClickListener(view->{
-                toContentsList("웹툰", webtoonList);
-            });
+        //읽을거리 버튼 클릭시
+        toMagazine = findViewById(R.id.toMagazine);
+        toMagazineTxt = findViewById(R.id.toMagazineTxt);
+//        //읽을거리 리스트 액티비티로 이동
+//        toDrama.setOnClickListener(view->{
+//        });
+//        toDramaTxt.setOnClickListener(view->{
+//        });
 
-            //드라마 버튼 클릭시
-            toDrama = findViewById(R.id.toDrama);
-            toDramaTxt = findViewById(R.id.toDramaTxt);
-            //드라마 추천 리스트 액티비티로 이동
-            toDrama.setOnClickListener(view->{
-                toContentsList("드라마", dramaList);
-            });
-            toDramaTxt.setOnClickListener(view->{
-                toContentsList("드라마", dramaList);
-            });
+        // 최신 작품 4개 불러오기
+        img_latest1 = findViewById(R.id.img_latest1);
+        img_latest2 = findViewById(R.id.img_latest2);
+        img_latest3 = findViewById(R.id.img_latest3);
+        img_latest4 = findViewById(R.id.img_latest4);
+        title_latest1 = findViewById(R.id.title_latest1);
+        title_latest2 = findViewById(R.id.title_latest2);
+        title_latest3 = findViewById(R.id.title_latest3);
+        title_latest4 = findViewById(R.id.title_latest4);
+        category_latest1 = findViewById(R.id.category_latest1);
+        category_latest2 = findViewById(R.id.category_latest2);
+        category_latest3 = findViewById(R.id.category_latest3);
+        category_latest4 = findViewById(R.id.category_latest4);
+        writer_latest1 = findViewById(R.id.writer_latest1);
+        writer_latest2 = findViewById(R.id.writer_latest2);
+        writer_latest3 = findViewById(R.id.writer_latest3);
+        writer_latest4 = findViewById(R.id.writer_latest4);
+        summary_latest1 = findViewById(R.id.summary_latest1);
+        summary_latest2 = findViewById(R.id.summary_latest2);
+        summary_latest3 = findViewById(R.id.summary_latest3);
+        summary_latest4 = findViewById(R.id.summary_latest4);
+        loadLatest();
 
-            //읽을거리 버튼 클릭시
-            toMagazine = findViewById(R.id.toMagazine);
-            toMagazineTxt = findViewById(R.id.toMagazineTxt);
-//            //읽을거리 리스트 액티비티로 이동
-//            toDrama.setOnClickListener(view->{
-//            });
-//            toDramaTxt.setOnClickListener(view->{
-//            });
-
-            // 최신 작품 4개 불러오기
-            img_latest1 = findViewById(R.id.img_latest1);
-            img_latest2 = findViewById(R.id.img_latest2);
-            img_latest3 = findViewById(R.id.img_latest3);
-            img_latest4 = findViewById(R.id.img_latest4);
-            title_latest1 = findViewById(R.id.title_latest1);
-            title_latest2 = findViewById(R.id.title_latest2);
-            title_latest3 = findViewById(R.id.title_latest3);
-            title_latest4 = findViewById(R.id.title_latest4);
-            category_latest1 = findViewById(R.id.category_latest1);
-            category_latest2 = findViewById(R.id.category_latest2);
-            category_latest3 = findViewById(R.id.category_latest3);
-            category_latest4 = findViewById(R.id.category_latest4);
-            writer_latest1 = findViewById(R.id.writer_latest1);
-            writer_latest2 = findViewById(R.id.writer_latest2);
-            writer_latest3 = findViewById(R.id.writer_latest3);
-            writer_latest4 = findViewById(R.id.writer_latest4);
-            summary_latest1 = findViewById(R.id.summary_latest1);
-            summary_latest2 = findViewById(R.id.summary_latest2);
-            summary_latest3 = findViewById(R.id.summary_latest3);
-            summary_latest4 = findViewById(R.id.summary_latest4);
-            loadLatest();
-
-            // 카테고리별 인기작품 3개 불러오기
-            img_book1 = findViewById(R.id.img_book1);
-            img_book2 = findViewById(R.id.img_book2);
-            img_book3 = findViewById(R.id.img_book3);
-            img_movie1 = findViewById(R.id.img_movie1);
-            img_movie2 = findViewById(R.id.img_movie2);
-            img_movie3 = findViewById(R.id.img_movie3);
-            img_webtoon1 = findViewById(R.id.img_webtoon1);
-            img_webtoon2 = findViewById(R.id.img_webtoon2);
-            img_webtoon3 = findViewById(R.id.img_webtoon3);
-            img_drama1 = findViewById(R.id.img_drama1);
-            img_drama2 = findViewById(R.id.img_drama2);
-            img_drama3 = findViewById(R.id.img_drama3);
-            text_book_title1 = findViewById(R.id.text_book_title1);
-            text_book_title2 = findViewById(R.id.text_book_title2);
-            text_book_title3 = findViewById(R.id.text_book_title3);
-            text_movie_title1 = findViewById(R.id.text_movie_title1);
-            text_movie_title2 = findViewById(R.id.text_movie_title2);
-            text_movie_title3 = findViewById(R.id.text_movie_title3);
-            text_webtoon_title1 = findViewById(R.id.text_webtoon_title1);
-            text_webtoon_title2 = findViewById(R.id.text_webtoon_title2);
-            text_webtoon_title3 = findViewById(R.id.text_webtoon_title3);
-            text_drama_title1 = findViewById(R.id.text_drama_title1);
-            text_drama_title2 = findViewById(R.id.text_drama_title2);
-            text_drama_title3 = findViewById(R.id.text_drama_title3);
-            text_book_desc1 = findViewById(R.id.text_book_desc1);
-            text_book_desc2 = findViewById(R.id.text_book_desc2);
-            text_book_desc3 = findViewById(R.id.text_book_desc3);
-            text_movie_desc1 = findViewById(R.id.text_movie_desc1);
-            text_movie_desc2 = findViewById(R.id.text_movie_desc2);
-            text_movie_desc3 = findViewById(R.id.text_movie_desc3);
-            text_webtoon_desc1 = findViewById(R.id.text_webtoon_desc1);
-            text_webtoon_desc2 = findViewById(R.id.text_webtoon_desc2);
-            text_webtoon_desc3 = findViewById(R.id.text_webtoon_desc3);
-            text_drama_desc1 = findViewById(R.id.text_drama_desc1);
-            text_drama_desc2 = findViewById(R.id.text_drama_desc2);
-            text_drama_desc3 = findViewById(R.id.text_drama_desc3);
+        // 카테고리별 인기작품 3개 불러오기
+        img_book1 = findViewById(R.id.img_book1);
+        img_book2 = findViewById(R.id.img_book2);
+        img_book3 = findViewById(R.id.img_book3);
+        img_movie1 = findViewById(R.id.img_movie1);
+        img_movie2 = findViewById(R.id.img_movie2);
+        img_movie3 = findViewById(R.id.img_movie3);
+        img_webtoon1 = findViewById(R.id.img_webtoon1);
+        img_webtoon2 = findViewById(R.id.img_webtoon2);
+        img_webtoon3 = findViewById(R.id.img_webtoon3);
+        img_drama1 = findViewById(R.id.img_drama1);
+        img_drama2 = findViewById(R.id.img_drama2);
+        img_drama3 = findViewById(R.id.img_drama3);
+        text_book_title1 = findViewById(R.id.text_book_title1);
+        text_book_title2 = findViewById(R.id.text_book_title2);
+        text_book_title3 = findViewById(R.id.text_book_title3);
+        text_movie_title1 = findViewById(R.id.text_movie_title1);
+        text_movie_title2 = findViewById(R.id.text_movie_title2);
+        text_movie_title3 = findViewById(R.id.text_movie_title3);
+        text_webtoon_title1 = findViewById(R.id.text_webtoon_title1);
+        text_webtoon_title2 = findViewById(R.id.text_webtoon_title2);
+        text_webtoon_title3 = findViewById(R.id.text_webtoon_title3);
+        text_drama_title1 = findViewById(R.id.text_drama_title1);
+        text_drama_title2 = findViewById(R.id.text_drama_title2);
+        text_drama_title3 = findViewById(R.id.text_drama_title3);
+        text_book_desc1 = findViewById(R.id.text_book_desc1);
+        text_book_desc2 = findViewById(R.id.text_book_desc2);
+        text_book_desc3 = findViewById(R.id.text_book_desc3);
+        text_movie_desc1 = findViewById(R.id.text_movie_desc1);
+        text_movie_desc2 = findViewById(R.id.text_movie_desc2);
+        text_movie_desc3 = findViewById(R.id.text_movie_desc3);
+        text_webtoon_desc1 = findViewById(R.id.text_webtoon_desc1);
+        text_webtoon_desc2 = findViewById(R.id.text_webtoon_desc2);
+        text_webtoon_desc3 = findViewById(R.id.text_webtoon_desc3);
+        text_drama_desc1 = findViewById(R.id.text_drama_desc1);
+        text_drama_desc2 = findViewById(R.id.text_drama_desc2);
+        text_drama_desc3 = findViewById(R.id.text_drama_desc3);
 
         // 카데고리별 인기 작품 3개 불러오기
         loadLike();

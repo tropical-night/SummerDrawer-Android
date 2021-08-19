@@ -161,4 +161,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.ViewHolder>{
             }
         });
     }
+
+    public void  filterList(ArrayList<Contents> filteredList) {
+        contentListData = filteredList;
+        notifyDataSetChanged();
+    }
 }
