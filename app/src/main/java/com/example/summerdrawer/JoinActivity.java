@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 
@@ -30,6 +31,8 @@ public class JoinActivity extends AppCompatActivity {
     Button joinBtn;
     ImageView mailCheckImg, passwordCheckImg;
     private FirebaseAuth firebaseAuth;
+    FirebaseFirestore db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class JoinActivity extends AppCompatActivity {
         //파이어베이스 접근 설정
         // user = firebaseAuth.getCurrentUser();
         firebaseAuth =  FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         //firebaseDatabase = FirebaseDatabase.getInstance().getReference();
 
         userNameInput = findViewById(R.id.userNameInput);
@@ -93,6 +97,9 @@ public class JoinActivity extends AppCompatActivity {
                         hashMap.put("uid",uid);
                         hashMap.put("email",email);
                         hashMap.put("name",name);
+
+                        // user 테이블에 저장
+                        db.collection("users").document(uid).set(hashMap);
 
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                         DatabaseReference reference = database.getReference("Users");
