@@ -9,13 +9,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +24,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,12 +36,31 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
-    TextView googleLoginBtn, joinMailBtn;
+    Button googleLoginBtn;
+    TextView joinMailBtn;
+    View navbar;
+
+    String userName, userMail, password;
+
+    // 데이터 불러오기
+    ArrayList<Contents> contentList; // 전체 작품 리스트
+    ArrayList<Contents> movieList;
+    ArrayList<Contents> bookList;
+    ArrayList<Contents> webtoonList;
+    ArrayList<Contents> dramaList;
+    ArrayList<LikeScrap> likeScrapList; // 좋아요,스크랩 리스트
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        contentList = (ArrayList<Contents>) getIntent().getSerializableExtra("allContents");
+        movieList = (ArrayList<Contents>) getIntent().getSerializableExtra("movieList");
+        bookList = (ArrayList<Contents>) getIntent().getSerializableExtra("bookList");
+        webtoonList = (ArrayList<Contents>) getIntent().getSerializableExtra("webtoonList");
+        dramaList = (ArrayList<Contents>) getIntent().getSerializableExtra("dramaList");
+        likeScrapList = (ArrayList<LikeScrap>) getIntent().getSerializableExtra("likeScrapList");
+
         pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
         editor = pref.edit();
 
@@ -53,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         googleLoginBtn = findViewById(R.id.googleLoginBtn);
-        googleLoginBtn.setText("구글로 시작하기");
         //구글로 시작하기 버튼 클릭 시
         googleLoginBtn.setOnClickListener(view->{
             signIn();
@@ -109,9 +129,32 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null) {
+            //로그인 여부 저장
             editor.putBoolean("isLogin", true);
+
+            //사용자 데이터 저장
+            userName = "아무개";
+            userMail = "@naver.com";
+            password = "12341234";
+            editor.putString("userName", userName);
+            editor.putString("userId", userMail);
+            editor.putString("password", password);
             editor.apply();
-            finish();
+
+            toMain();
         }
+    }
+
+    //메인 액티비티로 이동
+    void toMain(){
+        Intent toMainI = new Intent(this, MainActivity.class);
+        toMainI.putExtra("allContents", contentList);
+        toMainI.putExtra("movieList", movieList);
+        toMainI.putExtra("bookList", bookList);
+        toMainI.putExtra("webtoonList", webtoonList);
+        toMainI.putExtra("dramaList", dramaList);
+        toMainI.putExtra("likeScrapList", likeScrapList);
+        startActivity(toMainI);
+        finish();
     }
 }
