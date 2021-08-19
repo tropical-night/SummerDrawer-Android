@@ -10,6 +10,8 @@
         android:id="@+id/contentImg"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,13 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/kopubworlddotumbold"
         android:text="TextView"
         android:textColor="#555555"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/contentImg"
-        app:layout_constraintTop_toTopOf="@+id/contentImg" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/contentCategoryAuthorRV"
@@ -46,29 +48,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/kopubworlddotumlight"
         android:text="TextView"
         android:textColor="#4a4a4a"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/contentImg"
         app:layout_constraintTop_toBottomOf="@+id/contentCategoryAuthorRV" />
 
-    <TextView
+    <ImageView
         android:id="@+id/likeImgRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/kopubworlddotumbold"
-        android:text="♡"
-        android:textColor="@color/main_green"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/contentImg" />
+        app:layout_constraintStart_toEndOf="@+id/contentImg"
+        app:srcCompat="@drawable/unlike" />
 
     <TextView
         android:id="@+id/likeNumTxtRV"
@@ -91,7 +92,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/likeNumTxtRV"
         app:layout_constraintStart_toEndOf="@+id/likeImgRV"
         app:layout_constraintTop_toTopOf="@+id/likeNumTxtRV"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+        app:srcCompat="@drawable/unscrap" />
 
     <TextView
         android:id="@+id/scrapNumTxtRV"
