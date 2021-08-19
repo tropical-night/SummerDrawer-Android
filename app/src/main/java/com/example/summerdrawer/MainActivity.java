@@ -415,7 +415,10 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(drawerView);
                 break;
             case R.id.btn_goSearch:
-                //Intent searchI = new Intent(this, SearchActivity);
+                Intent searchI = new Intent(this, SearchActivity.class);
+                searchI.putExtra("contentList", contentList);
+                searchI.putExtra("likeScrap", likeScrapList);
+                startActivity(searchI);
                 break;
             case R.id.view5:
                 detailI.putExtra("content", contentList.get(0));
