@@ -80,12 +80,12 @@ public class MainActivity extends AppCompatActivity {
             summary_latest1, summary_latest2, summary_latest3, summary_latest4;
 
     // 데이터 불러오기
-    ArrayList<Contents> contentList; // 전체 작품 리스트
-    ArrayList<Contents> movieList;
-    ArrayList<Contents> bookList;
-    ArrayList<Contents> webtoonList;
-    ArrayList<Contents> dramaList;
-    ArrayList<LikeScrap> likeScrapList; // 좋아요,스크랩 리스트
+    ArrayList<Contents> contentList = new ArrayList<>(); // 전체 작품 리스트
+    ArrayList<Contents> movieList = new ArrayList<>();
+    ArrayList<Contents> bookList = new ArrayList<>();
+    ArrayList<Contents> webtoonList = new ArrayList<>();
+    ArrayList<Contents> dramaList = new ArrayList<>();
+    ArrayList<LikeScrap> likeScrapList = new ArrayList<>(); // 좋아요,스크랩 리스트
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,19 +181,15 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(drawerView);
             });
 
-            ImageButton goSearch = findViewById(R.id.btn_goSearch);
+            goSearch = findViewById(R.id.btn_goSearch);
             viewPager2 = findViewById(R.id.viewpager);
             dots_indicator = findViewById(R.id.dots_indicator);
             goProfile = findViewById(R.id.btn_goProfile);
-            goSearch = findViewById(R.id.btn_goSearch);
             viewPager2 = findViewById(R.id.viewpager);
             dots_indicator = findViewById(R.id.dots_indicator);
 
             // 좋아요 순으로 데이터베이스 불러오기
             setAdapter();
-
-            // 카데고리별 인기 작품 3개 불러오기
-            loadLike();
 
             // 상단바 프로필 이동
             goProfile.setOnClickListener(new View.OnClickListener() {
@@ -347,6 +343,9 @@ public class MainActivity extends AppCompatActivity {
             text_drama_desc1 = findViewById(R.id.text_drama_desc1);
             text_drama_desc2 = findViewById(R.id.text_drama_desc2);
             text_drama_desc3 = findViewById(R.id.text_drama_desc3);
+
+        // 카데고리별 인기 작품 3개 불러오기
+        loadLike();
         }
 
 
