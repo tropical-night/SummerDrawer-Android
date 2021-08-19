@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -40,6 +42,11 @@ public class LoginActivity extends AppCompatActivity {
     TextView joinMailBtn;
     View navbar;
 
+    // 로그인
+    EditText editTextTextEmailAddress;
+    EditText editTextTextPassword;
+    Button loginBtn;
+
     String userName, userMail, password;
 
     // 데이터 불러오기
@@ -66,6 +73,10 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        editTextTextEmailAddress = findViewById(R.id.editTextTextEmailAddress);
+        editTextTextPassword = findViewById(R.id.editTextTextPassword);
+        loginBtn = findViewById(R.id.loginBtn);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -84,6 +95,13 @@ public class LoginActivity extends AppCompatActivity {
         joinMailBtn.setOnClickListener(view->{
             Intent joinMainI = new Intent(this, JoinActivity.class);
             startActivity(joinMainI);
+        });
+
+
+        // 로그인
+        loginBtn.setOnClickListener(view -> {
+            emailLogin();
+            // Toast.makeText(LoginActivity.this, "아이디/비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
         });
     }
     // [START signin]
@@ -156,5 +174,16 @@ public class LoginActivity extends AppCompatActivity {
         toMainI.putExtra("likeScrapList", likeScrapList);
         startActivity(toMainI);
         finish();
+    }
+
+    void emailLogin(){
+        mAuth.signInWithEmailAndPassword(editTextTextEmailAddress.getText().toString(), editTextTextPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    updateUI(mAuth.getCurrentUser());
+                }
+            }
+        });
     }
 }
