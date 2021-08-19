@@ -125,10 +125,10 @@ public class MainActivity extends AppCompatActivity {
                         bookList.add(new Contents(id, title, "도서", author, date, summary, introduction, story, tag, rating,img1));
                     }
                     else if (category.equals("웹툰")){
-                        bookList.add(new Contents(id, title, "웹툰", author, date, summary, introduction, story, tag, rating,img1));
+                        webtoonList.add(new Contents(id, title, "웹툰", author, date, summary, introduction, story, tag, rating,img1));
                     }
                     else if (category.equals("드라마")){
-                        bookList.add(new Contents(id, title, "드라마", author, date, summary, introduction, story, tag, rating,img1));
+                        dramaList.add(new Contents(id, title, "드라마", author, date, summary, introduction, story, tag, rating,img1));
                     }
                 }
 
@@ -226,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
                         setAdapter();
 
                         // 카데고리별 인기 작품 3개 불러오기
+                        loadLike();
                     }
                 });
 
@@ -633,16 +634,65 @@ public class MainActivity extends AppCompatActivity {
         summary_latest4.setText(contentList.get(3).getSummary());
     }
 
-    // 인기 작품 불러오기
+    // 카테고리별 인기 작품 불러오기
     void loadLike(){
+        int b = 0;
+        int m = 0;
+        int w = 0;
+        int d = 0;
+        for(LikeScrap contents: likeScrapList) {
+            // 도서 좋아요 수가 많은 3개 불러오기
+            for(Contents bookList: bookList) {
+                if(contents.getId().equals(bookList.getId())){
+                    if(b == 0) setData(img_book1, text_book_title1, text_book_desc1, bookList);
+                    else if(b == 1) setData(img_book2, text_book_title2, text_book_desc2, bookList);
+                    else if(b == 2) setData(img_book3, text_book_title3, text_book_desc3, bookList);
+                    else break;
+                    b++;
+                }
+            }
+
+            // 영화 좋아요 수가 많은 3개 불러오기
+            for(Contents movieList: movieList) {
+                if(contents.getId().equals(movieList.getId())){
+                    if(m == 0) setData(img_movie1, text_movie_title1, text_movie_desc1, movieList);
+                    else if(m == 1) setData(img_movie2, text_movie_title2, text_movie_desc2, movieList);
+                    else if(m == 2) setData(img_movie3, text_movie_title3, text_movie_desc3, movieList);
+                    else break;
+                    m++;
+                }
+            }
+
+            // 웹툰 좋아요 수가 많은 3개 불러오기
+            for(Contents webtoonList: webtoonList) {
+                if(contents.getId().equals(webtoonList.getId())){
+                    if(w == 0) setData(img_webtoon1, text_webtoon_title1, text_webtoon_desc1, webtoonList);
+                    else if(w == 1) setData(img_webtoon2, text_webtoon_title2, text_webtoon_desc2, webtoonList);
+                    else if(w == 2) setData(img_webtoon3, text_webtoon_title3, text_webtoon_desc3, webtoonList);
+                    else break;
+                    w++;
+                }
+            }
+
+            // 드라마 좋아요 수가 많은 3개 불러오기
+            for(Contents dramaList: dramaList) {
+                if(contents.getId().equals(dramaList.getId())){
+                    if(d == 0) setData(img_drama1, text_drama_title1, text_drama_desc1, dramaList);
+                    else if(d == 1) setData(img_drama2, text_drama_title2, text_drama_desc2, dramaList);
+                    else if(d == 2) setData(img_drama3, text_drama_title3, text_drama_desc3, dramaList);
+                    else break;
+                    d++;
+                }
+            }
+        }
 
     }
 
     // 인기 작품 서랍장 뷰와 연결하는 함수
-    void setData(ImageView img, TextView title, TextView category, TextView author, Contents contents) {
+    @SuppressLint("SetTextI18n")
+    void setData(ImageView img, TextView title, TextView desc, Contents contents) {
         Glide.with(MainActivity.this).load(contents.getImg1()).into(img);
         title.setText(contents.getTitle());
-        category.setText(contents.getCategory());
-        author.setText(contents.getAuthor());
+        desc.setText(contents.getCategory() + " | " + contents.getAuthor());
     }
 }
