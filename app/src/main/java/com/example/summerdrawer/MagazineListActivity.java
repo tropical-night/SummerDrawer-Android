@@ -47,11 +47,13 @@ public class MagazineListActivity extends AppCompatActivity {
     ImageView mostPopularImg;
     ArrayList<Contents> sliderItems;
 
-    RecyclerView contentListRV;
-    RVAdapter2 adapter;
+    RecyclerView contentListRVM, contentListRVB, contentListRVW, contentListRVD;
+    RVAdapter2 adapterM, adapterB, adapterW, adapterD;
 
     private DrawerLayout drawerLayout;
     private View drawerView;
+
+    TextView textView34;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,11 @@ public class MagazineListActivity extends AppCompatActivity {
         dramaList = (ArrayList<Contents>) getIntent().getSerializableExtra("dramaList");
         likeScrapList = (ArrayList<LikeScrap>) getIntent().getSerializableExtra("likeScrapList");
 
+        textView34 = findViewById(R.id.textView34);
+        textView34.setOnClickListener(view->{
+            Intent m = new Intent(this, MagazineActivity.class);
+            startActivity(m);
+        });
         // 슬라이더
         sliderItems = new ArrayList<>();
         viewPager2 = findViewById(R.id.viewpager2);
@@ -73,12 +80,61 @@ public class MagazineListActivity extends AppCompatActivity {
         setAdapter();
 
         // 어댑터 생성
-        contentListRV = findViewById(R.id.contentListRV);
-        ArrayList<String> magazine = new ArrayList<>();
-        magazine.add("걸캅스");
-        adapter = new RVAdapter2(this, magazine);
-        contentListRV.setLayoutManager(new LinearLayoutManager(this));
-        contentListRV.setAdapter(adapter);
+        contentListRVM = findViewById(R.id.contentListRVM);
+        ArrayList<String> magazineM = new ArrayList<>();
+        magazineM.add("'걸캅스', 개인‘들’이 연대하면 세상은 바뀐다");
+        magazineM.add("'걸캅스', 개인‘들’이 연대하면 세상은 바뀐다");
+        magazineM.add("'걸캅스', 개인‘들’이 연대하면 세상은 바뀐다");
+        adapterM = new RVAdapter2(this, magazineM, R.drawable.girlcaps);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        contentListRVM.setLayoutManager(linearLayoutManager);
+        contentListRVM.setAdapter(adapterM);
+
+        // 어댑터 생성
+        contentListRVB = findViewById(R.id.contentListRVB);
+        ArrayList<String> magazineB = new ArrayList<>();
+        magazineB.add("밝은 밤, 영원히 잊히지 않을 이야기 \n" +
+                "다른 이의 후기 ");
+        magazineB.add("밝은 밤, 영원히 잊히지 않을 이야기 \n" +
+                "다른 이의 후기 ");
+        magazineB.add("밝은 밤, 영원히 잊히지 않을 이야기 \n" +
+                "다른 이의 후기 ");
+        adapterB = new RVAdapter2(this, magazineB, R.drawable.brightnight);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this);
+        linearLayoutManager2.setOrientation(RecyclerView.HORIZONTAL);
+        contentListRVB.setLayoutManager(linearLayoutManager2);
+        contentListRVB.setAdapter(adapterB);
+
+        // 어댑터 생성
+        contentListRVW = findViewById(R.id.contentListRVW);
+        ArrayList<String> magazineW = new ArrayList<>();
+        magazineW.add("오빠가 사라졌다, 경선 작가 인터뷰 \n" +
+                "제작 인터뷰");
+        magazineW.add("오빠가 사라졌다, 경선 작가 인터뷰 \n" +
+                "제작 인터뷰");
+        magazineW.add("오빠가 사라졌다, 경선 작가 인터뷰 \n" +
+                "제작 인터뷰");
+        adapterW = new RVAdapter2(this, magazineW, R.drawable.lostbrother);
+        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(this);
+        linearLayoutManager3.setOrientation(RecyclerView.HORIZONTAL);
+        contentListRVW.setLayoutManager(linearLayoutManager3);
+        contentListRVW.setAdapter(adapterW);
+
+        // 어댑터 생성
+        contentListRVD = findViewById(R.id.contentListRVD);
+        ArrayList<String> magazineD = new ArrayList<>();
+        magazineD.add("검블유의 시작, 여자 셋이 일로 싸우는 내용 \n" +
+                "제작 인터뷰");
+        magazineD.add("검블유의 시작, 여자 셋이 일로 싸우는 내용 \n" +
+                "제작 인터뷰");
+        magazineD.add("검블유의 시작, 여자 셋이 일로 싸우는 내용 \n" +
+                "제작 인터뷰");
+        adapterD = new RVAdapter2(this, magazineD, R.drawable.www);
+        LinearLayoutManager linearLayoutManager4 = new LinearLayoutManager(this);
+        linearLayoutManager4.setOrientation(RecyclerView.HORIZONTAL);
+        contentListRVD.setLayoutManager(linearLayoutManager4);
+        contentListRVD.setAdapter(adapterD);
 
         //사용자 이름 받아와서 설정해주기
         pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
