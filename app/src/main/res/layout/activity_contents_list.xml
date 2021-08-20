@@ -78,7 +78,7 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/viewpager2"
                         android:layout_width="match_parent"
-                        android:layout_height="360dp"
+                        android:layout_height="300dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -86,7 +86,7 @@
                     <LinearLayout
                         android:id="@+id/linearLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="40dp"
                         android:layout_marginStart="20dp"
                         android:layout_weight="1"
                         android:gravity="center|left"
@@ -118,7 +118,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@color/main_gray"
-                    android:backgroundTint="@color/main_gray">
+                    android:backgroundTint="@color/main_gray"
+                    android:paddingTop="10dp">
 
 
                     <TextView
@@ -132,14 +133,15 @@
 
                     <Button
                         android:id="@+id/btn_arrange"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="70dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/button_clicked"
+                        android:fontFamily="@font/kopubworlddotummedium"
                         android:text="최신순" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/contentListRV"
+                    android:id="@+id/contentListRVB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp">

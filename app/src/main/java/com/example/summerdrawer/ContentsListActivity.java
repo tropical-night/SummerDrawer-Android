@@ -6,15 +6,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -263,7 +260,7 @@ public class ContentsListActivity extends AppCompatActivity{
                 break;
         }
 
-        contentListRV = findViewById(R.id.contentListRV);
+        contentListRV = findViewById(R.id.contentListRVB);
         contentListRV.setLayoutManager(new LinearLayoutManager(this));
 
         contentListRV.setAdapter(adapter);

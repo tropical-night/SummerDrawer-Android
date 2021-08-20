@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.ViewHolder>{
     private ArrayList<String> titleList = null;
     private Context context;
+    int res;
 
 
     //아이템 뷰를 저장하는 뷰홀더 클래스
@@ -30,12 +31,21 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.ViewHolder>{
             super(itemView);
             title_magazine = itemView.findViewById(R.id.title_magazine);
             imageView7 = itemView.findViewById(R.id.imageView7);
+
+            itemView.setOnClickListener(view->{
+                int position = getAdapterPosition();
+                if(position!=RecyclerView.NO_POSITION){
+                    Intent ma = new Intent(context, MagazineActivity.class);
+                    context.startActivity(ma);
+                }
+            });
         }
     }
 
-    RVAdapter2(Context context, ArrayList list){
+    RVAdapter2(Context context, ArrayList list, int res){
         titleList = list;
         this.context = context;
+        this.res = res;
     }
 
     @NonNull
@@ -52,10 +62,13 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull RVAdapter2.ViewHolder holder, int position) {
-        if(titleList.get(position).equals("걸캅스")) {
-            holder.imageView7.setImageResource(R.drawable.girlcaps);
-        }
+        holder.imageView7.setImageResource(res);
         holder.title_magazine.setText(titleList.get(position));
+
+        holder.imageView7.setOnClickListener(view->{
+            Intent toM = new Intent(context, MagazineActivity.class);
+
+        });
     }
 
     @Override
